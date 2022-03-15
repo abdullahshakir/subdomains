@@ -13,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
+    Route::get('/', function () {
+        return view('example-test.admin.index');
+    });
+});
+
+Route::domain(env('DOMAIN_ONE'))->group(function () {
+    Route::get('/', function () {
+        return view('example-test.index');
+    });    
+});
+
+Route::domain('admin.'.env('DOMAIN_TWO'))->group(function () {
+    Route::get('/', function () {
+        return view('example-net.admin.index');
+    });
+});
+
+Route::domain(env('DOMAIN_TWO'))->group(function () {
+    Route::get('/', function () {
+        return view('example-net.index');
+    });    
 });

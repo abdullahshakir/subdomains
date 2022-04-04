@@ -21,8 +21,12 @@
         </style>
     </head>
     <body class="antialiased">
+        <h1>
+            Interactivebootcamp Admin
+        </h1>
+
         <div>
-            This is admin.example.test
+            {{ request()->getHost()}}
         </div>
     </body>
 </html>

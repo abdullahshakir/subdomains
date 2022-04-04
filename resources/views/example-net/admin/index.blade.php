@@ -21,8 +21,11 @@
         </style>
     </head>
     <body class="antialiased">
+        <h1>
+            10X Admin
+        </h1>
         <div>
-            This is admin.example.net
+            {{ request()->getHost()}}
         </div>
     </body>
 </html>

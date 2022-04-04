@@ -21,8 +21,12 @@
         </style>
     </head>
     <body class="antialiased">
+        <h1>
+            10X Main Website
+        </h1>
+
         <div>
-            This is example.net
+            {{ request()->getHost()}}
         </div>
     </body>
 </html>

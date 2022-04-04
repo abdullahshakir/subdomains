@@ -21,8 +21,11 @@
         </style>
     </head>
     <body class="antialiased">
+        <h1>
+            Interactivebootcamp Main Website
+        </h1>
         <div>
-            This is example.test
+            {{ request()->getHost()}}
         </div>
     </body>
 </html>

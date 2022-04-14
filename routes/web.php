@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DomainController;
 use App\Models\Domain;
 
 
@@ -15,28 +16,20 @@ use App\Models\Domain;
 |
 */
 
-    foreach(Domain::with('views')->get() as $key => $domain);
+$name = [];
+    $data = Domain::with('views')->get();
+    foreach($data as $key => $domain)
     {
-        Route::domain($domain->name)->group( function () use ($domain, $key) {
-            Route::get($domain['views'][$key]['url'], function () use ($domain, $key) {
-                return view($domain['view'][$key]['name']);
-            }); 
+        Route::domain($domain['name'])->group(function () use ($domain) {
+            foreach($domain['views'] as $view)
+            {
+                Route::get($view['url'], function($view) {
+                    echo $view;
+                    return view($view['name']);
+                });
+            }
         });
     }
-
-    // $views = [];
-    // foreach(Domain::with('views')->get() as $domain);
-    // {
-    //     Route::prefix($domain['domain'], function () use ($domain) {
-    //         foreach($domain['views'] as $view)
-    //         {
-    //             return $view;
-    //             Route::get('/', function () use ($view) {
-    //                 return $view['view'];
-    //             }); 
-    //         }
-    //     });
-    // }
 
 Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
     Route::get('/', function () {

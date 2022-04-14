@@ -22,7 +22,7 @@
     </head>
     <body class="antialiased">
         <h1>
-            Welcome1
+            Home2
         </h1>
         <div>
             {{ request()->getHost()}}

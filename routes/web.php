@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Pages\StaticPagesController;
 use App\Http\Controllers\DomainController;
 use App\Models\Domain;
 
@@ -15,6 +16,7 @@ use App\Models\Domain;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [StaticPagesController::class, 'homePage'])->name('homePage');
 
 $name = [];
     $data = Domain::with('views')->get();
@@ -24,7 +26,6 @@ $name = [];
             foreach($domain['views'] as $view)
             {
                 Route::get($view['url'], function($view) {
-                    echo $view;
                     return view($view['name']);
                 });
             }

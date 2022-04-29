@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Domain;
 
+// Route::get('welcome1_page', function () {
+//     return view('welcome');
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -14,20 +17,26 @@ use App\Models\Domain;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-    foreach(Domain::with('views')->get() as $key => $domain);
+    $name = [];
+    $data = Domain::with('views')->get();
+    foreach($data as $key => $domain)
     {
-        Route::domain($domain->name)->group( function () use ($domain, $key) {
-            Route::get($domain['views'][$key]['url'], function () use ($domain, $key) {
-                return view($domain['view'][$key]['name']);
-            }); 
+        Route::domain($domain['name'])->group(function () use ($domain) {
+            foreach($domain['views'] as $view)
+            {
+                Route::group(['prefix' => 'admin'], function () use ($view) {
+                Route::get($view['url'], function () use ($view) {
+                    return view($view['name']);
+                }); 
+            });
+            }
         });
     }
-
+    
     // $views = [];
     // foreach(Domain::with('views')->get() as $domain);
     // {
-    //     Route::prefix($domain['domain'], function () use ($domain) {
+    //     Route::prefix($domain['name'], function () use ($domain) {
     //         foreach($domain['views'] as $view)
     //         {
     //             return $view;

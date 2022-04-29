@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DomainController;
 use App\Models\Domain;
 
 // Route::get('welcome1_page', function () {
@@ -27,12 +28,12 @@ use App\Models\Domain;
                 Route::group(['prefix' => 'admin'], function () use ($view) {
                 Route::get($view['url'], function () use ($view) {
                     return view($view['name']);
-                }); 
+                });
             });
             }
         });
     }
-    
+
     // $views = [];
     // foreach(Domain::with('views')->get() as $domain);
     // {
@@ -42,7 +43,7 @@ use App\Models\Domain;
     //             return $view;
     //             Route::get('/', function () use ($view) {
     //                 return $view['view'];
-    //             }); 
+    //             });
     //         }
     //     });
     // }
@@ -56,7 +57,7 @@ Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
 Route::domain(env('DOMAIN_ONE'))->group(function () {
     Route::get('/', function () {
         return view('example-test.index');
-    });    
+    });
 });
 
 Route::domain('admin.'.env('DOMAIN_TWO'))->group(function () {
@@ -68,5 +69,5 @@ Route::domain('admin.'.env('DOMAIN_TWO'))->group(function () {
 Route::domain(env('DOMAIN_TWO'))->group(function () {
     Route::get('/', function () {
         return view('example-net.index');
-    });    
+    });
 });

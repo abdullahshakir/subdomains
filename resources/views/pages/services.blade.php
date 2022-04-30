@@ -1,5 +1,5 @@
-<section id="content">
-    <div class="section">
+<section id="content" data-spy="scroll" data-target="#navbar" data-offset="0">
+    <div class="section" id="services">
         <div class="container">
             <h3 class="m-0">Our Services</h3>
             <div class="divider"><i class="icon-circle"></i></div>

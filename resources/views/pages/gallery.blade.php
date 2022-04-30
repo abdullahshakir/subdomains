@@ -1,6 +1,6 @@
-<div class="section mb-0">
+<div class="section mb-0" data-spy="scroll" data-target="#navbar" data-offset="0">
     <div class="container">
-        <h3>Gallery</h3>
+        <h3 id="gallery">Gallery</h3>
         <div class="divider"><i class="icon-circle"></i></div>
         <div class="masonry-thumbs grid-container grid-6" data-big="3" data-lightbox="gallery">
             <a class="grid-item" href="assets/images/portfolio/full/1.jpg" data-lightbox="gallery-item"><img

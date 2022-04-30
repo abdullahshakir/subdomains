@@ -17,3 +17,9 @@
 .pt-0 {
     padding-top: 0px !important;
 }
+.full-header .primary-menu .menu-container {
+    border-right: 0px solid #EEE !important;
+}
+.full-header #logo {
+    border-right: 0px solid #EEE !important;
+}

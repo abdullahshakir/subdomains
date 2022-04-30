@@ -1,7 +1,7 @@
 
-<div class="section mb-0">
+<div class="section mb-0" data-spy="scroll" data-target="#navbar" data-offset="0">
     <div class="container">
-        <h3>Portfolio</h3>
+        <h3 id="portfol">Portfolio</h3>
         <div class="divider"><i class="icon-circle"></i></div>
         <div class="grid-filter-wrap">
             <!-- Grid Filter

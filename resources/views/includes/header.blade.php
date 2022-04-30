@@ -12,61 +12,6 @@
                             src="{{ URL::asset('assets/images/logo.png') }}" alt="Canvas Logo"></a>
                     <a href="{{route('home-page')}}" class="retina-logo" data-dark-logo="assets/images/logo-dark@2x.png"><img
                             src="{{ URL::asset('assets/images/logo@2x.png') }}" alt="Canvas Logo"></a>
-                </div><!-- #logo end -->
-
-                <div class="header-misc">
-
-                    <!-- Top Search
-                         ============================================= -->
-                    <div id="top-search" class="header-misc-icon">
-                        <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
-                                class="icon-line-cross"></i></a>
-                    </div><!-- #top-search end -->
-
-                    <!-- Top Cart
-                         ============================================= -->
-                    <div id="top-cart" class="header-misc-icon d-none d-sm-block">
-                        <a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span
-                                class="top-cart-number">5</span></a>
-                        <div class="top-cart-content">
-                            <div class="top-cart-title">
-                                <h4>Shopping Cart</h4>
-                            </div>
-                            <div class="top-cart-items">
-                                <div class="top-cart-item">
-                                    <div class="top-cart-item-image">
-                                        <a href="#"><img src="{{ URL::asset('assets/images/shop/small/1.jpg') }}"
-                                                         alt="Blue Round-Neck Tshirt"/></a>
-                                    </div>
-                                    <div class="top-cart-item-desc">
-                                        <div class="top-cart-item-desc-title">
-                                            <a href="#">Blue Round-Neck Tshirt with a Button</a>
-                                            <span class="top-cart-item-price d-block">$19.99</span>
-                                        </div>
-                                        <div class="top-cart-item-quantity">x 2</div>
-                                    </div>
-                                </div>
-                                <div class="top-cart-item">
-                                    <div class="top-cart-item-image">
-                                        <a href="#"><img src="{{ URL::asset('assets/images/shop/small/6.jpg') }}"
-                                                         alt="Light Blue Denim Dress"/></a>
-                                    </div>
-                                    <div class="top-cart-item-desc">
-                                        <div class="top-cart-item-desc-title">
-                                            <a href="#">Light Blue Denim Dress</a>
-                                            <span class="top-cart-item-price d-block">$24.99</span>
-                                        </div>
-                                        <div class="top-cart-item-quantity">x 3</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="top-cart-action">
-                                <span class="top-checkout-price">$114.95</span>
-                                <a href="#" class="button button-3d button-small m-0">View Cart</a>
-                            </div>
-                        </div>
-                    </div><!-- #top-cart end -->
-
                 </div>
 
                 <div id="primary-menu-trigger">
@@ -83,8 +28,7 @@
 
                 <!-- Primary Navigation
                     ============================================= -->
-                <nav class="primary-menu">
-
+                <nav class="primary-menu" id="#navbar">
                     <ul class="menu-container">
                         <li class="menu-item">
                             <a class="menu-link" href="{{route('home-page')}}">
@@ -92,39 +36,32 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{route('home-page')}}">
+                            <a class="menu-link" href="#services">
                                 <div>Services</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{route('home-page')}}">
+                            <a class="menu-link" href="#gallery">
                                 <div>Gallery</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{route('home-page')}}">
+                            <a class="menu-link" href="#portfol">
                                 <div>Portfolio</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{route('home-page')}}">
+                            <a class="menu-link" href="#aboutus">
                                 <div>About us</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{route('home-page')}}">
+                            <a class="menu-link" href="#contactus">
                                 <div>Contact us</div>
                             </a>
                         </li>
                     </ul>
-
-                </nav><!-- #primary-menu end -->
-
-                <form class="top-search-form" action="search.html" method="get">
-                    <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.."
-                           autocomplete="off">
-                </form>
-
+                </nav>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <section id="content" class="p-0">
     <div class="content-wrap">
-        <div class="container clearfix">
+        <div class="container clearfix" id="aboutus">
             <h3>About Us</h3>
             <div class="divider"><i class="icon-circle"></i></div>
         </div>

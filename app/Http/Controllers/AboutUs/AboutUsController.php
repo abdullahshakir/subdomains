@@ -5,22 +5,17 @@ namespace App\Http\Controllers\AboutUs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomValidatorRequest;
 use App\Models\AboutUs;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
 {
-    public function creat(CustomValidatorRequest $request)
+    public static function createAbout(CustomValidatorRequest $request)
     {
         try {
-            $file = new AboutUs;
-            if($request->file()) {
-                $name = time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
-                $file->name = time() . '_' . $request->file->getClientOriginalName();
-                $file->file = '/storage/' . $filePath;
-                $file->save();
-            }
-            return response()->json(['message' => 'created']);
+            $create = new AboutUs;
+            Theme::create($create, $request);
+            return response()->json(['message' => 'created'], 200);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

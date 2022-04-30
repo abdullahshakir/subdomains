@@ -31,5 +31,33 @@ class Theme extends Model
         return $this->hasMany(Service::class, 'theme_id');
     }
 
+    public static function create($data, $request)
+    {
+        try {
+            if ($request->is_theme_contact_mail) {
+                $data->theme_id = $request->themeId;
+                $data->name = $request->name;
+                $data->email = $request->email;
+                $data->phone = $request->phone;
+                $data->message = $request->message;
+                $data->service = $request->service;
+                $data->subject = $request->subject;
+                $data->is_theme_contact_mail = $request->is_theme_contact_mail;
+                $data->save();
+            }
+            if($request->file()) {
+                $name = time() . '_' . $request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
+                $data->file = '/storage/' . $filePath;
+                $data->theme_id = $request->themeId;
+                $data->title = $request->title;
+                $data->sub_title = $request->subTitle;
+                $data->section = $request->section;
+                $data->save();
+            }
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
 
 }

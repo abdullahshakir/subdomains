@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUs\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pages\StaticPagesController;
 use App\Http\Controllers\DomainController;
@@ -17,6 +18,8 @@ use App\Models\Domain;
 |
 */
 Route::get('/', [StaticPagesController::class, 'homePage'])->name('home-page');
+
+// backoffice routes
 
 $name = [];
     $data = Domain::with('views')->get();

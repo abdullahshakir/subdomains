@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Service;
+namespace App\Http\Controllers\Theme;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomValidatorRequest;
-use App\Models\Service;
 use App\Models\Theme;
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class ThemesController extends Controller
 {
-    public static function createPortfolio(CustomValidatorRequest $request)
+    public static function createTheme(CustomValidatorRequest $request)
     {
         try {
-            $create = new Service;
-            Theme::create($create, $request);
+            $create = new Theme;
+            $create->name = $request->name;
+            $create->mode = $request->mode;
+            $create->save();
             return response()->json(['message' => 'created'], 200);
         } catch (\Exception $exception) {
             return $exception->getMessage();

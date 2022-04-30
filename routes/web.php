@@ -16,7 +16,7 @@ use App\Models\Domain;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [StaticPagesController::class, 'homePage'])->name('homePage');
+Route::get('/', [StaticPagesController::class, 'homePage'])->name('home-page');
 
 $name = [];
     $data = Domain::with('views')->get();
@@ -41,7 +41,7 @@ Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
 Route::domain(env('DOMAIN_ONE'))->group(function () {
     Route::get('/', function () {
         return view('example-test.index');
-    });    
+    });
 });
 
 Route::domain('admin.'.env('DOMAIN_TWO'))->group(function () {
@@ -53,5 +53,5 @@ Route::domain('admin.'.env('DOMAIN_TWO'))->group(function () {
 Route::domain(env('DOMAIN_TWO'))->group(function () {
     Route::get('/', function () {
         return view('example-net.index');
-    });    
+    });
 });

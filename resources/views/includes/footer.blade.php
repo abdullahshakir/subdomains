@@ -1,6 +1,6 @@
 		<!-- Footer
 		============================================= -->
-		<footer id="footer" class="dark">
+		<footer id="footer" class="dark p-0">
 			<div class="container">
 
 				<!-- Footer Widgets
@@ -15,11 +15,11 @@
 
 									<div class="widget clearfix">
 
-										<img src="images/footer-widget-logo.png" alt="Image" class="footer-logo">
+										<img src="assets/images/footer-widget-logo.png" alt="Image" class="footer-logo">
 
 										<p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp; <strong>Flexible</strong> Design Standards.</p>
 
-										<div style="background: url('images/world-map.png') no-repeat center center; background-size: 100%;">
+										<div style="background: url('assets/images/world-map.png') no-repeat center center; background-size: 100%;">
 											<address>
 												<strong>Headquarters:</strong><br>
 												795 Folsom Ave, Suite 600<br>
@@ -246,7 +246,7 @@
 		</footer><!-- #footer end -->
 	<!-- Go To Top
 	============================================= -->
-	{{-- <div id="gotoTop" class="icon-angle-up"></div> --}}
+	 <div id="gotoTop" class="icon-angle-up"></div>
 
 	<!-- JavaScripts
 	============================================= -->

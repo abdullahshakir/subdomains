@@ -9,6 +9,8 @@ class StaticPagesController extends Controller
 {
     public function homePage()
     {
-        return view('pages.homePage');
+        return view('pages.home-page');
     }
+
+
 }

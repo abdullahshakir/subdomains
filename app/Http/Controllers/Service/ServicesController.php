@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-    public static function createPortfolio(CustomValidatorRequest $request)
+    public static function createService(CustomValidatorRequest $request)
     {
         try {
             $create = new Service;

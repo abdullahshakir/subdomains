@@ -20,6 +20,7 @@ class CreateAboutUsTable extends Migration
             $table->string('sub_title');
             $table->string('file');
             $table->string('section');
+            $table->longText('description')->nullable();
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

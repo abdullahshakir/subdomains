@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/components/bs-datatable.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/components/bs-filestyle.css') }}" type="text/css" />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -77,7 +78,9 @@
         <main class="py-4">
             <div class="row p-0 m-0">
                 <div class="col-xl-3 col-lg-3 col-md-4">
-                    @include('layouts.side-bar')
+                    @auth
+                        @include('layouts.side-bar')
+                    @endauth
                 </div>
                 <div class="col-xl-9 col-lg-9 col-md-8 pl-0">
                     <div class="container pl-0">
@@ -88,4 +91,54 @@
         </main>
     </div>
 </body>
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/plugins.min.js') }}"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script type="text/javascript" src="{{ URL::asset('assets/js/functions.js') }}"></script>
+
+<script src="{{ asset('assets/js/components/datepicker.js')}}"></script>
+<script src="{{ asset('assets/js/components/bs-datatable.js')}}"></script>
+<script src="{{ asset('assets/js/components/bs-filestyle.js')}}"></script>
+<script src="{{ asset('assets/js/components/tinymce/tinymce.min.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#datatable1').dataTable();
+    });
+
+    jQuery(document).ready( function(){
+        $('.dobpicker').datepicker({
+            autoclose: true,
+        });
+
+        $("#jobs-application-resume").fileinput({
+            required: true,
+            browseClass: "btn btn-secondary",
+            browseIcon: "",
+            removeClass: "btn btn-danger",
+            removeLabel: "",
+            removeIcon: "<i class='icon-trash-alt1'></i>",
+            showUpload: false
+        });
+
+        tinymce.init({
+            selector: '#jobs-application-message',
+            menubar: false,
+            setup: function(editor) {
+                editor.on('change', function(e) {
+                    editor.save();
+                });
+            }
+        });
+    })
+</script>
+
 </html>

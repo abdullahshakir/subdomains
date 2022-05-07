@@ -12,5 +12,4 @@ class StaticPagesController extends Controller
         return view('pages.home-page');
     }
 
-
 }

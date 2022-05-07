@@ -256,3 +256,10 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="{{ URL::asset('assets/js/functions.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                $('#datatable1').dataTable();
+            });
+        </script>
+        <script src="{{ asset('assets/js/components/bs-datatable.js')}}"></script>
+

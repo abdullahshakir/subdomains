@@ -15,9 +15,49 @@ class AboutUsController extends Controller
         try {
             $create = new AboutUs;
             Theme::create($create, $request);
-            return response()->json(['message' => 'created'], 200);
+            return response()->json(['message' => 'created'], 201);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
+
+    public function view(Request $request)
+    {
+        try {
+            return view('backoffice.about.view', with(['data' => AboutUs::all()]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public function edit($id)
+    {
+        try {
+            return response()->json(['data' => AboutUs::where('id', $id)->first()], 200);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public function update(CustomValidatorRequest $request, $id)
+    {
+        try {
+
+            return response()->json(['data' => AboutUs::paginate(12)], 200);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $about = AboutUs::findOrFail($id);
+            $about->delete();
+            return response()->json(['message' => 'Deleted successfully'], 200);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
 }

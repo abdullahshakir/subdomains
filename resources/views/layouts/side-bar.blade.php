@@ -84,38 +84,51 @@
 
                     <ul class="menu-container">
                         <li class="menu-item"><a class="menu-link" href="index.html">
-                                <div>Home</div>
-                            </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#">
-                                <div>Features</div>
-                            </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#">
-                                <div>Pages</div>
-                            </a></li>
-                        <li class="menu-item"><a class="menu-link" href="#">
+                                <div>Dashboard</div>
+                            </a>
+                        </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.service') }}">
+                                <div>Services</div>
+                            </a>
+                        </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.gallery') }}">
+                                <div>Gallery</div>
+                            </a>
+                        </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.portfolio') }}">
                                 <div>Portfolio</div>
-                            </a></li>
+                            </a>
+                        </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.about') }}">
+                                <div>About us</div>
+                            </a>
+                        </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.contact') }}">
+                                <div>Contact us</div>
+                            </a>
+                        </li>
                         <li class="menu-item"><a class="menu-link" href="#">
-                                <div>Blog</div>
+                                <div>Appearance</div>
                             </a>
                             <ul class="sub-menu-container">
-                                <li class="menu-item"><a class="menu-link" href="#">
-                                        <div>Default</div>
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{{ route('view.theme') }}">
+                                        <div>Theme</div>
                                     </a>
-                                    <ul class="sub-menu-container">
-                                        <li class="menu-item"><a class="menu-link" href="blog.html">
-                                                <div>Right Sidebar</div>
-                                            </a></li>
-                                        <li class="menu-item"><a class="menu-link" href="blog-left-sidebar.html">
-                                                <div>Left Sidebar</div>
-                                            </a></li>
-                                        <li class="menu-item"><a class="menu-link" href="blog-both-sidebar.html">
-                                                <div>Both Sidebar</div>
-                                            </a></li>
-                                        <li class="menu-item"><a class="menu-link" href="blog-full-width.html">
-                                                <div>Full Width</div>
-                                            </a></li>
-                                    </ul>
+{{--                                    <ul class="sub-menu-container">--}}
+{{--                                        <li class="menu-item"><a class="menu-link" href="blog.html">--}}
+{{--                                                <div>Right Sidebar</div>--}}
+{{--                                            </a></li>--}}
+{{--                                        <li class="menu-item"><a class="menu-link" href="blog-left-sidebar.html">--}}
+{{--                                                <div>Left Sidebar</div>--}}
+{{--                                            </a></li>--}}
+{{--                                        <li class="menu-item"><a class="menu-link" href="blog-both-sidebar.html">--}}
+{{--                                                <div>Both Sidebar</div>--}}
+{{--                                            </a></li>--}}
+{{--                                        <li class="menu-item"><a class="menu-link" href="blog-full-width.html">--}}
+{{--                                                <div>Full Width</div>--}}
+{{--                                            </a></li>--}}
+{{--                                    </ul>--}}
                                 </li>
                             </ul>
                         </li>

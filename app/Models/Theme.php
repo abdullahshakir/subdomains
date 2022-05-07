@@ -34,7 +34,7 @@ class Theme extends Model
     public static function create($data, $request)
     {
         try {
-            if ($request->is_theme_contact_mail) {
+            if ($request->email) {
                 $data->theme_id = $request->themeId;
                 $data->name = $request->name;
                 $data->email = $request->email;
@@ -53,6 +53,7 @@ class Theme extends Model
                 $data->title = $request->title;
                 $data->sub_title = $request->subTitle;
                 $data->section = $request->section;
+                $data->description = $request->description;
                 $data->save();
             }
         } catch (\Exception $exception) {

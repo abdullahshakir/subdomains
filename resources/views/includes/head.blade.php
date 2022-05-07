@@ -17,5 +17,7 @@
 	<link rel="stylesheet" href="{{ URL::asset('assets/css/animate.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ URL::asset('assets/css/magnific-popup.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}"  type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ URL::asset('assets/css/components/bs-datatable.css') }}" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home</title>
+

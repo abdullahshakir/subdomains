@@ -23,3 +23,6 @@
 .full-header #logo {
     border-right: 0px solid #EEE !important;
 }
+.tox-statusbar{
+    display: none !important;
+}

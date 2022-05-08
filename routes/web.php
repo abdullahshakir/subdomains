@@ -21,6 +21,11 @@ use App\Models\Domain;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(ContactUsController::class)->group(function () {
+    Route::post('/create-contact', 'createContactUs')->name('create.contact');
+});
+
+
 Route::middleware(['auth'])->group(function () {
 // backoffice routes start
     Route::controller(AboutUsController::class)->group(function () {
@@ -34,7 +39,6 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ContactUsController::class)->group(function () {
         Route::get('/edit-contact/{id}', 'edit');
         Route::get('/view-contact', 'view')->name('view.contact');
-        Route::post('/create-contact', 'createContactUs')->name('create.contact');
         Route::post('/delete-contact', 'delete');
         Route::put('/update-contact/{id}', 'update');
     });

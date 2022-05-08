@@ -8,6 +8,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}"  type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/swiper.css') }}"  type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/dark.css') }}"  type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/font-icons.css') }}"  type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/animate.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/magnific-popup.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}"  type="text/css" />
     <link rel="stylesheet" href="{{ URL::asset('assets/css/components/bs-datatable.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ URL::asset('assets/css/components/bs-filestyle.css') }}" type="text/css" />
     <!-- Scripts -->

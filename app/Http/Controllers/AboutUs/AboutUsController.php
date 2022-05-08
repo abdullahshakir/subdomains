@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
 {
+
+    public function createForm()
+    {
+        try {
+            return view('backoffice.about.create', with(['data' => Theme::select('id','name')->get()]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
     public static function createAbout(CustomValidatorRequest $request)
     {
         try {

@@ -3,13 +3,29 @@
 namespace App\Http\Controllers\Theme;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomValidatorRequest;
+use App\Http\Requests\ThemeValidatorRequest;
 use App\Models\Theme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ThemesController extends Controller
 {
-    public static function createTheme(CustomValidatorRequest $request)
+
+    public function testFn()
+    {
+        return response()->json(['data' => Theme::select('id','name')->get()], 200);
+    }
+
+    public function createForm()
+    {
+        try {
+            return view('backoffice.theme.create', with(['data' => Theme::select('id','name')->get()]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public static function createTheme(ThemeValidatorRequest $request)
     {
         try {
             $create = new Theme;
@@ -34,17 +50,20 @@ class ThemesController extends Controller
     public function edit($id)
     {
         try {
-            return response()->json(['data' => Theme::where('id', $id)->first()], 200);
+            return view('backoffice.theme.update', with(['data' => Theme::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
 
-    public function update(CustomValidatorRequest $request, $id)
+    public function update(ThemeValidatorRequest $request, $id)
     {
         try {
-
-            return response()->json(['data' => Theme::paginate(12)], 200);
+            $theme = Theme::findOrFail($id);
+            $input = $request->all();
+            $theme->fill($input)->save();
+            return response()->json(['message' => 'updated'], 200);
+//            return view('backoffice.theme.view', with(['message' => 'updated.', 'data' => Theme::all()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

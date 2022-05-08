@@ -21,51 +21,57 @@ use App\Models\Domain;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::middleware(['auth'])->group(function () {
 // backoffice routes start
-Route::controller(AboutUsController::class)->group(function () {
-    Route::post('/create-about', 'createAbout')->name('create.about');
-    Route::get('/edit-about/{id}', 'edit');
-    Route::put('/update-about/{id}', 'update');
-    Route::get('/view-about', 'view')->name('view.about');
-    Route::post('/delete-about', 'delete');
+    Route::controller(AboutUsController::class)->group(function () {
+        Route::get('/index-about', 'createForm')->name('index.about');
+        Route::get('/edit-about/{id}', 'edit')->middleware(['admin']);
+        Route::get('/view-about', 'view')->name('view.about');
+        Route::post('/create-about', 'createAbout')->name('create.about');
+        Route::post('/delete-about', 'delete')->middleware(['admin']);
+        Route::put('/update-about/{id}', 'update')->middleware(['admin']);
+    });
+    Route::controller(ContactUsController::class)->group(function () {
+        Route::get('/edit-contact/{id}', 'edit');
+        Route::get('/view-contact', 'view')->name('view.contact');
+        Route::post('/create-contact', 'createContactUs')->name('create.contact');
+        Route::post('/delete-contact', 'delete');
+        Route::put('/update-contact/{id}', 'update');
+    });
+    Route::controller(PortfolioController::class)->group(function () {
+        Route::get('/index-portfolio', 'createForm')->name('index.portfolio');
+        Route::get('/edit-portfolio/{id}', 'edit');
+        Route::get('/view-portfolio', 'view')->name('view.portfolio');
+        Route::post('/create-portfolio', 'createPortfolio')->name('create.portfolio');
+        Route::post('/delete-portfolio', 'delete');
+        Route::put('/update-portfolio/{id}', 'update');
+    });
+    Route::controller(ServicesController::class)->group(function () {
+        Route::get('/index-service', 'createForm')->name('index.service');
+        Route::get('/view-service', 'view')->name('view.service');
+        Route::get('/edit-service/{id}', 'edit');
+        Route::post('/create-service', 'createService')->name('create.service');
+        Route::post('/delete-service', 'delete');
+        Route::put('/update-service/{id}', 'update');
+    });
+    Route::controller(GalleryController::class)->group(function () {
+        Route::get('/index-gallery', 'createForm')->name('index.gallery');
+        Route::get('/edit-gallery/{id}', 'edit');
+        Route::get('/view-gallery', 'view')->name('view.gallery');
+        Route::post('/create-gallery', 'createGallery')->name('create.gallery');
+        Route::post('/delete-gallery', 'delete');
+        Route::put('/update-gallery/{id}', 'update');
+    });
+    Route::controller(ThemesController::class)->group(function () {
+        Route::get('/index-theme', 'createForm')->name('index.theme');
+        Route::get('/edit-theme/{id}', 'edit')->name('edit.theme')->middleware(['admin']);
+        Route::get('/view-theme', 'view')->name('view.theme');
+        Route::post('/create-theme', 'createTheme')->name('create.theme');
+        Route::post('/delete-theme', 'delete')->middleware(['admin']);
+        Route::post('/update-theme/{id}', 'update')->name('update.theme')->middleware(['admin']);
+    });
 });
-Route::controller(ContactUsController::class)->group(function () {
-    Route::post('/create-contact', 'createContactUs')->name('create.contact');
-    Route::get('/edit-contact/{id}', 'edit');
-    Route::put('/update-contact/{id}', 'update');
-    Route::get('/view-contact', 'view')->name('view.contact');
-    Route::post('/delete-contact', 'delete');
-});
-Route::controller(PortfolioController::class)->group(function () {
-    Route::post('/create-portfolio', 'createPortfolio')->name('create.portfolio');
-    Route::get('/edit-portfolio/{id}', 'edit');
-    Route::put('/update-portfolio/{id}', 'update');
-    Route::get('/view-portfolio', 'view')->name('view.portfolio');
-    Route::post('/delete-portfolio', 'delete');
-});
-Route::controller(ServicesController::class)->group(function () {
-    Route::get('/index-service', 'createForm')->name('index.service');
-    Route::post('/create-service', 'createService')->name('create.service');
-    Route::get('/edit-service/{id}', 'edit');
-    Route::put('/update-service/{id}', 'update');
-    Route::get('/view-service', 'view')->name('view.service');
-    Route::post('/delete-service', 'delete');
-});
-Route::controller(GalleryController::class)->group(function () {
-    Route::post('/create-gallery', 'createGallery')->name('create.gallery');
-    Route::get('/edit-gallery/{id}', 'edit');
-    Route::put('/update-gallery/{id}', 'update');
-    Route::get('/view-gallery', 'view')->name('view.gallery');
-    Route::post('/delete-gallery', 'delete');
-});
-Route::controller(ThemesController::class)->group(function () {
-    Route::post('/create-theme', 'createTheme')->name('create.theme');
-    Route::get('/edit-theme/{id}', 'edit');
-    Route::put('/update-theme/{id}', 'update');
-    Route::get('/view-theme', 'view')->name('view.theme');
-    Route::post('/delete-theme', 'delete');
-});
+
 // backoffice routes end
 
 Route::get('/', [StaticPagesController::class, 'homePage'])->name('home-page');

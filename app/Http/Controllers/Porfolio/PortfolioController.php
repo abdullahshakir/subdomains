@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
+
+    public function createForm()
+    {
+        try {
+            return view('backoffice.portfolio.create', with(['data' => Theme::select('id','name')->get()]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
     public static function createPortfolio(CustomValidatorRequest $request)
     {
         try {

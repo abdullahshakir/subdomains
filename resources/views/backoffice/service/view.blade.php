@@ -7,7 +7,7 @@
                 <h3>Service</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('index.service')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create Service</a>
+                <a href="{{route('index.service')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>
             <div class="table-responsive">

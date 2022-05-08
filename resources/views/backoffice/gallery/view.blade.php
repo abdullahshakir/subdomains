@@ -2,8 +2,14 @@
 
 @section('content')
     <section id="content">
-        <h3>Gallery</h3>
-            <div class="table-responsive">
+        <div class="row">
+            <div class="col-6">
+                <h3>Gallery</h3>
+            </div>
+            <div class="col-6 text-end">
+                <a href="{{route('index.gallery')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+            </div>
+        </div>            <div class="table-responsive">
                 <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                     <tr>

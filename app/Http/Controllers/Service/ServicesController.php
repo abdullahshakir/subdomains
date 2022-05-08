@@ -14,15 +14,15 @@ class ServicesController extends Controller
     public function createForm()
     {
         try {
-            return view('backoffice.service.create');
+            return view('backoffice.service.create', with(['data' => Theme::select('id','name')->get()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
+
     public static function createService(CustomValidatorRequest $request)
     {
         try {
-            return $request;
             $create = new Service;
             Theme::create($create, $request);
             return response()->json(['message' => 'created'], 200);

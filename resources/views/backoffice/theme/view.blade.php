@@ -2,8 +2,15 @@
 
 @section('content')
     <section id="content">
-        <h3>Theme</h3>
-            <div class="table-responsive">
+        <div class="row">
+            <div class="col-6">
+                <h3>Theme</h3>
+            </div>
+            <div class="col-6 text-end">
+                <a href="{{route('index.theme')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+            </div>
+        </div>
+        <div class="table-responsive">
                 <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -20,11 +27,11 @@
                             <td> {{ $item->mode }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
-                                <a href="">
+                                <a href="{{URL::to('edit-theme/'.$item->id)}}">
                                     <i class="icon-line-trash"></i>
                                 </a>
                                 &nbsp;
-                                <a href="">
+                                <a href="{{URL::to('edit-theme/'.$item->id)}}">
                                     <i class="icon-line-edit"></i>
                                 </a>
                             </td>

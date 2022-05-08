@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
+
+    public function createForm()
+    {
+        try {
+            return view('backoffice.gallery.create', with(['data' => Theme::select('id','name')->get()]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
     public static function createGallery(CustomValidatorRequest $request)
     {
         try {

@@ -25,7 +25,6 @@ class CustomValidatorRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'subTitle' => 'required',
             'file' => 'required|mimes:png,jpg,jpeg', //|max:2048
             'section' => 'required',
         ];
@@ -35,7 +34,6 @@ class CustomValidatorRequest extends FormRequest
     {
         return [
             'title.required' => 'Title is required',
-            'subTitle.required' => 'Sub title is required',
             'file.required' => 'File is required',
             'section.required' => 'Section is required',
         ];

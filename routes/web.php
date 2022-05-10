@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/view-about', 'view')->name('view.about');
         Route::post('/create-about', 'createAbout')->name('create.about');
         Route::post('/delete-about', 'delete')->middleware(['admin']);
-        Route::put('/update-about/{id}', 'update')->middleware(['admin']);
+        Route::post('/update-about/{id}', 'update')->middleware(['admin']);
     });
     Route::controller(ContactUsController::class)->group(function () {
         Route::get('/edit-contact/{id}', 'edit');

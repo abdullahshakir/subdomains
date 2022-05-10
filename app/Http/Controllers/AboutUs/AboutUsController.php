@@ -43,7 +43,7 @@ class AboutUsController extends Controller
     public function edit($id)
     {
         try {
-            return response()->json(['data' => AboutUs::where('id', $id)->first()], 200);
+            return view('backoffice.about.update', with(['data' => AboutUs::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -52,8 +52,11 @@ class AboutUsController extends Controller
     public function update(CustomValidatorRequest $request, $id)
     {
         try {
-
-            return response()->json(['data' => AboutUs::paginate(12)], 200);
+            $about = AboutUs::findOrFail($id);
+            $input = $request->all();
+            $about->fill($input)->save();
+            return response()->json(['message' => 'updated'], 200);
+//            return response()->json(['data' => AboutUs::paginate(12)], 200);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

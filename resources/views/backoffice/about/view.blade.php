@@ -39,7 +39,7 @@
                                     <i class="icon-line-trash"></i>
                                 </a>
                                 &nbsp;
-                                <a href="">
+                                <a href="{{URL::to('edit-about/'.$item->id)}}">
                                     <i class="icon-line-edit"></i>
                                 </a>
                             </td>

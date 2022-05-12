@@ -55,8 +55,13 @@ class AboutUsController extends Controller
             $about = AboutUs::findOrFail($id);
             $input = $request->all();
             $about->fill($input)->save();
+            if($request->file()) {
+                $name =  time() . '_' . $request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
+                $about->file = '/storage/' . $filePath;
+                $about->save();
+            }
             return response()->json(['message' => 'updated'], 200);
-//            return response()->json(['data' => AboutUs::paginate(12)], 200);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -65,6 +70,7 @@ class AboutUsController extends Controller
     public function delete($id)
     {
         try {
+            return $id;
             $about = AboutUs::findOrFail($id);
             $about->delete();
             return response()->json(['message' => 'Deleted successfully'], 200);

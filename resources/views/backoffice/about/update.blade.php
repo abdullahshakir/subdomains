@@ -42,8 +42,9 @@
                         </div>
                         <div class="col-12 form-group">
                             <label>Description:</label>
-                            <textarea name="description" id="description" class="form-control required"
-                                   value="{{$data->description}}" cols="30" rows="5">
+                            <textarea name="description" id="description" placeholder="Enter description"
+                                      class="form-control required" cols="30" rows="5">
+                                {{$data->description}}
                             </textarea>
                         </div>
 

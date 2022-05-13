@@ -153,7 +153,7 @@
 <!-- Footer Scripts
 
 ============================================= -->
-<script src="{{URL::asset('assets/js/functions.js')}}"></script>
+{{--<script src="{{URL::asset('assets/js/functions.js')}}"></script>--}}
 
 </body>
 </html>

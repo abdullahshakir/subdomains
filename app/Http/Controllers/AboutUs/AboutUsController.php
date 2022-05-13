@@ -25,7 +25,8 @@ class AboutUsController extends Controller
         try {
             $create = new AboutUs;
             Theme::create($create, $request);
-            return response()->json(['message' => 'created'], 201);
+            return redirect()->route('view.about', ['data' => AboutUs::all()]);
+//            return response()->json(['message' => 'created'], 201);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -61,7 +62,7 @@ class AboutUsController extends Controller
                 $about->file = '/storage/' . $filePath;
                 $about->save();
             }
-            return response()->json(['message' => 'updated'], 200);
+            return redirect()->route('view.about', ['data' => AboutUs::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

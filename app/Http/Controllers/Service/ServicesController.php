@@ -25,7 +25,7 @@ class ServicesController extends Controller
         try {
             $create = new Service;
             Theme::create($create, $request);
-            return response()->json(['message' => 'created'], 200);
+            return redirect()->route('view.service', ['data' => Service::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -43,7 +43,7 @@ class ServicesController extends Controller
     public function edit($id)
     {
         try {
-            return response()->json(['data' => Service::where('id', $id)->first()], 200);
+            return view('backoffice.service.update', with(['data' => Service::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -52,7 +52,7 @@ class ServicesController extends Controller
     public function update(CustomValidatorRequest $request, $id)
     {
         try {
-            return response()->json(['data' => Service::paginate(12)], 200);
+            return redirect()->route('view.service', ['data' => Service::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

@@ -35,22 +35,22 @@
                             <td> {{ $item->section }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
+                                <form id="delete-form-{{$item->id}}"
+                                      action="{{URL::to('delete-about', $item->id)}}"
+                                      method="post">
                                 <a href="{{ URL::to('delete-about') }}"
                                        onclick="event.preventDefault();
                                            document.getElementById(
                                            'delete-form-{{$item->id}}').submit();">
                                     <i class="icon-line-trash"></i>
                                 </a>
-                            </td>
-                            <form id="delete-form-{{$item->id}}"
-                                  action="{{URL::to('delete-about', $item->id)}}"
-                                  method="post">
-                                @csrf @method('DELETE')
-                            </form>
-                            &nbsp;
                                 <a href="{{URL::to('edit-about/'.$item->id)}}">
                                     <i class="icon-line-edit"></i>
                                 </a>
+                                    @csrf @method('DELETE')
+                                </form>
+                            </td>
+
                             </td>
                         </tr>
                     @empty

@@ -70,10 +70,10 @@ class AboutUsController extends Controller
     public function delete($id)
     {
         try {
-            return $id;
             $about = AboutUs::findOrFail($id);
             $about->delete();
-            return response()->json(['message' => 'Deleted successfully'], 200);
+            return redirect()->route('view.about')
+                ->with('success','Product deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

@@ -25,7 +25,7 @@ class PortfolioController extends Controller
         try {
             $create = new Portfolio;
             Theme::create($create, $request);
-            return response()->json(['message' => 'created'], 200);
+            return redirect()->route('view.portfolio', ['data' => Portfolio::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -43,7 +43,7 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         try {
-            return response()->json(['data' => Portfolio::where('id', $id)->first()], 200);
+            return view('backoffice.portfolio.update', with(['data' => Portfolio::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -53,7 +53,7 @@ class PortfolioController extends Controller
     {
         try {
 
-            return response()->json(['data' => Portfolio::paginate(12)], 200);
+            return redirect()->route('view.portfolio', ['data' => Portfolio::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

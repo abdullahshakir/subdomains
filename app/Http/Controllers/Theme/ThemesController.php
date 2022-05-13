@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ThemeValidatorRequest;
 use App\Models\Theme;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class ThemesController extends Controller
 {
@@ -32,7 +31,7 @@ class ThemesController extends Controller
             $create->name = $request->name;
             $create->mode = $request->mode;
             $create->save();
-            return response()->json(['message' => 'created'], 200);
+            return redirect()->route('view.theme', ['data' => Theme::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -62,8 +61,7 @@ class ThemesController extends Controller
             $theme = Theme::findOrFail($id);
             $input = $request->all();
             $theme->fill($input)->save();
-            return response()->json(['message' => 'updated'], 200);
-//            return view('backoffice.theme.view', with(['message' => 'updated.', 'data' => Theme::all()]));
+            return redirect()->route('view.theme', ['data' => Theme::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

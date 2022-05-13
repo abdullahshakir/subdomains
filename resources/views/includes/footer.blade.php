@@ -255,7 +255,7 @@
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script type="text/javascript" src="{{ URL::asset('assets/js/functions.js') }}"></script>
+{{--	<script type="text/javascript" src="{{ URL::asset('assets/js/functions.js') }}"></script>--}}
         <script>
             $(document).ready(function() {
                 $('#datatable1').dataTable();

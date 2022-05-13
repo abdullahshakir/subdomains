@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-
     public function createForm()
     {
         try {
@@ -25,7 +24,7 @@ class GalleryController extends Controller
         try {
             $create = new Gallery;
             Theme::create($create, $request);
-            return response()->json(['message' => 'created'], 200);
+            return redirect()->route('view.gallery', ['data' => Gallery::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -43,7 +42,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         try {
-            return response()->json(['data' => Gallery::where('id', $id)->first()], 200);
+            return view('backoffice.gallery.update', with(['data' => Gallery::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -52,8 +51,7 @@ class GalleryController extends Controller
     public function update(CustomValidatorRequest $request, $id)
     {
         try {
-
-            return response()->json(['data' => Gallery::paginate(12)], 200);
+            return redirect()->route('view.gallery', ['data' => Gallery::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

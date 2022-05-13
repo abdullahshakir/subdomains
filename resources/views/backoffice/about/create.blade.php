@@ -62,7 +62,7 @@
                             <div class="col-12">
                                 <button type="submit" class="btn btn-secondary">create</button>
                             </div>
-                            <input type="hidden" name="prefix" value="jobs-application-">
+{{--                            <input type="hidden" name="prefix" value="jobs-application-">--}}
                         </form>
                     </div>
                 </div>

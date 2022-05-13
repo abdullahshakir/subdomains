@@ -32,10 +32,10 @@
                 ============================================= -->
                 <div id="logo">
                     <a href="index.html" class="standard-logo" data-dark-logo="assets/images/logo-side-dark.png"
-                       data-mobile-logo="assets/images/logo.png"><img src="assets/images/logo-side.png"
+                       data-mobile-logo="assets/images/logo.png"><img src="{{URL::to('assets/images/logo-side.png')}}"
                                                                       alt="Canvas Logo"></a>
                     <a href="index.html" class="retina-logo" data-dark-logo="assets/images/logo-side-dark@2x.png"
-                       data-mobile-logo="assets/images/logo@2x.png"><img src="assets/images/logo-side@2x.png"
+                       data-mobile-logo="assets/images/logo@2x.png"><img src="{{URL::to('assets/images/logo-side@2x.png')}}"
                                                                          alt="Canvas Logo"></a>
                 </div><!-- #logo end -->
 

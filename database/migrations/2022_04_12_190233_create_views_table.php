@@ -19,7 +19,6 @@ class CreateViewsTable extends Migration
             $table->string('name');
             $table->string('url');
             $table->foreign('domain_id')->references('id')->on('domains');
-            $table->index('domain_id');
             $table->timestamps();
         });
     }

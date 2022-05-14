@@ -74,6 +74,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/delete-theme', 'delete')->middleware(['admin']);
         Route::post('/update-theme/{id}', 'update')->name('update.theme')->middleware(['admin']);
     });
+    Route::controller(DomainController::class)->group(function () {
+        Route::get('/index-domain', 'createForm')->name('index.domain');
+        Route::get('/edit-domain/{id}', 'edit')->name('edit.domain')->middleware(['admin']);
+        Route::get('/view-domain', 'view')->name('view.domain');
+        Route::post('/create-domain', 'createDomain')->name('create.domain');
+        Route::delete('/delete-domain/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-domain/{id}', 'update')->name('update.domain')->middleware(['admin']);
+    });
 });
 
 // backoffice routes end

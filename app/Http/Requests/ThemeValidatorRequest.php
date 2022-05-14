@@ -25,7 +25,8 @@ class ThemeValidatorRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'mode' => 'required',
+            'file' => 'required',
+            'detail' => 'required',
         ];
     }
 
@@ -33,7 +34,8 @@ class ThemeValidatorRequest extends FormRequest
     {
         return [
             'name.required' => 'Title is required',
-            'mode.required' => 'Section is required',
+            'file.required' => 'File is required',
+            'detail.required' => 'Detail is required',
         ];
     }
 

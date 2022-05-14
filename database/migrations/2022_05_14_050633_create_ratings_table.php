@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateThemesTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateThemesTable extends Migration
      */
     public function up()
     {
-        Schema::create('themes', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('mode')->nullable();
+            $table->unsignedBigInteger('theme_id');
+            $table->string('file');
+            $table->string('strength');
+            $table->longText('description');
+            $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateThemesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('themes');
+        Schema::dropIfExists('ratings');
     }
 }

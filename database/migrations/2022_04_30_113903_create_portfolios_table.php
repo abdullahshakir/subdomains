@@ -16,10 +16,11 @@ class CreatePortfoliosTable extends Migration
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('theme_id');
-            $table->string('title');
-            $table->string('sub_title');
             $table->string('file');
-            $table->string('section');
+            $table->string('title');
+            $table->string('type');
+            $table->string('category');
+            $table->string('sub_title')->nullable();
             $table->longText('description')->nullable();
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();

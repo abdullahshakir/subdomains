@@ -17,10 +17,11 @@ class CreateAboutUsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('theme_id');
             $table->string('title');
-            $table->string('sub_title');
-            $table->string('file');
-            $table->string('section');
             $table->longText('description')->nullable();
+            $table->string('color');
+            $table->string('sub_title')->nullable();
+            $table->string('file')->nullable();
+            $table->string('section')->nullable();
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

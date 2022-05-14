@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicesTable extends Migration
+class CreateThemesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('theme_id');
-            $table->string('title');
-            $table->string('sub_title');
+            $table->unsignedBigInteger('view_id');
+            $table->string('name');
             $table->string('file');
-            $table->foreign('theme_id')->references('id')->on('themes');
+            $table->longText('description');
+            $table->string('mode')->nullable();
+            $table->foreign('view_id')->references('id')->on('views');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('themes');
     }
 }

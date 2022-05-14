@@ -20,18 +20,38 @@
                                     <div class="css3-spinner-scaler"></div>
                                 </div>
                             </div>
-                            <div class="col-12 form-group">
+                            <div class="col-6 form-group">
                                 <label>Name:</label>
                                 <input type="text" name="name" id="name" class="form-control required" value="" placeholder="Enter name">
                             </div>
+                            <div class="col-6 form-group">
+                                <label>View:</label>
+                                <select class="form-select required" name="viewId" id="viewId">
+                                    <option value="">-- Select One --</option>
+                                    @forelse($data as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @empty
+                                        <option>No view registered yet</option>
+                                    @endforelse
+                                </select>
+                            </div>
                             <div class="col-12 form-group">
-                                <label>Mode:</label>
-                                <input type="text" name="mode" id="mode" class="form-control required" value="" placeholder="Enter mode">
+                                <div class="form-group">
+                                    <label>Upload:</label>
+                                    <input type="file" id="jobs-application-resume" name="file"
+                                           class="file-loading form-select required" data-show-preview="false"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description:</label>
+                                    <textarea id="jobs-application-message" name="description"
+                                              placeholder="Enter description" class="form-control
+                                              required" cols="30" rows="10">
+                                    </textarea>
+                                </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-secondary">create</button>
                             </div>
-                            <input type="hidden" name="prefix" value="jobs-application-">
                         </form>
                     </div>
                 </div>

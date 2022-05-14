@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactUsTable extends Migration
+class CreateTeamMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateContactUsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_us', function (Blueprint $table) {
+        Schema::create('team_members', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('theme_id');
+            $table->unsignedBigInteger('team_id');
             $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('message');
-            $table->string('service');
-            $table->string('subject');
-            $table->string('location');
+            $table->string('file');
+            $table->string('designation');
+            $table->longText('description');
+            $table->string('facebook_link');
+            $table->string('google_link');
+            $table->string('twitter_link');
+            $table->foreign('team_id')->references('id')->on('teams');
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });
@@ -35,6 +37,6 @@ class CreateContactUsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_us');
+        Schema::dropIfExists('team_members');
     }
 }

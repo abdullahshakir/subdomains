@@ -10,6 +10,11 @@ class Theme extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function views()
+    {
+        return $this->hasMany(Views::class, 'domain_id');
+    }
+
     public function aboutUs()
     {
         return $this->hasMany(AboutUs::class, 'theme_id');
@@ -59,6 +64,11 @@ class Theme extends Model
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
+    }
+
+    public function viewtheme()
+    {
+        return $this->hasOne(Views::class, 'domain_id');
     }
 
 }

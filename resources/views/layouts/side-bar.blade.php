@@ -83,8 +83,8 @@
                 <nav class="primary-menu on-click">
 
                     <ul class="menu-container">
-                        <li class="menu-item"><a class="menu-link" href="index.html">
-                                <div>Dashboard</div>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.domain') }}">
+                                <div>Domain</div>
                             </a>
                         </li>
                         <li class="menu-item"><a class="menu-link" href="{{ route('view.service') }}">

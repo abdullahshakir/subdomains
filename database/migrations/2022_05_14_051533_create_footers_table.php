@@ -15,6 +15,21 @@ class CreateFootersTable extends Migration
     {
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('theme_id');
+            $table->string('address_title');
+            $table->longText('description');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('fax');
+            $table->string('email');
+            $table->string('total_download')->nullable();
+            $table->string('download_text')->nullable();
+            $table->string('total_client')->nullable();
+            $table->string('client_text')->nullable();
+            $table->longText('subscribe_description');
+            $table->string('facebook_link');
+            $table->string('subscriber_link');
+            $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });
     }

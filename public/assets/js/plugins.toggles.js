@@ -19,7 +19,7 @@ window.SEMICOLON_togglesInit = function( $toggleEl ){
 			element.addClass('toggle-active').children('.toggle-content').slideDown( Number(elSpeed) );
 		}
 
-		element.children('.toggle-header').off( 'click' ).on( 'click', function(){
+		element.children('.toggle-footer').off( 'click' ).on( 'click', function(){
 			element.toggleClass('toggle-active').children('.toggle-content').slideToggle( Number(elSpeed) );
 			return true;
 		});

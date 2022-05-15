@@ -26,7 +26,6 @@ class AboutUsController extends Controller
             $create = new AboutUs;
             Theme::create($create, $request);
             return redirect()->route('view.about', ['data' => AboutUs::all()]);
-//            return response()->json(['message' => 'created'], 201);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -74,7 +73,7 @@ class AboutUsController extends Controller
             $about = AboutUs::findOrFail($id);
             $about->delete();
             return redirect()->route('view.about')
-                ->with('success','Product deleted successfully');
+                ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

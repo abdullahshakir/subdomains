@@ -20,7 +20,7 @@ window.SEMICOLON_accordionsInit = function( $accordionEl ){
 		elActive = Number( elActive ) - 1;
 
 		if( typeof windowHash !== 'undefined' && windowHash != '' ) {
-			accActive = element.find('.accordion-header'+ windowHash);
+			accActive = element.find('.accordion-footer'+ windowHash);
 			if( accActive.length > 0 ) {
 				elActive = accActive.index() / 2;
 			}
@@ -29,12 +29,12 @@ window.SEMICOLON_accordionsInit = function( $accordionEl ){
 		element.find('.accordion-content').hide();
 
 		if( elState != 'closed' ) {
-			element.find('.accordion-header:eq('+ Number(elActive) +')').addClass('accordion-active ' + elActiveClass).next().show();
+			element.find('.accordion-footer:eq('+ Number(elActive) +')').addClass('accordion-active ' + elActiveClass).next().show();
 		}
 
-		element.find('.accordion-header').off( 'click' ).on( 'click', function(){
+		element.find('.accordion-footer').off( 'click' ).on( 'click', function(){
 			if( $(this).next().is(':hidden') ) {
-				element.find('.accordion-header').removeClass('accordion-active ' + elActiveClass).next().slideUp("normal");
+				element.find('.accordion-footer').removeClass('accordion-active ' + elActiveClass).next().slideUp("normal");
 				let clickTarget = $(this);
 				$(this).toggleClass('accordion-active ' + elActiveClass, true).next().stop(true,true).slideDown("normal", function(){
 					if( ( $('body').hasClass('device-sm') || $('body').hasClass('device-xs') ) && element.hasClass('scroll-on-open') ) {

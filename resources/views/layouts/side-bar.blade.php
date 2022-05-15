@@ -107,6 +107,10 @@
                                 <div>Contact us</div>
                             </a>
                         </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('view.team') }}">
+                                <div>Team & Team Members</div>
+                            </a>
+                        </li>
                         <li class="menu-item"><a class="menu-link" href="#">
                                 <div>Appearance</div>
                             </a>
@@ -132,13 +136,22 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('view.header') }}">
+                                <div>Header</div>
+                            </a>
+                        </li>                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('view.footer') }}">
+                                <div>Footer</div>
+                            </a>
+                        </li>
                     </ul>
                 </nav><!-- #primary-menu end -->
             </div>
         </div>
     </div>
     <div class="header-wrap-clone"></div>
-</header><!-- #header end -->
+</header><!-- #footer end -->
 
 
 <!-- Go To Top

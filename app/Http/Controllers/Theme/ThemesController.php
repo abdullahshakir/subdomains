@@ -69,6 +69,12 @@ class ThemesController extends Controller
             $theme = Theme::findOrFail($id);
             $input = $request->all();
             $theme->fill($input)->save();
+            if($request->file()) {
+                $name =  time() . '_' . $request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
+                $theme->file = '/storage/' . $filePath;
+                $theme->save();
+            }
             return redirect()->route('view.theme', ['data' => Theme::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -80,7 +86,8 @@ class ThemesController extends Controller
         try {
             $about = Theme::findOrFail($id);
             $about->delete();
-            return response()->json(['message' => 'Deleted successfully'], 200);
+            return redirect()->route('view.theme')
+                ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

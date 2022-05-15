@@ -26,7 +26,7 @@ class ThemeValidatorRequest extends FormRequest
         return [
             'name' => 'required',
             'file' => 'required',
-            'detail' => 'required',
+            'description' => 'required',
         ];
     }
 
@@ -35,7 +35,7 @@ class ThemeValidatorRequest extends FormRequest
         return [
             'name.required' => 'Title is required',
             'file.required' => 'File is required',
-            'detail.required' => 'Detail is required',
+            'description.required' => 'Detail is required',
         ];
     }
 

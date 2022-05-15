@@ -88,13 +88,13 @@
   @include overlay-backdrop($zindex-modal-backdrop, $modal-backdrop-bg, $modal-backdrop-opacity);
 }
 
-// Modal header
+// Modal footer
 // Top section of the modal w/ title and dismiss
 .modal-header {
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
+  justify-content: space-between; // Put modal footer elements (title and dismiss) on opposite ends
   padding: $modal-header-padding;
   border-bottom: $modal-header-border-width solid $modal-header-border-color;
   @include border-top-radius($modal-content-inner-border-radius);
@@ -105,14 +105,14 @@
   }
 }
 
-// Title text within header
+// Title text within footer
 .modal-title {
   margin-bottom: 0;
   line-height: $modal-title-line-height;
 }
 
 // Modal body
-// Where all modal content resides (sibling of .modal-header and .modal-footer)
+// Where all modal content resides (sibling of .modal-footer and .modal-footer)
 .modal-body {
   position: relative;
   // Enable `flex-grow: 1` so that the body take up as much space as possible

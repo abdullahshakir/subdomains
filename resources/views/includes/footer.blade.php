@@ -11,7 +11,7 @@
 						<div class="col-lg-8">
 
 							<div class="row col-mb-50">
-								<div class="col-md-4">
+								<div class="col-md-6">
 
 									<div class="widget clearfix">
 
@@ -21,9 +21,9 @@
 
 										<div style="background: url('assets/images/world-map.png') no-repeat center center; background-size: 100%;">
 											<address>
-												<strong>Headquarters:</strong><br>
-												795 Folsom Ave, Suite 600<br>
-												San Francisco, CA 94107<br>
+												<strong>Headquarters:</strong>
+												795 Folsom Ave, Suite 600
+												San Francisco, CA 94107
 											</address>
 											<abbr title="Phone Number"><strong>Phone:</strong></abbr> (1) 8547 632521<br>
 											<abbr title="Fax"><strong>Fax:</strong></abbr> (1) 11 4752 1433<br>
@@ -34,78 +34,78 @@
 
 								</div>
 
-								<div class="col-md-4">
+								<div class="col-md-3">
 
-									<div class="widget widget_links clearfix">
+{{--									<div class="widget widget_links clearfix">--}}
 
-										<h4>Blogroll</h4>
+{{--										<h4>Blogroll</h4>--}}
 
-										<ul>
-											<li><a href="https://codex.wordpress.org/">Documentation</a></li>
-											<li><a href="https://wordpress.org/support/forum/requests-and-feedback">Feedback</a></li>
-											<li><a href="https://wordpress.org/extend/plugins/">Plugins</a></li>
-											<li><a href="https://wordpress.org/support/">Support Forums</a></li>
-											<li><a href="https://wordpress.org/extend/themes/">Themes</a></li>
-											<li><a href="https://wordpress.org/news/">Canvas Blog</a></li>
-											<li><a href="https://planet.wordpress.org/">Canvas Planet</a></li>
-										</ul>
+{{--										<ul>--}}
+{{--											<li><a href="https://codex.wordpress.org/">Documentation</a></li>--}}
+{{--											<li><a href="https://wordpress.org/support/forum/requests-and-feedback">Feedback</a></li>--}}
+{{--											<li><a href="https://wordpress.org/extend/plugins/">Plugins</a></li>--}}
+{{--											<li><a href="https://wordpress.org/support/">Support Forums</a></li>--}}
+{{--											<li><a href="https://wordpress.org/extend/themes/">Themes</a></li>--}}
+{{--											<li><a href="https://wordpress.org/news/">Canvas Blog</a></li>--}}
+{{--											<li><a href="https://planet.wordpress.org/">Canvas Planet</a></li>--}}
+{{--										</ul>--}}
 
-									</div>
+{{--									</div>--}}
 
 								</div>
 
-								<div class="col-md-4">
+								<div class="col-md-3">
 
-									<div class="widget clearfix">
-										<h4>Recent Posts</h4>
+{{--									<div class="widget clearfix">--}}
+{{--										<h4>Recent Posts</h4>--}}
 
-										<div class="posts-sm row col-mb-30" id="post-list-footer">
-											<div class="entry col-12">
-												<div class="grid-inner row">
-													<div class="col">
-														<div class="entry-title">
-															<h4><a href="#">Lorem ipsum dolor sit amet, consectetur</a></h4>
-														</div>
-														<div class="entry-meta">
-															<ul>
-																<li>10th July 2021</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
+{{--										<div class="posts-sm row col-mb-30" id="post-list-footer">--}}
+{{--											<div class="entry col-12">--}}
+{{--												<div class="grid-inner row">--}}
+{{--													<div class="col">--}}
+{{--														<div class="entry-title">--}}
+{{--															<h4><a href="#">Lorem ipsum dolor sit amet, consectetur</a></h4>--}}
+{{--														</div>--}}
+{{--														<div class="entry-meta">--}}
+{{--															<ul>--}}
+{{--																<li>10th July 2021</li>--}}
+{{--															</ul>--}}
+{{--														</div>--}}
+{{--													</div>--}}
+{{--												</div>--}}
+{{--											</div>--}}
 
-											<div class="entry col-12">
-												<div class="grid-inner row">
-													<div class="col">
-														<div class="entry-title">
-															<h4><a href="#">Elit Assumenda vel amet dolorum quasi</a></h4>
-														</div>
-														<div class="entry-meta">
-															<ul>
-																<li>10th July 2021</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
+{{--											<div class="entry col-12">--}}
+{{--												<div class="grid-inner row">--}}
+{{--													<div class="col">--}}
+{{--														<div class="entry-title">--}}
+{{--															<h4><a href="#">Elit Assumenda vel amet dolorum quasi</a></h4>--}}
+{{--														</div>--}}
+{{--														<div class="entry-meta">--}}
+{{--															<ul>--}}
+{{--																<li>10th July 2021</li>--}}
+{{--															</ul>--}}
+{{--														</div>--}}
+{{--													</div>--}}
+{{--												</div>--}}
+{{--											</div>--}}
 
-											<div class="entry col-12">
-												<div class="grid-inner row">
-													<div class="col">
-														<div class="entry-title">
-															<h4><a href="#">Debitis nihil placeat, illum est nisi</a></h4>
-														</div>
-														<div class="entry-meta">
-															<ul>
-																<li>10th July 2021</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+{{--											<div class="entry col-12">--}}
+{{--												<div class="grid-inner row">--}}
+{{--													<div class="col">--}}
+{{--														<div class="entry-title">--}}
+{{--															<h4><a href="#">Debitis nihil placeat, illum est nisi</a></h4>--}}
+{{--														</div>--}}
+{{--														<div class="entry-meta">--}}
+{{--															<ul>--}}
+{{--																<li>10th July 2021</li>--}}
+{{--															</ul>--}}
+{{--														</div>--}}
+{{--													</div>--}}
+{{--												</div>--}}
+{{--											</div>--}}
+{{--										</div>--}}
+{{--									</div>--}}
 
 								</div>
 							</div>
@@ -219,7 +219,7 @@
 								</a>
 
 								<a href="#" class="social-icon si-small si-borderless si-github">
-									<i class="icon-github"></i>
+				    					<i class="icon-github"></i>
 									<i class="icon-github"></i>
 								</a>
 
@@ -255,7 +255,7 @@
 
 	<!-- Footer Scripts
 	============================================= -->
-{{--	<script type="text/javascript" src="{{ URL::asset('assets/js/functions.js') }}"></script>--}}
+	<script type="text/javascript" src="{{ URL::asset('assets/js/functions.js') }}"></script>
         <script>
             $(document).ready(function() {
                 $('#datatable1').dataTable();

@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="header-wrap-clone"></div>
-</header><!-- #header end -->
+</header><!-- #footer end -->
 
 <section id="slider" class="slider-element slider-parallax swiper_wrapper min-vh-60 min-vh-md-100 pl-0 include-header">
     <div class="slider-inner">

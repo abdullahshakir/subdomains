@@ -26,3 +26,6 @@
 .tox-statusbar{
     display: none !important;
 }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background: #000000;
+}

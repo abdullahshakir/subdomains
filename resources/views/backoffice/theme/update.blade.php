@@ -27,9 +27,19 @@
                                    value="{{$data->name}}" placeholder="Enter name">
                         </div>
                         <div class="col-12 form-group">
-                            <label>Mode:</label>
-                            <input type="text" name="mode" id="mode" class="form-control required"
-                                   value="{{$data->mode}}" placeholder="Enter mode">
+                            <label>Upload:</label>
+                            <input type="file" id="jobs-application-resume" name="file"
+                                   class="file-loading form-select required"
+                                   data-show-preview="false"
+                            />
+                        </div>
+                        <div class="col-12 form-group">
+                            <label>Description:</label>
+                            <textarea name="description"
+                                      placeholder="Enter description" class="form-control
+                                      required" cols="30" rows="10">
+                                {{$data->description}}
+                            </textarea>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-secondary">update</button>

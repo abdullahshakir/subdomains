@@ -3,8 +3,10 @@
 use App\Http\Controllers\AboutUs\AboutUsController;
 use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\Gallery\GalleryController;
+use App\Http\Controllers\HeaderFooter\HeaderFooterController;
 use App\Http\Controllers\Porfolio\PortfolioController;
 use App\Http\Controllers\Service\ServicesController;
+use App\Http\Controllers\TeamAndTeamMembersController;
 use App\Http\Controllers\Theme\ThemesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pages\StaticPagesController;
@@ -71,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit-theme/{id}', 'edit')->name('edit.theme')->middleware(['admin']);
         Route::get('/view-theme', 'view')->name('view.theme');
         Route::post('/create-theme', 'createTheme')->name('create.theme');
-        Route::post('/delete-theme', 'delete')->middleware(['admin']);
+        Route::delete('/delete-theme/{id}', 'delete')->middleware(['admin']);
         Route::post('/update-theme/{id}', 'update')->name('update.theme')->middleware(['admin']);
     });
     Route::controller(DomainController::class)->group(function () {
@@ -81,6 +83,33 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/create-domain', 'createDomain')->name('create.domain');
         Route::delete('/delete-domain/{id}', 'delete')->middleware(['admin']);
         Route::post('/update-domain/{id}', 'update')->name('update.domain')->middleware(['admin']);
+    });
+    Route::controller(HeaderFooterController::class)->group(function () {
+        Route::get('/index-footer', 'createForm')->name('index.footer');
+        Route::get('/edit-footer/{id}', 'edit')->name('edit.footer')->middleware(['admin']);
+        Route::get('/view-footer', 'view')->name('view.footer');
+        Route::post('/create-footer', 'createFooter')->name('create.footer');
+        Route::delete('/delete-footer/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-footer/{id}', 'update')->name('update.footer')->middleware(['admin']);
+        Route::get('/index-header', 'createFormHeader')->name('index.header');
+        Route::get('/edit-header/{id}', 'editHeader')->name('edit.header')->middleware(['admin']);
+        Route::get('/view-header', 'viewHeader')->name('view.header');
+        Route::post('/create-header', 'createHeader')->name('create.header');
+        Route::delete('/delete-header/{id}', 'deleteHeader')->middleware(['admin']);
+        Route::post('/update-header/{id}', 'updateHeader')->name('update.header')->middleware(['admin']);
+    });
+    Route::controller(TeamAndTeamMembersController::class)->group(function () {
+        Route::get('/index-team', 'createForm')->name('index.team');
+        Route::get('/edit-team/{id}', 'edit')->name('edit.team')->middleware(['admin']);
+        Route::get('/view-team', 'view')->name('view.team');
+        Route::post('/create-team', 'createTeam')->name('create.team');
+        Route::delete('/delete-team/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-team/{id}', 'update')->name('update.team')->middleware(['admin']);
+        Route::get('/index-team-members', 'createTeamMembersForm')->name('index.team.members');
+        Route::get('/edit-team-members/{id}', 'editTeamMembers')->name('edit.team.members')->middleware(['admin']);
+        Route::post('/create-team-members', 'createTeamMembers')->name('create.team.members');
+        Route::delete('/delete-team-members/{id}', 'deleteTeamMembers')->middleware(['admin']);
+        Route::post('/update-team-members/{id}', 'updateTeamMembers')->name('update.team.members')->middleware(['admin']);
     });
 });
 

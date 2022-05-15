@@ -15,7 +15,7 @@ class CreateTeamMembersTable extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('theme_id');
+//            $table->unsignedBigInteger('theme_id');
             $table->unsignedBigInteger('team_id');
             $table->string('name');
             $table->string('file');
@@ -25,7 +25,7 @@ class CreateTeamMembersTable extends Migration
             $table->string('google_link');
             $table->string('twitter_link');
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->foreign('theme_id')->references('id')->on('themes');
+//            $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });
     }

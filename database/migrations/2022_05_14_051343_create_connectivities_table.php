@@ -16,19 +16,9 @@ class CreateConnectivitiesTable extends Migration
         Schema::create('connectivities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('theme_id');
-            $table->string('address_title');
+            $table->string('file');
+            $table->string('title');
             $table->longText('description');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('fax');
-            $table->string('email');
-            $table->string('total_download');
-            $table->string('download_text');
-            $table->string('total_client');
-            $table->string('client_text');
-            $table->longText('subscribe_description');
-            $table->string('facebook_link');
-            $table->string('subscribe_link');
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

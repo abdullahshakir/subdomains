@@ -103,9 +103,9 @@
                                 <td> {{ $item->created_at }} </td>
                                 <td class="text-center">
                                     <form id="delete-form-{{$item->id}}"
-                                          action="{{URL::to('delete-team-members', $item->id)}}"
+                                          action="{{URL::to('delete-team', $item->id)}}"
                                           method="post">
-                                        <a href="{{ URL::to('delete-team-members') }}"
+                                        <a href="{{ URL::to('delete-team') }}"
                                            onclick="event.preventDefault();
                                                document.getElementById(
                                                'delete-form-{{$item->id}}').submit();">

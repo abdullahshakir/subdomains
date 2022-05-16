@@ -14,6 +14,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form class="row" action="{{URL::to('update-team-members/'.request()->route()->parameters['id'])}}"
+                          method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-process">
                             <div class="css3-spinner">

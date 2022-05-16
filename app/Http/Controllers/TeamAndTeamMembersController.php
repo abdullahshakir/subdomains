@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\Theme;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class TeamAndTeamMembersController extends Controller
 {
@@ -123,7 +124,7 @@ class TeamAndTeamMembersController extends Controller
     {
         try {
             $request->validate([
-                'team_id' => 'required',
+//                'team_id' => 'required',
                 'name' => 'required',
                 'file' => 'required',
                 'designation' => 'required',
@@ -148,11 +149,22 @@ class TeamAndTeamMembersController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         try {
             $team = Team::findOrFail($id);
             $team->delete();
+
+//            $title = Team::where('id', $id)->first();
+//            if (Team::where('title', $title->title)->exists()) {
+//                return 'team';
+//                $team = Team::findOrFail($id);
+//                $team->delete();
+//            } else {
+//                return 'members';
+//                $team = TeamMember::findOrFail($id);
+//                $team->delete();
+//            }
             return redirect()->route('view.team')
                 ->with('success','Deleted successfully');
         } catch (\Exception $exception) {

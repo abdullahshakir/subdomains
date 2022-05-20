@@ -16,14 +16,14 @@ class Views extends Model
         'updated_at',
     ];
 
-    public function views()
-    {
-        return $this->hasMany(Views::class, 'domain_id');
-    }
-
     public function theme()
     {
         return $this->belongsTo(Theme::class);
+    }
+
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class);
     }
 
 }

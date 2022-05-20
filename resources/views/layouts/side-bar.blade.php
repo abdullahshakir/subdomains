@@ -137,10 +137,16 @@
                             </ul>
                         </li>
                         <li class="menu-item">
+                            <a class="menu-link" href="{{ route('view.slider') }}">
+                                <div>Slider</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.header') }}">
                                 <div>Header</div>
                             </a>
-                        </li>                        <li class="menu-item">
+                        </li>
+                        <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.footer') }}">
                                 <div>Footer</div>
                             </a>

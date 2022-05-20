@@ -149,34 +149,17 @@ class TeamAndTeamMembersController extends Controller
         }
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         try {
-            $team = Team::findOrFail($id);
-            $team->delete();
-
-//            $title = Team::where('id', $id)->first();
-//            if (Team::where('title', $title->title)->exists()) {
-//                return 'team';
-//                $team = Team::findOrFail($id);
-//                $team->delete();
-//            } else {
-//                return 'members';
-//                $team = TeamMember::findOrFail($id);
-//                $team->delete();
-//            }
-            return redirect()->route('view.team')
-                ->with('success','Deleted successfully');
-        } catch (\Exception $exception) {
-            return $exception->getMessage();
-        }
-    }
-
-    public function deleteTeamMembers($id)
-    {
-        try {
-            $team = TeamMember::findOrFail($id);
-            $team->delete();
+            $title = Team::where('id', $id)->first();
+            if (Team::where('title', $title->title ?? 'no@#!')->exists()) {
+                $team = Team::findOrFail($id);
+                $team->delete();
+            } else {
+                $team = TeamMember::findOrFail($id);
+                $team->delete();
+            }
             return redirect()->route('view.team')
                 ->with('success','Deleted successfully');
         } catch (\Exception $exception) {

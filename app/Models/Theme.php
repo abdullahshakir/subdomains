@@ -31,10 +31,19 @@ class Theme extends Model
     {
         return $this->hasMany(Portfolio::class, 'theme_id');
     }
+    public function team()
+    {
+        return $this->hasMany(Team::class, 'theme_id');
+    }
     public function service()
     {
         return $this->hasMany(Service::class, 'theme_id');
     }
+
+//    public function user()
+//    {
+//        return $this->belongsTo(User::class, 'user_id');
+//    }
 
     public static function create($data, $request)
     {
@@ -66,9 +75,9 @@ class Theme extends Model
         }
     }
 
-    public function viewtheme()
+    public function viewTheme()
     {
-        return $this->hasOne(Views::class, 'domain_id');
+        return $this->hasMany(Views::class, 'view_id');
     }
 
 }

@@ -31,25 +31,6 @@ class ContactUsController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        try {
-            return response()->json(['data' => ContactUs::where('id', $id)->first()], 200);
-        } catch (\Exception $exception) {
-            return $exception->getMessage();
-        }
-    }
-
-    public function update(CustomValidatorRequest $request, $id)
-    {
-        try {
-
-            return response()->json(['data' => ContactUs::paginate(12)], 200);
-        } catch (\Exception $exception) {
-            return $exception->getMessage();
-        }
-    }
-
     public function delete($id)
     {
         try {

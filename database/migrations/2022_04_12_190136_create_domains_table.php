@@ -15,7 +15,9 @@ class CreateDomainsTable extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

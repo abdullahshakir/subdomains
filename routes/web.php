@@ -6,6 +6,7 @@ use App\Http\Controllers\Gallery\GalleryController;
 use App\Http\Controllers\HeaderFooter\HeaderFooterController;
 use App\Http\Controllers\Porfolio\PortfolioController;
 use App\Http\Controllers\Service\ServicesController;
+use App\Http\Controllers\Slider\SlidersController;
 use App\Http\Controllers\TeamAndTeamMembersController;
 use App\Http\Controllers\Theme\ThemesController;
 use Illuminate\Support\Facades\Route;
@@ -108,9 +109,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/index-team-members', 'createTeamMembersForm')->name('index.team.members');
         Route::get('/edit-team-members/{id}', 'editTeamMembers')->name('edit.team.members')->middleware(['admin']);
         Route::post('/create-team-members', 'createTeamMembers')->name('create.team.members');
-        Route::delete('/delete-team-members/{id}', 'deleteTeamMembers')->middleware(['admin']);
         Route::post('/update-team-members/{id}', 'updateTeamMembers')->name('update.team.members')->middleware(['admin']);
     });
+    Route::controller(SlidersController::class)->group(function () {
+        Route::get('/index-slider', 'createForm')->name('index.slider');
+        Route::get('/edit-slider/{id}', 'edit')->name('edit.slider')->middleware(['admin']);
+        Route::get('/view-slider', 'view')->name('view.slider');
+        Route::post('/create-slider', 'createSlider')->name('create.slider');
+        Route::delete('/delete-slider/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-slider/{id}', 'update')->name('update.slider')->middleware(['admin']);
+    });
+
 });
 
 // backoffice routes end

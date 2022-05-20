@@ -4,10 +4,10 @@
     <section id="content">
         <div class="row">
             <div class="col-6">
-                <h3>Portfolio</h3>
+                <h3>Slider</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('index.portfolio')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{route('index.slider')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            <div class="table-responsive">
                 <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -16,7 +16,6 @@
                         <th>Title</th>
                         <th>Subtitle</th>
                         <th>Image</th>
-                        <th>Section</th>
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
@@ -32,16 +31,22 @@
                                      width="100"
                                 >
                             </td>
-                            <td> {{ $item->section }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
-                                <a href="">
+                                <form id="delete-form-{{$item->id}}"
+                                      action="{{URL::to('delete-slider', $item->id)}}"
+                                      method="post">
+                                <a href="{{ URL::to('delete-slider') }}"
+                                       onclick="event.preventDefault();
+                                           document.getElementById(
+                                           'delete-form-{{$item->id}}').submit();">
                                     <i class="icon-line-trash"></i>
                                 </a>
-                                &nbsp;
-                                <a href="">
+                                <a href="{{URL::to('edit-slider/'.$item->id)}}">
                                     <i class="icon-line-edit"></i>
                                 </a>
+                                    @csrf @method('DELETE')
+                                </form>
                             </td>
                         </tr>
                     @empty

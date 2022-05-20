@@ -20,4 +20,9 @@ class Domain extends Model
         return $this->hasMany(Views::class, 'domain_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

@@ -16,12 +16,12 @@ class CreateGalleriesTable extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('theme_id');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->boolean('is_center')->default(0);
             $table->string('sub_title')->nullable();
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->string('section')->nullable();
-            $table->longText('description')->nullable();
+            $table->longText('description');
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

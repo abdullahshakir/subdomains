@@ -19,25 +19,40 @@ class Theme extends Model
     {
         return $this->hasMany(AboutUs::class, 'theme_id');
     }
+
     public function contactUs()
     {
         return $this->hasMany(ContactUs::class, 'theme_id');
     }
+
     public function gallery()
     {
         return $this->hasMany(Gallery::class, 'theme_id');
     }
+
     public function portfolio()
     {
         return $this->hasMany(Portfolio::class, 'theme_id');
     }
+
     public function team()
     {
         return $this->hasMany(Team::class, 'theme_id');
     }
+
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class, 'theme_id');
+    }
+
     public function service()
     {
         return $this->hasMany(Service::class, 'theme_id');
+    }
+
+    public function footer()
+    {
+        return $this->hasMany(Footer::class, 'theme_id');
     }
 
 //    public function user()

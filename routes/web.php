@@ -58,8 +58,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/view-service', 'view')->name('view.service');
         Route::get('/edit-service/{id}', 'edit');
         Route::post('/create-service', 'createService')->name('create.service');
-        Route::post('/delete-service', 'delete');
-        Route::put('/update-service/{id}', 'update');
+        Route::post('/update-service/{id}', 'update')->name('update.service')->middleware(['admin']);
+        Route::delete('/delete-service/{id}', 'delete')->middleware(['admin']);
+        Route::get('/index-service-sub-services', 'createSubServiceForm')->name('index.service.sub.services');
+        Route::get('/edit-sub-services/{id}', 'editSubServices')->name('edit.sub.services')->middleware(['admin']);
+        Route::post('/create-sub-services', 'createSubService')->name('create.sub.services');
+        Route::post('/update-sub-services/{id}', 'updateSubService')->name('update.sub.services')->middleware(['admin']);
     });
     Route::controller(GalleryController::class)->group(function () {
         Route::get('/index-gallery', 'createForm')->name('index.gallery');

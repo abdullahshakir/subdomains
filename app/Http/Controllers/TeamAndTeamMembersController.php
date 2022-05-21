@@ -19,7 +19,6 @@ class TeamAndTeamMembersController extends Controller
         }
     }
 
-
     public function createTeamMembersForm()
     {
         try {
@@ -97,7 +96,6 @@ class TeamAndTeamMembersController extends Controller
     public function editTeamMembers($id)
     {
         try {
-//            return TeamMember::where('id', $id)->with('team')->first();
             return view('backoffice.team.members.update', with(['data' => TeamMember::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();

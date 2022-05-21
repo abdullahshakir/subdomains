@@ -18,7 +18,7 @@ class CreateServicesTable extends Migration
             $table->unsignedBigInteger('theme_id');
             $table->string('title');
             $table->string('sub_title');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

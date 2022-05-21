@@ -20,9 +20,14 @@ class AboutUsController extends Controller
         }
     }
 
-    public static function createAbout(CustomValidatorRequest $request)
+    public static function createAbout(Request $request)
     {
         try {
+            $request->validate([
+                'themeId' => 'required',
+                'title' => 'required',
+                'description' => 'required',
+            ]);
             $create = new AboutUs;
             Theme::create($create, $request);
             return redirect()->route('view.about', ['data' => AboutUs::all()]);
@@ -49,9 +54,13 @@ class AboutUsController extends Controller
         }
     }
 
-    public function update(CustomValidatorRequest $request, $id)
+    public function update(Request  $request, $id)
     {
         try {
+            $request->validate([
+                'title' => 'required',
+                'description' => 'required',
+            ]);
             $about = AboutUs::findOrFail($id);
             $input = $request->all();
             $about->fill($input)->save();

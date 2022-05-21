@@ -5,33 +5,25 @@
             <div class="divider"><i class="icon-circle"></i></div>
         </div>
         <div class="row p-0 bottommargin-lg align-items-stretch">
-            <div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: #1abc9c;">
-                <div>
-                    <h3 class="text-uppercase" style="font-weight: 600;">Why choose Us</h3>
-                    <p style="line-height: 1.8;">Transform, agency working families thinkers who make change happen communities. Developing nations legal aid public sector our ambitions future aid The Elders economic security Rosa.</p>
-                    <a href="#" class="button button-border button-light button-rounded button-reveal text-end text-uppercase m-0"><i class="icon-angle-right"></i><span>Read More</span></a>
-                    <i class="icon-bulb bgicon"></i>
+            @forelse($aboutUs as $about)
+                <div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: {{$about->color}}">
+                    <div>
+                        <h3 class="text-uppercase" style="font-weight: 600;">{{$about->title}}</h3>
+                        <p style="line-height: 1.8;">
+                            {{$about->description}}
+                        </p>
+{{--                        <a href="#" class="button button-border button-light button-rounded--}}
+{{--                            button-reveal text-end text-uppercase m-0">--}}
+{{--                            <i class="icon-angle-right"></i>--}}
+{{--                            <span>Read More</span>--}}
+{{--                        </a>--}}
+                        <i class="icon-bulb bgicon"></i>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: #34495e;">
-                <div>
-                    <h3 class="text-uppercase" style="font-weight: 600;">Our Mission</h3>
-                    <p style="line-height: 1.8;">Frontline respond, visionary collaborative cities advancement overcome injustice, UNHCR public-private partnerships cause. Giving, country educate rights-based approach; leverage disrupt solution.</p>
-                    <a href="#" class="button button-border button-light button-rounded text-uppercase m-0">Read More</a>
-                    <i class="icon-cog bgicon"></i>
-                </div>
-            </div>
-
-            <div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: #e74c3c;">
-                <div>
-                    <h3 class="text-uppercase" style="font-weight: 600;">What you get</h3>
-                    <p style="line-height: 1.8;">Sustainability involvement fundraising campaign connect carbon rights, collaborative cities convener truth. Synthesize change lives treatment fluctuation participatory monitoring underprivileged equal.</p>
-                    <a href="#" class="button button-border button-light button-rounded text-uppercase m-0">Read More</a>
-                    <i class="icon-thumbs-up bgicon"></i>
-                </div>
-            </div>
-        </div>
+            @empty
+                <p class="text-center">Not record found</p>
+            @endforelse
+         </div>
         <div class="section m-0">
             <div class="container clearfix">
                 <div class="row col-mb-50">
@@ -74,113 +66,39 @@
         </div>
         <div class="container clearfix">
             <div class="heading-block center mt-lg-5">
-                <h2>Canvas Thinktank</h2>
-                <span>Our Team Members who have contributed immensely to our Growth</span>
+                <h2>{{$withTeamMembers->title}}</h2>
+                <span>{{$withTeamMembers->sub_title}}</span>
             </div>
             <div class="row col-mb-50 mb-0">
+                @forelse($withTeamMembers['teamMembers'] as $members)
                 <div class="col-lg-6">
                     <div class="team team-list row align-items-center">
                         <div class="team-image col-sm-6">
                             <img src="assets/images/team/3.jpg" alt="John Doe">
                         </div>
                         <div class="team-desc col-sm-6">
-                            <div class="team-title"><h4>John Doe</h4><span>CEO</span></div>
+                            <div class="team-title"><h4>{{$members->name}}</h4><span>{{$members->designation}}</span></div>
                             <div class="team-content">
-                                <p>Carbon emissions reductions giving, legitimize amplify non-partisan Aga Khan. Policy dialogue assessment expert free-speech cornerstone disruptor freedom. Cesar Chavez empower.</p>
+                                <p>{{$members->description}}</p>
                             </div>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-facebook">
+                            <a href="{{$members->facebook_link}}" class="social-icon si-rounded si-small si-light si-facebook">
                                 <i class="icon-facebook"></i>
                                 <i class="icon-facebook"></i>
                             </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-twitter">
+                            <a href="{{$members->twitter_link}}" class="social-icon si-rounded si-small si-light si-twitter">
                                 <i class="icon-twitter"></i>
                                 <i class="icon-twitter"></i>
                             </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-gplus">
+                            <a href="{{$members->google_link}}" class="social-icon si-rounded si-small si-light si-gplus">
                                 <i class="icon-gplus"></i>
                                 <i class="icon-gplus"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6">
-                    <div class="team team-list row align-items-center">
-                        <div class="team-image col-sm-6">
-                            <img src="assets/images/team/2.jpg" alt="Josh Clark">
-                        </div>
-                        <div class="team-desc col-sm-6">
-                            <div class="team-title"><h4>Josh Clark</h4><span>Co-Founder</span></div>
-                            <div class="team-content">
-                                <p>Carbon emissions reductions giving, legitimize amplify non-partisan Aga Khan. Policy dialogue assessment expert free-speech cornerstone disruptor freedom. Cesar Chavez empower.</p>
-                            </div>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-facebook">
-                                <i class="icon-facebook"></i>
-                                <i class="icon-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-twitter">
-                                <i class="icon-twitter"></i>
-                                <i class="icon-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-gplus">
-                                <i class="icon-gplus"></i>
-                                <i class="icon-gplus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="team team-list row align-items-center">
-                        <div class="team-image col-sm-6">
-                            <img src="assets/images/team/8.jpg" alt="Mary Jane">
-                        </div>
-                        <div class="team-desc col-sm-6">
-                            <div class="team-title"><h4>Mary Jane</h4><span>Sales</span></div>
-                            <div class="team-content">
-                                <p>Carbon emissions reductions giving, legitimize amplify non-partisan Aga Khan. Policy dialogue assessment expert free-speech cornerstone disruptor freedom. Cesar Chavez empower.</p>
-                            </div>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-facebook">
-                                <i class="icon-facebook"></i>
-                                <i class="icon-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-twitter">
-                                <i class="icon-twitter"></i>
-                                <i class="icon-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-gplus">
-                                <i class="icon-gplus"></i>
-                                <i class="icon-gplus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="team team-list row align-items-center">
-                        <div class="team-image col-sm-6">
-                            <img src="assets/images/team/4.jpg" alt="Nix Maxwell">
-                        </div>
-                        <div class="team-desc col-sm-6">
-                            <div class="team-title"><h4>Nix Maxwell</h4><span>Support</span></div>
-                            <div class="team-content">
-                                <p>Carbon emissions reductions giving, legitimize amplify non-partisan Aga Khan. Policy dialogue assessment expert free-speech cornerstone disruptor freedom. Cesar Chavez empower.</p>
-                            </div>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-facebook">
-                                <i class="icon-facebook"></i>
-                                <i class="icon-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-twitter">
-                                <i class="icon-twitter"></i>
-                                <i class="icon-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon si-rounded si-small si-light si-gplus">
-                                <i class="icon-gplus"></i>
-                                <i class="icon-gplus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <p class="text-center">Not record found</p>
+                @endforelse
             </div>
         </div>
     </div>

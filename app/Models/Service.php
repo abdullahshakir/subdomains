@@ -10,9 +10,9 @@ class Service extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function themeService()
+    public function subServices()
     {
-        return $this->belongsTo(Theme::class);
+        return $this->hasMany(SubService::class, 'service_id');
     }
 
 }

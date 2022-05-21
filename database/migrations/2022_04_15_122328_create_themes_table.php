@@ -22,7 +22,7 @@ class CreateThemesTable extends Migration
             $table->longText('description');
             $table->string('mode')->nullable();
             $table->foreign('view_id')->references('id')->on('views');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

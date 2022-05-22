@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\AboutUs;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomValidatorRequest;
 use App\Models\AboutUs;
 use App\Models\Theme;
 use Illuminate\Http\Request;
@@ -24,12 +23,15 @@ class AboutUsController extends Controller
     {
         try {
             $request->validate([
-                'themeId' => 'required',
+                'theme_id' => 'required',
                 'title' => 'required',
+                'color' => 'required',
                 'description' => 'required',
             ]);
+            $data = $request->except('_token');
             $create = new AboutUs;
-            Theme::create($create, $request);
+            $create->fill($data);
+            $create->save();
             return redirect()->route('view.about', ['data' => AboutUs::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -59,17 +61,12 @@ class AboutUsController extends Controller
         try {
             $request->validate([
                 'title' => 'required',
+                'color' => 'required',
                 'description' => 'required',
             ]);
             $about = AboutUs::findOrFail($id);
             $input = $request->all();
             $about->fill($input)->save();
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
-                $about->file = '/storage/' . $filePath;
-                $about->save();
-            }
             return redirect()->route('view.about', ['data' => AboutUs::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();

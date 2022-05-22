@@ -5,6 +5,6 @@
         @include('pages.gallery')
         @include('pages.portfolio')
         @include('pages.about-us')
-{{--        @include('pages.contact-us')--}}
+        @include('pages.contact-us')
     </div>
 @stop

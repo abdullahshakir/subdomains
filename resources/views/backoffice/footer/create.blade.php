@@ -64,6 +64,22 @@
                                 <input type="text" name="subscriber_link" class="form-control required" value="" placeholder="Enter subscriber link">
                             </div>
                             <div class="col-6 form-group">
+                                <label>Yahoo Link:</label>
+                                <input type="text" name="yahoo_link" class="form-control required" value="" placeholder="Enter yahoo link">
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>Pinterest Link:</label>
+                                <input type="text" name="pinterest_link" class="form-control required" value="" placeholder="Enter pinterest link">
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>Privacy Link:</label>
+                                <input type="text" name="privacy_link" class="form-control required" value="" placeholder="Enter privacy link">
+                            </div>
+                            <div class="col-6 form-group">
+                                <label>Terms & Conditions Link:</label>
+                                <input type="text" name="term_link" class="form-control required" value="" placeholder="Enter terms & conditions link">
+                            </div>
+                            <div class="col-6 form-group">
                                 <label>Subscribe Description:</label>
                                 <textarea name="subscribe_description" placeholder="Enter subscribe description"
                                           class="form-control required" cols="30" rows="10">

@@ -25,13 +25,13 @@
                                 <input type="text" name="name" id="name" class="form-control required" value="" placeholder="Enter name">
                             </div>
                             <div class="col-6 form-group">
-                                <label>View:</label>
-                                <select class="form-select required" name="viewId" id="viewId">
+                                <label>Domain:</label>
+                                <select class="form-select required" name="domain_id">
                                     <option value="">-- Select One --</option>
                                     @forelse($data as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @empty
-                                        <option>No view registered yet</option>
+                                        <option>No domain registered yet</option>
                                     @endforelse
                                 </select>
                             </div>

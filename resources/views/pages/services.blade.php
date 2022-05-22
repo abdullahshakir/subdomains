@@ -4,14 +4,14 @@
             <h3 class="m-0">Our Services</h3>
             <div class="divider"><i class="icon-circle"></i></div>
             <div class="heading-block center">
-                <h2>{{$withSubService->title}}</h2>
-                <span>{{$withSubService->sub_title}}</span>
+                <h2>{{$withSubService->title ?? null}}</h2>
+                <span>{{$withSubService->sub_title ?? null}}</span>
             </div>
             <div class="row col-mb-50">
                 <div class="col-lg-4 text-center text-lg-start">
                     <img data-animate="fadeInLeftBig"
-                         src="{{ $withSubService->file }}"
-                         alt="{{ $withSubService->file }}"
+                         src="{{ $withSubService->file ?? null }}"
+                         alt="{{ $withSubService->file ?? null }}"
                          width="100"
                     >
                 </div>
@@ -49,10 +49,21 @@
     </div>
     <div class="container clearfix">
         <div class="row col-mb-50">
+            <h3 class="m-0">Features</h3>
+            <div class="divider"><i class="icon-circle"></i></div>
+            @forelse($withSubService['subServices'] as $subService)
             <div class="col-sm-6 col-lg-4">
                 <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
                     <div class="fbox-icon">
-                        <a href="#"><i class="icon-crop i-alt"></i></a>
+                        <a href="#">
+{{--                            <i class="icon-crop i-alt"></i>--}}
+                            <img data-animate="fadeInLeftBig"
+                                 src="{{ $withSubService->file ?? null }}"
+                                 alt="{{ $withSubService->file ?? null }}"
+                                 width="50" height="50"
+                                 style="border-radius: 50%;"
+                            >
+                        </a>
                     </div>
                     <div class="fbox-content">
                         <h3>Premium Sliders Included<span
@@ -60,65 +71,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
-                    <div class="fbox-icon">
-                        <a href="#"><i class="icon-tint i-alt"></i></a>
-                    </div>
-                    <div class="fbox-content">
-                        <h3>Unlimited Color Options<span class="subtitle">16.7+ Million on your fingertips</span>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
-                    <div class="fbox-icon">
-                        <a href="#"><i class="icon-text-width i-alt"></i></a>
-                    </div>
-                    <div class="fbox-content">
-                        <h3>CUSTOMIZABLE FONTS<span class="subtitle">Unlimited Fonts &amp; Customizations</span>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
-                    <div class="fbox-icon">
-                        <a href="#"><i class="icon-ok i-alt"></i></a>
-                    </div>
-                    <div class="fbox-content">
-                        <h3>12+ Header Designs<span class="subtitle">Customizable Headers &amp; Menus</span></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
-                    <div class="fbox-icon">
-                        <a href="#"><i class="icon-thumbs-up i-alt"></i></a>
-                    </div>
-                    <div class="fbox-content">
-                        <h3>Awesome Mega menu<span class="subtitle">Stylish &amp; Simple Chunky Menus</span></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
-                    <div class="fbox-icon">
-                        <a href="#"><i class="icon-eye i-alt"></i></a>
-                    </div>
-                    <div class="fbox-content">
-                        <h3>Retina Ready Graphics<span class="subtitle">Crystal Clear Images &amp; Icons</span></h3>
-                    </div>
-                </div>
-            </div>
-
+            @empty
+                <p class="text-center">Not record yet</p>
+            @endforelse
         </div>
-
     </div>
 </section>

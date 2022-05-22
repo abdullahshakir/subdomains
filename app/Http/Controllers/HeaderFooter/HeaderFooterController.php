@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\HeaderFooter;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FooterValidatorRequest;
 use App\Models\Footer;
 use App\Models\Header;
 use App\Models\Theme;
@@ -20,7 +21,7 @@ class HeaderFooterController extends Controller
         }
     }
 
-    public static function createFooter(Request $request)
+    public static function createFooter(FooterValidatorRequest $request)
     {
         try {
             $data = $request->except('_token');
@@ -51,7 +52,7 @@ class HeaderFooterController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(FooterValidatorRequest $request, $id)
     {
         try {
             $about = Footer::findOrFail($id);

@@ -6,14 +6,14 @@
                 <h3>Edit</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('view.about')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{route('view.portfolio')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="row" action="{{URL::to('update-about/'.request()->route()->parameters['id'])}}"
+                    <form class="row" action="{{URL::to('update-portfolio/'.request()->route()->parameters['id'])}}"
                           method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-process">
@@ -27,16 +27,18 @@
                                    value="{{$data->title}}" placeholder="Enter title">
                         </div>
                         <div class="col-12 form-group">
-                            <label>Color:</label>
-                            <input type="text" name="color" class="form-control required"
-                                   value="{{$data->color}}" placeholder="Enter color">
+                            <label>Type:</label>
+                            <input type="text" name="type" class="form-control required"
+                                   value="{{$data->type}}" placeholder="Enter type">
+                        </div>
+                        <div class="form-group">
+                            <label>Upload:</label>
+                            <input type="file" id="jobs-application-resume" name="file" class="file-loading form-select required" data-show-preview="false" />
                         </div>
                         <div class="col-12 form-group">
-                            <label>Description:</label>
-                            <textarea name="description" id="description" placeholder="Enter description"
-                                      class="form-control required" cols="30" rows="5">
-                                {{$data->description}}
-                            </textarea>
+                            <label>Category:</label>
+                            <input type="text" name="category" class="form-control required"
+                                   value="{{$data->category}}" placeholder="Enter category">
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-secondary">update</button>

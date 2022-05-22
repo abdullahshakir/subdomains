@@ -40,9 +40,13 @@ class DomainController extends Controller
     public static function createDomain(Request $request)
     {
         try {
-            $domain = new Domain;
-            $input = $request->all();
-            $domain->fill($input)->save();
+            $request->validate([
+                'name' => 'required',
+            ]);
+            Domain::create([
+                'name' => $request->name,
+                'user_id' => auth()->user()->id,
+            ]);
             return redirect()->route('view.domain', ['data' => Domain::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -70,9 +74,13 @@ class DomainController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $theme = Domain::findOrFail($id);
-            $input = $request->all();
-            $theme->fill($input)->save();
+            $request->validate([
+                'name' => 'required',
+            ]);
+            Domain::where('id', $id)->update([
+                'name' => $request->name,
+                'user_id' => auth()->user()->id,
+            ]);
             return redirect()->route('view.domain', ['data' => Domain::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();

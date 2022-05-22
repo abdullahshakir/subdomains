@@ -19,11 +19,24 @@ class GalleryController extends Controller
         }
     }
 
-    public static function createGallery(CustomValidatorRequest $request)
+    public static function createGallery(Request $request)
     {
         try {
+            $request->validate([
+                'theme_id' => 'required',
+                'is_center' => 'required',
+                'file' => 'required',
+            ]);
+            $data = $request->except('_token');
             $create = new Gallery;
-            Theme::create($create, $request);
+            $create->fill($data);
+            $create->save();
+            if($request->file()) {
+                $name =  time() . '_' . $request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
+                $create->file = '/storage/' . $filePath;
+                $create->save();
+            }
             return redirect()->route('view.gallery', ['data' => Gallery::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -48,9 +61,22 @@ class GalleryController extends Controller
         }
     }
 
-    public function update(CustomValidatorRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
+            $request->validate([
+                'is_center' => 'required',
+                'file' => 'required',
+            ]);
+            $service = Gallery::findOrFail($id);
+            $input = $request->all();
+            $service->fill($input)->save();
+            if($request->file()) {
+                $name =  time() . '_' . $request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
+                $service->file = '/storage/' . $filePath;
+                $service->save();
+            }
             return redirect()->route('view.gallery', ['data' => Gallery::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -62,7 +88,8 @@ class GalleryController extends Controller
         try {
             $about = Gallery::findOrFail($id);
             $about->delete();
-            return response()->json(['message' => 'Deleted successfully'], 200);
+            return redirect()->route('view.gallery')
+                ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

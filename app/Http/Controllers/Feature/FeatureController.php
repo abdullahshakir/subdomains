@@ -1,37 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Porfolio;
+namespace App\Http\Controllers\Feature;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomValidatorRequest;
-use App\Models\Portfolio;
+use App\Models\Feature;
 use App\Models\Theme;
 use Illuminate\Http\Request;
 
-class PortfolioController extends Controller
+class FeatureController extends Controller
 {
-
     public function createForm()
     {
         try {
-            return view('backoffice.portfolio.create', with(['data' => Theme::select('id','name')->get()]));
+            return view('backoffice.feature.create', with(['data' => Theme::select('id','name')->get()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
 
-    public static function createPortfolio(Request $request)
+    public static function createFeature(Request $request)
     {
         try {
             $request->validate([
                 'theme_id' => 'required',
                 'title' => 'required',
-                'type' => 'required',
+                'description' => 'required',
                 'file' => 'required',
-                'category' => 'required',
             ]);
             $data = $request->except('_token');
-            $create = new Portfolio;
+            $create = new Feature();
             $create->fill($data);
             $create->save();
             if($request->file()) {
@@ -39,7 +36,8 @@ class PortfolioController extends Controller
                 $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
                 $create->file = '/storage/' . $filePath;
                 $create->save();
-            }            return redirect()->route('view.portfolio', ['data' => Portfolio::all()]);
+            }
+            return redirect()->route('view.feature', ['data' => Feature::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -48,7 +46,7 @@ class PortfolioController extends Controller
     public function view(Request $request)
     {
         try {
-            return view('backoffice.portfolio.view', with(['data' => Portfolio::all()]));
+            return view('backoffice.feature.view', with(['data' => Feature::all()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -57,7 +55,7 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         try {
-            return view('backoffice.portfolio.update', with(['data' => Portfolio::where('id', $id)->first()]));
+            return view('backoffice.feature.update', with(['data' => Feature::where('id', $id)->first()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -68,20 +66,19 @@ class PortfolioController extends Controller
         try {
             $request->validate([
                 'title' => 'required',
-                'type' => 'required',
+                'description' => 'required',
                 'file' => 'required',
-                'category' => 'required',
             ]);
-            $portfolio = Portfolio::findOrFail($id);
+            $feature = Feature::findOrFail($id);
             $input = $request->all();
-            $portfolio->fill($input)->save();
+            $feature->fill($input)->save();
             if($request->file()) {
                 $name =  time() . '_' . $request->file->getClientOriginalName();
                 $filePath = $request->file('file')->storeAs('uploads', $name, 'public');
-                $portfolio->file = '/storage/' . $filePath;
-                $portfolio->save();
+                $feature->file = '/storage/' . $filePath;
+                $feature->save();
             }
-            return redirect()->route('view.portfolio', ['data' => Portfolio::all()]);
+            return redirect()->route('view.feature', ['data' => Feature::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -90,9 +87,9 @@ class PortfolioController extends Controller
     public function delete($id)
     {
         try {
-            $about = Portfolio::findOrFail($id);
+            $about = Feature::findOrFail($id);
             $about->delete();
-            return redirect()->route('view.portfolio')
+            return redirect()->route('view.feature')
                 ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();

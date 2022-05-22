@@ -6,10 +6,11 @@
                 <div class="col-lg-6">
                     <div class="form-widget">
                         <div class="form-result"></div>
-                        <form class="mb-0" action="{{route('create.contact')}}" method="post" enctype="multipart/form-data" id="template-contactform" name="template-contactform">
+                        <form class="mb-0" action="{{route('create.contact')}}" method="post"
+                              enctype="multipart/form-data" id="template-contactform"
+                              name="template-contactform">
                             @csrf
 {{--                            {{ dd(Request::url()) }}--}}
-                            <input type="hidden" name="is_theme_contact_mail" value="1" />
                             <input type="hidden" name="themeId" value="1" />
                             <div class="form-process">
                                 <div class="css3-spinner">
@@ -30,9 +31,13 @@
                                     <input type="text" id="phone" name="phone" value="" class="sm-form-control" />
                                 </div>
                                 <div class="w-100"></div>
-                                <div class="col-md-8 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="subject">Subject <small>*</small></label>
                                     <input type="text" id="subject" name="subject" value="" class="required sm-form-control" />
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="location">Location <small>*</small></label>
+                                    <input type="text" name="location" value="" class="required sm-form-control" />
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label for="service">Services</label>
@@ -65,46 +70,31 @@
                 </div>
             </div>
             <div class="row col-mb-50">
+                @forelse($connectivity['connectivity'] as $item)
                 <div class="col-sm-6 col-lg-3">
                     <div class="feature-box fbox-center fbox-bg fbox-plain">
                         <div class="fbox-icon">
-                            <a href="#"><i class="icon-map-marker2"></i></a>
+                            <a href="#">
+                                <img src="{{ $item->file }}"
+                                     alt="{{ $item->file }}"
+                                    style="border-radius: 50%"
+                                >
+                            </a>
+{{--                            <i class="icon-map-marker2"></i>--}}
+{{--                            <i class="icon-twitter2"></i>--}}
+{{--                            <i class="icon-skype2"></i>--}}
+{{--                            <i class="icon-phone3"></i>--}}
                         </div>
                         <div class="fbox-content">
-                            <h3>Our Headquarters<span class="subtitle">Melbourne, Australia</span></h3>
+                            <h3>{{$item->title}}<span class="subtitle">{{$item->description}}</span></h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="feature-box fbox-center fbox-bg fbox-plain">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-phone3"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Speak to Us<span class="subtitle">(123) 456 7890</span></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="feature-box fbox-center fbox-bg fbox-plain">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-skype2"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Make a Video Call<span class="subtitle">CanvasOnSkype</span></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="feature-box fbox-center fbox-bg fbox-plain">
-                        <div class="fbox-icon">
-                            <a href="#"><i class="icon-twitter2"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Follow on Twitter<span class="subtitle">2.3M Followers</span></h3>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <tr>
+                        <td colspan="12" class="text-center"> No record found </td>
+                    </tr>
+                @endforelse
             </div>
         </div>
 </section>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AboutUs\AboutUsController;
+use App\Http\Controllers\Connectivity\ConnectivityController;
 use App\Http\Controllers\ContactUs\ContactUsController;
+use App\Http\Controllers\Feature\FeatureController;
 use App\Http\Controllers\Gallery\GalleryController;
 use App\Http\Controllers\HeaderFooter\HeaderFooterController;
 use App\Http\Controllers\Porfolio\PortfolioController;
@@ -12,7 +14,6 @@ use App\Http\Controllers\Theme\ThemesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pages\StaticPagesController;
 use App\Http\Controllers\DomainController;
-use App\Models\Domain;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/view-portfolio', 'view')->name('view.portfolio');
         Route::post('/create-portfolio', 'createPortfolio')->name('create.portfolio');
         Route::post('/delete-portfolio', 'delete');
-        Route::put('/update-portfolio/{id}', 'update');
+        Route::post('/update-portfolio/{id}', 'update')->name('update.portfolio')->middleware(['admin']);
+        Route::delete('/delete-portfolio/{id}', 'delete')->middleware(['admin']);
     });
     Route::controller(ServicesController::class)->group(function () {
         Route::get('/index-service', 'createForm')->name('index.service');
@@ -70,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit-gallery/{id}', 'edit');
         Route::get('/view-gallery', 'view')->name('view.gallery');
         Route::post('/create-gallery', 'createGallery')->name('create.gallery');
-        Route::post('/delete-gallery', 'delete');
+        Route::delete('/delete-gallery/{id}', 'delete')->middleware(['admin']);
         Route::put('/update-gallery/{id}', 'update');
     });
     Route::controller(ThemesController::class)->group(function () {
@@ -123,6 +125,22 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete-slider/{id}', 'delete')->middleware(['admin']);
         Route::post('/update-slider/{id}', 'update')->name('update.slider')->middleware(['admin']);
     });
+    Route::controller(FeatureController::class)->group(function () {
+        Route::get('/index-feature', 'createForm')->name('index.feature');
+        Route::get('/edit-feature/{id}', 'edit')->name('edit.feature')->middleware(['admin']);
+        Route::get('/view-feature', 'view')->name('view.feature');
+        Route::post('/create-feature', 'createFeature')->name('create.feature');
+        Route::delete('/delete-feature/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-feature/{id}', 'update')->name('update.feature')->middleware(['admin']);
+    });
+    Route::controller(ConnectivityController::class)->group(function () {
+        Route::get('/index-connectivity', 'createForm')->name('index.connectivity');
+        Route::get('/edit-connectivity/{id}', 'edit')->name('edit.connectivity')->middleware(['admin']);
+        Route::get('/view-connectivity', 'view')->name('view.connectivity');
+        Route::post('/create-connectivity', 'createConnectivity')->name('create.connectivity');
+        Route::delete('/delete-connectivity/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-connectivity/{id}', 'update')->name('update.connectivity')->middleware(['admin']);
+    });
 
 });
 
@@ -130,19 +148,19 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [StaticPagesController::class, 'homePage'])->name('home-page');
 
-$name = [];
-    $data = Domain::with('views')->get();
-    foreach($data as $key => $domain)
-    {
-        Route::domain($domain['name'])->group(function () use ($domain) {
-            foreach($domain['views'] as $view)
-            {
-                Route::get($view['url'], function($view) {
-                    return view($view['name']);
-                });
-            }
-        });
-    }
+//$name = [];
+//    $data = Domain::with('views')->get();
+//    foreach($data as $key => $domain)
+//    {
+//        Route::domain($domain['name'])->group(function () use ($domain) {
+//            foreach($domain['views'] as $view)
+//            {
+//                Route::get($view['url'], function($view) {
+//                    return view($view['name']);
+//                });
+//            }
+//        });
+//    }
 
 Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
     Route::get('/', function () {

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <section id="content">
         <div class="row">
@@ -23,8 +22,12 @@
                         <th>Total Clients</th>
                         <th>Client Text</th>
                         <th>Subscribe Description</th>
-                        <th>Facebook Link</th>
                         <th>Subscriber Link</th>
+                        <th>Facebook Link</th>
+                        <th>Yahoo Link</th>
+                        <th>Pinterest Link</th>
+                        <th>Privacy Link</th>
+                        <th>Term & Condition Link</th>
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
@@ -43,6 +46,10 @@
                             <td> {{ $item->subscribe_description }} </td>
                             <td> {{ $item->facebook_link }} </td>
                             <td> {{ $item->subscriber_link }} </td>
+                            <td> {{ $item->yahoo_link }} </td>
+                            <td> {{ $item->pinterest_link }} </td>
+                            <td> {{ $item->term_link }} </td>
+                            <td> {{ $item->privacy_link }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
                                 <form id="delete-form-{{$item->id}}"

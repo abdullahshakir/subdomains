@@ -14,9 +14,9 @@
                     <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Subtitle</th>
+                        <th>Type</th>
                         <th>Image</th>
-                        <th>Section</th>
+                        <th>Category</th>
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
@@ -25,23 +25,31 @@
                     @forelse($data as $item)
                         <tr>
                             <td> {{ $item->title }} </td>
-                            <td> {{ $item->sub_title }} </td>
+                            <td> {{ $item->type }} </td>
                             <td>
                                 <img src="{{ $item->file }}"
                                      alt="{{ $item->file }}"
                                      width="100"
                                 >
                             </td>
-                            <td> {{ $item->section }} </td>
+                            <td> {{ $item->category }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
-                                <a href="">
-                                    <i class="icon-line-trash"></i>
-                                </a>
-                                &nbsp;
-                                <a href="">
-                                    <i class="icon-line-edit"></i>
-                                </a>
+                                <form id="delete-form-{{$item->id}}"
+                                      action="{{URL::to('delete-portfolio', $item->id)}}"
+                                      method="post">
+                                    <a href="{{ URL::to('delete-portfolio') }}"
+                                       onclick="event.preventDefault();
+                                           document.getElementById(
+                                           'delete-form-{{$item->id}}').submit();">
+                                        <i class="icon-line-trash"></i>
+                                    </a>
+                                    <a href="{{URL::to('edit-portfolio/'.$item->id)}}">
+                                        <i class="icon-line-edit"></i>
+                                    </a>
+                                    @csrf @method('DELETE')
+                                </form>
+                            </td>
                             </td>
                         </tr>
                     @empty

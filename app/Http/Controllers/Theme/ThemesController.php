@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Theme;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThemeValidatorRequest;
+use App\Models\Domain;
 use App\Models\Theme;
 use App\Models\Views;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class ThemesController extends Controller
     public function createForm()
     {
         try {
-            return view('backoffice.theme.create', with(['data' => Views::select('id','name')->get()]));
+            return view('backoffice.theme.create', with(['data' => Domain::select('id','name')->get()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -35,9 +36,8 @@ class ThemesController extends Controller
                 $create->file = '/storage/' . $filePath;
             }
             $create->name = $request->name;
-            $create->view_id = $request->viewId;
+            $create->domain_id = $request->domain_id;
             $create->description = $request->description;
-            $create->mode = $request->mode;
             $create->save();
             return redirect()->route('view.theme', ['data' => Views::all()]);
         } catch (\Exception $exception) {

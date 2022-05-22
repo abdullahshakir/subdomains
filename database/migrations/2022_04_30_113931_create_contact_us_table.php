@@ -19,7 +19,7 @@ class CreateContactUsTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('email');
-            $table->string('message');
+            $table->longText('message');
             $table->string('service');
             $table->string('subject');
             $table->string('location');

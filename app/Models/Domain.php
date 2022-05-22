@@ -15,6 +15,11 @@ class Domain extends Model
         'updated_at',
     ];
 
+    public function theme()
+    {
+        return $this->hasMany(Theme::class, 'domain_id');
+    }
+
     public function views()
     {
         return $this->hasMany(Views::class, 'domain_id');

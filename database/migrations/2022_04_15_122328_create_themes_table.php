@@ -15,14 +15,11 @@ class CreateThemesTable extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('view_id');
+            $table->unsignedBigInteger('domain_id');
             $table->string('name');
             $table->string('file');
             $table->longText('description');
-            $table->string('mode')->nullable();
-            $table->foreign('view_id')->references('id')->on('views');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('domain_id')->references('id')->on('domains');
             $table->timestamps();
         });
     }

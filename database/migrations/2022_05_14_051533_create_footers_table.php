@@ -29,6 +29,10 @@ class CreateFootersTable extends Migration
             $table->longText('subscribe_description');
             $table->string('facebook_link');
             $table->string('subscriber_link');
+            $table->string('privacy_link');
+            $table->string('term_link');
+            $table->string('pinterest_link');
+            $table->string('yahoo_link');
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

@@ -55,10 +55,20 @@ class Theme extends Model
         return $this->hasMany(Footer::class, 'theme_id');
     }
 
-//    public function user()
-//    {
-//        return $this->belongsTo(User::class, 'user_id');
-//    }
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class);
+    }
+
+    public function feature()
+    {
+        return $this->hasMany(Portfolio::class, 'theme_id');
+    }
+
+    public function connectivity()
+    {
+        return $this->hasMany(Connectivity::class, 'theme_id');
+    }
 
     public static function create($data, $request)
     {
@@ -71,7 +81,7 @@ class Theme extends Model
                 $data->message = $request->message;
                 $data->service = $request->service;
                 $data->subject = $request->subject;
-                $data->is_theme_contact_mail = $request->is_theme_contact_mail;
+                $data->location = $request->location;
                 $data->save();
             }
             if($request->file()) {

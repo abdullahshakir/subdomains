@@ -20,8 +20,6 @@ class CreatePortfoliosTable extends Migration
             $table->string('title');
             $table->string('type');
             $table->string('category');
-            $table->string('sub_title')->nullable();
-            $table->longText('description')->nullable();
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

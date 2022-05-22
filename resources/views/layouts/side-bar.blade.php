@@ -137,6 +137,16 @@
                             </ul>
                         </li>
                         <li class="menu-item">
+                            <a class="menu-link" href="{{ route('view.feature') }}">
+                                <div>Features</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('view.connectivity') }}">
+                                <div>Connectivity</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.slider') }}">
                                 <div>Slider</div>
                             </a>

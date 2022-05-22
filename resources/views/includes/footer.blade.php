@@ -101,18 +101,18 @@
     <div id="copyrights">
         <div class="container">
             <div class="row col-mb-30">
-                <div class="col-md-6 text-center text-md-start">
+                <div class="col-md-12 text-center">
                     Copyrights &copy; {{ now()->year }} All Rights Reserved by
                     {{--                            <span>site name.</span>--}}
                     <br>
                     <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="clear mt-4"></div>
-                    <i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i
-                        class="icon-headphones"></i> +1-11-6541-6369 <span class="middot">&middot;</span> <i
-                        class="icon-skype2"></i> CanvasOnSkype
-                </div>
+{{--                <div class="col-md-6 text-center text-md-end">--}}
+{{--                    <div class="clear mt-4"></div>--}}
+{{--                    <i class="icon-envelope2"></i> info@canvas.com <span class="middot">&middot;</span> <i--}}
+{{--                        class="icon-headphones"></i> +1-11-6541-6369 <span class="middot">&middot;</span> <i--}}
+{{--                        class="icon-skype2"></i> CanvasOnSkype--}}
+{{--                </div>--}}
             </div>
         </div>
     </div><!-- #copyrights end -->

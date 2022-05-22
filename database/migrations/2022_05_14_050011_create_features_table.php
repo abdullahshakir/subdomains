@@ -18,7 +18,7 @@ class CreateFeaturesTable extends Migration
             $table->unsignedBigInteger('theme_id');
             $table->string('title')->nullable();
             $table->longText('description')->nullable();
-            $table->string('icon');
+            $table->string('file');
             $table->foreign('theme_id')->references('id')->on('themes');
             $table->timestamps();
         });

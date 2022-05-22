@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Connectivity extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

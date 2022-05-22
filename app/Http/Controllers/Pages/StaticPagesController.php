@@ -24,7 +24,6 @@ class StaticPagesController extends Controller
          $withTeamMembers = Team::where('id', $team['team'][0]['id'] ?? 0)->with('teamMembers')->first();
          $portfolio = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('portfolio')->first();
          $distinctType = $portfolio['portfolio']->unique('type');
-         $feature = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('feature')->first();
          $connectivity = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('connectivity')->first();
          return view('pages.home-page')->with('sliders', $sliders['sliders'] ?? null)
                 ->with('withSubService', $withSubService ?? null)->with('gallery', $gallery['gallery'] ?? null)

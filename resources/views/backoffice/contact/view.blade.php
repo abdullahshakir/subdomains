@@ -26,9 +26,18 @@
                             <td> {{ $item->subject }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
-                                <a href="">
-                                    <i class="icon-line-trash"></i>
-                                </a>
+                                <form id="delete-form-{{$item->id}}"
+                                      action="{{URL::to('delete-contact', $item->id)}}"
+                                      method="post">
+                                    <a href="{{ URL::to('delete-contact') }}"
+                                       onclick="event.preventDefault();
+                                           document.getElementById(
+                                           'delete-form-{{$item->id}}').submit();">
+                                        <i class="icon-line-trash"></i>
+                                    </a>
+                                    @csrf @method('DELETE')
+                                </form>
+                            </td>
                             </td>
                         </tr>
                     @empty

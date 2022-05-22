@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ContactUsController::class)->group(function () {
         Route::get('/edit-contact/{id}', 'edit');
         Route::get('/view-contact', 'view')->name('view.contact');
-        Route::post('/delete-contact', 'delete');
+        Route::delete('/delete-contact/{id}', 'delete');
         Route::put('/update-contact/{id}', 'update');
     });
     Route::controller(PortfolioController::class)->group(function () {

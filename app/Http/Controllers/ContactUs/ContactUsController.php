@@ -36,7 +36,8 @@ class ContactUsController extends Controller
         try {
             $about = ContactUs::findOrFail($id);
             $about->delete();
-            return response()->json(['message' => 'Deleted successfully'], 200);
+            return redirect()->route('view.contact')
+                ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

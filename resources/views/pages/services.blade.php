@@ -15,6 +15,7 @@
                          width="100"
                     >
                 </div>
+                @if(isset($withSubService['subServices']))
                 <div class="col-8">
                     <div class="row">
                         @forelse($withSubService['subServices'] as $subService)
@@ -27,7 +28,6 @@
                                                  alt="{{ $subService->icon }}"
                                                  width="100"
                                             >
-{{--                                            <i class="icon-line-monitor"></i>--}}
                                         </a>
                                     </div>
                                     <div class="fbox-content">
@@ -44,6 +44,7 @@
                         @endforelse
                       </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -51,6 +52,8 @@
         <div class="row col-mb-50">
             <h3 class="m-0">Features</h3>
             <div class="divider"><i class="icon-circle"></i></div>
+            @if(isset($withSubService['subServices']))
+
             @forelse($withSubService['subServices'] as $subService)
             <div class="col-sm-6 col-lg-4">
                 <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
@@ -71,9 +74,11 @@
                     </div>
                 </div>
             </div>
+
             @empty
                 <p class="text-center">Not record yet</p>
             @endforelse
+            @endif
         </div>
     </div>
 </section>

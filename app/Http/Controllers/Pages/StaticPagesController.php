@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Domain;
+use App\Models\Feature;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\Theme;
@@ -13,9 +14,11 @@ class StaticPagesController extends Controller
     public function homePage()
     {
 //         return Slider::where('theme_id', $getViewID[0]['theme'][0]['id'])->get();
-         $getViewID = Domain::where('user_id', auth()->user()->id)->with('theme')->get();
+
+         $getViewID = Domain::where('name',  $_SERVER['HTTP_HOST'])->with('theme')->get();
          $sliders = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('sliders')->first();
          $services = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('service')->first();
+         $feature = Feature::where('theme_id', $getViewID[0]['theme'][0]['id'])->get();
          $withSubService = Service::where('id', $services['service'][0]['id'] ?? 0)->with('subServices')->first();
          $gallery = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('gallery')->first();
          $aboutUs = Theme::where('id', $getViewID[0]['theme'][0]['id'] ?? 0)->with('aboutUs')->first();

@@ -66,10 +66,11 @@
         </div>
         <div class="container clearfix">
             <div class="heading-block center mt-lg-5">
-                <h2>{{$withTeamMembers->title}}</h2>
-                <span>{{$withTeamMembers->sub_title}}</span>
+                <h2>{{ isset($withTeamMembers) ? $withTeamMembers->title : ''}}</h2>
+                <span>{{ isset($withTeamMembers) ? $withTeamMembers->sub_title : ''}}</span>
             </div>
             <div class="row col-mb-50 mb-0">
+                @if(isset($withTeamMembers))
                 @forelse($withTeamMembers['teamMembers'] as $members)
                 <div class="col-lg-6">
                     <div class="team team-list row align-items-center">
@@ -99,6 +100,7 @@
                 @empty
                     <p class="text-center">Not record found</p>
                 @endforelse
+                @endif
             </div>
         </div>
     </div>

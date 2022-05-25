@@ -52,25 +52,25 @@
         <div class="row col-mb-50">
             <h3 class="m-0">Features</h3>
             <div class="divider"><i class="icon-circle"></i></div>
-            @if(isset($withSubService['subServices']))
+            @if(isset($feature))
 
-            @forelse($withSubService['subServices'] as $subService)
+            @forelse($feature as $feature)
             <div class="col-sm-6 col-lg-4">
                 <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
                     <div class="fbox-icon">
                         <a href="#">
 {{--                            <i class="icon-crop i-alt"></i>--}}
                             <img data-animate="fadeInLeftBig"
-                                 src="{{ $withSubService->file ?? null }}"
-                                 alt="{{ $withSubService->file ?? null }}"
+                                 src="{{ $feature->file ?? null }}"
+                                 alt="{{ $feature->file ?? null }}"
                                  width="50" height="50"
                                  style="border-radius: 50%;"
                             >
                         </a>
                     </div>
                     <div class="fbox-content">
-                        <h3>Premium Sliders Included<span
-                                class="subtitle">About 20+ Dedicated Slider Templates</span></h3>
+                        <h3>{{ $feature->title }}<span
+                                class="subtitle">{{ $feature->description }}</span></h3>
                     </div>
                 </div>
             </div>

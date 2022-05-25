@@ -79,7 +79,6 @@
                     <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th>Service Title</th>
                             <th>Title</th>
                             <th>File</th>
                             <th>Description</th>
@@ -90,7 +89,6 @@
                         <tbody>
                         @forelse($subService as $item)
                             <tr>
-                                <td> {{ $item->service->title }} </td>
                                 <td> {{ $item->title }} </td>
                                 <td>
                                     <img src="{{ $item->icon }}"

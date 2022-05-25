@@ -39,7 +39,7 @@
                             </textarea>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-secondary">update</button>
+                            <button type="submit" class="btn btn-secondary">Update</button>
                         </div>
                     </form>
                 </div>

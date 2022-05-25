@@ -47,9 +47,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Description:</label>
-                                    <textarea id="jobs-application-message" name="description"
+                                    <textarea id="" name="description"
                                               placeholder="Enter description" class="form-control
-                                              required" cols="30" rows="10">
+                                              required" cols="30" rows="7">
                                     </textarea>
                                 </div>
                             </div>

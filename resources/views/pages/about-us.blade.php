@@ -12,11 +12,11 @@
                         <p style="line-height: 1.8;">
                             {{$about->description}}
                         </p>
-{{--                        <a href="#" class="button button-border button-light button-rounded--}}
-{{--                            button-reveal text-end text-uppercase m-0">--}}
-{{--                            <i class="icon-angle-right"></i>--}}
-{{--                            <span>Read More</span>--}}
-{{--                        </a>--}}
+                        <a href="#" class="button button-border button-light button-rounded--}}
+                            button-reveal text-end text-uppercase m-0">
+                            <i class="icon-angle-right"></i>
+                            <span>Read More</span>
+                        </a>
                         <i class="icon-bulb bgicon"></i>
                     </div>
                 </div>

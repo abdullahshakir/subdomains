@@ -32,6 +32,8 @@
                                    class="file-loading form-select required"
                                    data-show-preview="false"
                             />
+                            <img src="{{$data->file}}" alt="{{$data->file}}"
+                                class="mt-2" width="100"/>
                         </div>
                         <div class="col-12 form-group">
                             <label>Description:</label>

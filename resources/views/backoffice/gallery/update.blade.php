@@ -24,6 +24,8 @@
                         <div class="form-group">
                             <label>Upload:</label>
                             <input type="file" id="jobs-application-resume" name="file" class="file-loading form-select required" data-show-preview="false" />
+                            <img class="mt-2" src="{{$data->file}}"
+                                alt="{{$data->file}}" width="100" />
                         </div>
                         <input type="hidden" value="1" name="is_center" />
                         <div class="col-12">

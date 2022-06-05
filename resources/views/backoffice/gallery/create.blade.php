@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Upload CV:</label>
+                                    <label>Upload:</label>
                                     <input type="file" id="jobs-application-resume" name="file" class="file-loading form-select required" data-show-preview="false" />
                                 </div>
                             </div>

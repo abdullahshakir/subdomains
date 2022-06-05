@@ -18,6 +18,7 @@
                         <th>Phone</th>
                         <th>Fax</th>
                         <th>Email</th>
+                        <th>Download Text</th>
                         <th>Total Downloads</th>
                         <th>Total Clients</th>
                         <th>Client Text</th>
@@ -40,6 +41,7 @@
                             <td> {{ $item->phone }} </td>
                             <td> {{ $item->fax }} </td>
                             <td> {{ $item->email }} </td>
+                            <td>{{ $item->download_text }}</td>
                             <td> {{ $item->total_download }} </td>
                             <td> {{ $item->total_client }} </td>
                             <td> {{ $item->client_text }} </td>

@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/view-gallery', 'view')->name('view.gallery');
         Route::post('/create-gallery', 'createGallery')->name('create.gallery');
         Route::delete('/delete-gallery/{id}', 'delete')->middleware(['admin']);
-        Route::put('/update-gallery/{id}', 'update');
+        Route::post('/update-gallery/{id}', 'update')->name('update.gallery')->middleware(['admin']);
     });
     Route::controller(ThemesController::class)->group(function () {
         Route::get('/index-theme', 'createForm')->name('index.theme');

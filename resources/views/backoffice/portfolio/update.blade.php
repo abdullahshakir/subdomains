@@ -34,6 +34,8 @@
                         <div class="form-group">
                             <label>Upload:</label>
                             <input type="file" id="jobs-application-resume" name="file" class="file-loading form-select required" data-show-preview="false" />
+                            <img src="{{$data->file}}" alt="{{$data->file}}"
+                                class="mt-2" width="100"/>
                         </div>
                         <div class="col-12 form-group">
                             <label>Category:</label>

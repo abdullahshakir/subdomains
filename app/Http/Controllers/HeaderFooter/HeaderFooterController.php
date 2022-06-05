@@ -55,9 +55,9 @@ class HeaderFooterController extends Controller
     public function update(FooterValidatorRequest $request, $id)
     {
         try {
-            $about = Footer::findOrFail($id);
+            $footer = Footer::findOrFail($id);
             $input = $request->all();
-            $about->fill($input)->save();
+            $footer->fill($input)->save();
             return redirect()->route('view.footer', ['data' => Footer::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();

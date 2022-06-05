@@ -75,7 +75,8 @@
                 <div class="col-lg-6">
                     <div class="team team-list row align-items-center">
                         <div class="team-image col-sm-6">
-                            <img src="assets/images/team/3.jpg" alt="John Doe">
+                            <img src="{{$members->file}}" alt="{{$members->file}}"
+                                class="" width="100" height="280"/>
                         </div>
                         <div class="team-desc col-sm-6">
                             <div class="team-title"><h4>{{$members->name}}</h4><span>{{$members->designation}}</span></div>
@@ -104,4 +105,4 @@
             </div>
         </div>
     </div>
-</section><!-- #content end -->
+</section>

@@ -10,4 +10,9 @@ class DomainSection extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function domain()
+    {
+        return $this->hasMany(Domain::class, 'domain_id');
+    }
+
 }

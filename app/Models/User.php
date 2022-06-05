@@ -42,14 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//    public function user()
-//    {
-//        return $this->hasMany(Theme::class, 'user_id');
-//    }
-
-    public function domain()
+    public function theme()
     {
-        return $this->hasMany(Domain::class, 'user_id');
+        return $this->hasMany(Theme::class, 'user_id');
     }
 
 }

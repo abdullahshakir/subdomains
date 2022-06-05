@@ -10,4 +10,10 @@ class ThemeSection extends Model
     use HasFactory;
     protected $guarded = [];
 
+
+    public function theme()
+    {
+        return $this->hasMany(Theme::class, 'theme_id');
+    }
+
 }

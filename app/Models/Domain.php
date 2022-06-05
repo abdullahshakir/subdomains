@@ -9,25 +9,10 @@ class Domain extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
-
+    
     public function theme()
     {
-        return $this->hasMany(Theme::class, 'domain_id');
-    }
-
-    public function views()
-    {
-        return $this->hasMany(Views::class, 'domain_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Theme::class);
     }
 
 }

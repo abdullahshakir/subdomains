@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactUsTable extends Migration
+class CreateThemeSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateContactUsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_us', function (Blueprint $table) {
+        Schema::create('theme_sections', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('theme_id');
             $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->longText('message');
-            $table->string('service');
-            $table->string('subject');
-            $table->string('location');
-            $table->foreign('theme_id')->references('id')->on('themes');
+            $table->string('route');
+            $table->string('controller');
+            $table->json('attributes');
+            $table->json('attributes_data')->nullable();
+            $table->boolean('is_multiple')->default(1);
+            $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateContactUsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_us');
+        Schema::dropIfExists('theme_sections');
     }
 }

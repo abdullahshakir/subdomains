@@ -19,7 +19,7 @@ class CreateRatingsTable extends Migration
             $table->string('file');
             $table->string('strength');
             $table->longText('description');
-            $table->foreign('theme_id')->references('id')->on('themes');
+            $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
             $table->timestamps();
         });
     }

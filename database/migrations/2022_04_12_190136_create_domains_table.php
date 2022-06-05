@@ -15,9 +15,12 @@ class CreateDomainsTable extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('name');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('theme_id');
+            $table->string('title');
+            $table->string('url');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
             $table->timestamps();
         });
     }

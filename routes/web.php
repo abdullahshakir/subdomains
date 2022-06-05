@@ -42,22 +42,21 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // backoffice routes end
-
 Route::get('/', [StaticPagesController::class, 'homePage'])->name('home-page');
 
-//$name = [];
-//    $data = Domain::with('views')->get();
-//    foreach($data as $key => $domain)
-//    {
-//        Route::domain($domain['name'])->group(function () use ($domain) {
-//            foreach($domain['views'] as $view)
-//            {
-//                Route::get($view['url'], function($view) {
-//                    return view($view['name']);
-//                });
-//            }
-//        });
-//    }
+$name = [];
+   $data = Domain::with('views')->get();
+   foreach($data as $key => $domain)
+   {
+       Route::domain($domain['name'])->group(function () use ($domain) {
+           foreach($domain['views'] as $view)
+           {
+               Route::get($view['url'], function($view) {
+                   return view($view['name']);
+               });
+           }
+       });
+   }
 
 Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
     Route::get('/', function () {

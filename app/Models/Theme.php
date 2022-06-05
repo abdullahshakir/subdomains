@@ -25,3 +25,4 @@ class Theme extends Model
         return $this->belongsTo(ThemeSection::class);
     }
 }
+       

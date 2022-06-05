@@ -77,10 +77,7 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Primary Navigation
-                ============================================= -->
-                <nav class="primary-menu on-click">
+                {{-- <nav class="primary-menu on-click">
 
                     <ul class="menu-container">
                         <li class="menu-item"><a class="menu-link" href="{{ route('view.domain') }}">
@@ -119,20 +116,6 @@
                                     <a class="menu-link" href="{{ route('view.theme') }}">
                                         <div>Theme</div>
                                     </a>
-{{--                                    <ul class="sub-menu-container">--}}
-{{--                                        <li class="menu-item"><a class="menu-link" href="blog.html">--}}
-{{--                                                <div>Right Sidebar</div>--}}
-{{--                                            </a></li>--}}
-{{--                                        <li class="menu-item"><a class="menu-link" href="blog-left-sidebar.html">--}}
-{{--                                                <div>Left Sidebar</div>--}}
-{{--                                            </a></li>--}}
-{{--                                        <li class="menu-item"><a class="menu-link" href="blog-both-sidebar.html">--}}
-{{--                                                <div>Both Sidebar</div>--}}
-{{--                                            </a></li>--}}
-{{--                                        <li class="menu-item"><a class="menu-link" href="blog-full-width.html">--}}
-{{--                                                <div>Full Width</div>--}}
-{{--                                            </a></li>--}}
-{{--                                    </ul>--}}
                                 </li>
                             </ul>
                         </li>
@@ -162,13 +145,12 @@
                             </a>
                         </li>
                     </ul>
-                </nav><!-- #primary-menu end -->
+                </nav> --}}
             </div>
         </div>
     </div>
     <div class="header-wrap-clone"></div>
-</header><!-- #footer end -->
-
+</header>
 
 <!-- Go To Top
 ============================================= -->

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <section id="content">
         <div class="row">
@@ -7,7 +6,7 @@
                 <h3>Theme</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('index.theme')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{route('sub-domain.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>
         <div class="table-responsive">
@@ -15,8 +14,6 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Image</th>
-                        <th>Description</th>
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
@@ -25,25 +22,18 @@
                     @forelse($data as $item)
                         <tr>
                             <td> {{ $item->name }} </td>
-                            <td>
-                                <img src="{{ $item->file }}"
-                                     alt="{{ $item->file }}"
-                                     width="100"
-                                >
-                            </td>
-                            <td> {{ $item->description }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
                                 <form id="delete-form-{{$item->id}}"
-                                      action="{{URL::to('delete-theme', $item->id)}}"
+                                      action="{{URL::to('sub-domain/destroy', $item->id)}}"
                                       method="post">
-                                    <a href="{{ URL::to('delete-theme') }}"
+                                    <a href="{{ URL::to('sub-domain/destroy') }}"
                                        onclick="event.preventDefault();
                                            document.getElementById(
                                            'delete-form-{{$item->id}}').submit();">
                                         <i class="icon-line-trash"></i>
                                     </a>
-                                    <a href="{{URL::to('edit-theme/'.$item->id)}}">
+                                    <a href="{{URL::to('sub-domain/'.$item->id. '/edit')}}">
                                         <i class="icon-line-edit"></i>
                                     </a>
                                     @csrf @method('DELETE')

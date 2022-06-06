@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domain;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 
 class DomainController extends Controller
@@ -31,7 +32,7 @@ class DomainController extends Controller
     public function createForm()
     {
         try {
-            return view('backoffice.domain.create', with(['data' => Domain::select('id','name')->get()]));
+            return view('backoffice.domain.create', with(['data' => Theme::select('id', 'name')->get()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -41,11 +42,15 @@ class DomainController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
+                'title' => 'required',
+                'url' => 'required',
+                'theme_id' => 'required',
             ]);
             Domain::create([
-                'name' => $request->name,
-                'user_id' => auth()->user()->id,
+                'title' => $request->title,
+                'url' => $request->url,
+                'theme_id' => $request->theme_id,
+                'created_by' => auth()->user()->id,
             ]);
             return redirect()->route('view.domain', ['data' => Domain::all()]);
         } catch (\Exception $exception) {
@@ -56,7 +61,7 @@ class DomainController extends Controller
     public function view(Request $request)
     {
         try {
-            return view('backoffice.domain.view', with(['data' => Domain::all()]));
+            return view('backoffice.domain.view', with(['data' => Domain::with('theme')->get()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

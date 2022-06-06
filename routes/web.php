@@ -24,16 +24,16 @@ Auth::routes();
 // backoffice routes end
 Route::resource('sub-domain', SubDomainController::class);
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::controller(DomainController::class)->group(function () {
-//         Route::get('/index-connectivity', 'createForm')->name('index.connectivity');
-//         Route::get('/edit-connectivity/{id}', 'edit')->name('edit.connectivity')->middleware(['admin']);
-//         Route::get('/view-connectivity', 'view')->name('view.connectivity');
-//         Route::post('/create-connectivity', 'createConnectivity')->name('create.connectivity');
-//         Route::delete('/delete-connectivity/{id}', 'delete')->middleware(['admin']);
-//         Route::post('/update-connectivity/{id}', 'update')->name('update.connectivity')->middleware(['admin']);
-//     });
-// });
+Route::middleware(['auth'])->group(function () {
+    Route::controller(DomainController::class)->group(function () {
+        Route::get('/index-domain', 'createForm')->name('index.domain');
+        Route::get('/edit-domain/{id}', 'edit')->name('edit.domain')->middleware(['admin']);
+        Route::get('/view-domain', 'view')->name('view.domain');
+        Route::post('/create-domain', 'createDomain')->name('create.domain');
+        Route::delete('/delete-domain/{id}', 'delete')->middleware(['admin']);
+        Route::post('/update-domain/{id}', 'update')->name('update.domain')->middleware(['admin']);
+    });
+});
 
 // $name = [];
 //    $data = Domain::with('views')->get();
@@ -74,6 +74,6 @@ Route::resource('sub-domain', SubDomainController::class);
 // });
 
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

@@ -21,9 +21,25 @@
                                 </div>
                             </div>
                             <div class="col-12 form-group">
-                                <label>Domain:</label>
-                                <input type="text" name="name" id="name" class="form-control required"
-                                       placeholder="Enter domain name">
+                                <label>Theme:</label>
+                                <select class="form-select required" name="theme_id">
+                                    <option value="">-- Select One --</option>
+                                    @forelse($data as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @empty
+                                        <option>No theme registered yet</option>
+                                    @endforelse
+                                </select>
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>Title:</label>
+                                <input type="text" name="title" class="form-control required"
+                                       placeholder="Enter domain title">
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>URL:</label>
+                                <input type="text" name="url" class="form-control required"
+                                       placeholder="Enter domain url">
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-secondary">create</button>

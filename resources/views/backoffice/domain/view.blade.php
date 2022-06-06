@@ -14,7 +14,9 @@
                 <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>Domain</th>
+                        <th>Theme</th>
+                        <th>Title</th>
+                        <th>URL</th>
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
@@ -22,7 +24,9 @@
                     <tbody>
                     @forelse($data as $item)
                         <tr>
-                            <td> {{ $item->name }} </td>
+                            <td> {{ $item->theme->name }} </td>
+                            <td> {{ $item->title }} </td>
+                            <td> {{ $item->url }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
                                 <form id="delete-form-{{$item->id}}"

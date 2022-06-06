@@ -17,7 +17,7 @@ class Theme extends Model
     
     public function domain()
     {
-        return $this->belongsTo(Domain::class);
+        return $this->hasMany(Domain::class, 'theme_id');
     }
     
     public function themeSection()

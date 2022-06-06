@@ -29,3 +29,7 @@
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     background: #000000;
 }
+.adjust-left-margin
+{
+    margin-left: 10px !important;
+}

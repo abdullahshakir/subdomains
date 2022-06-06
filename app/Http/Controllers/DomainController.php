@@ -61,7 +61,8 @@ class DomainController extends Controller
     public function view(Request $request)
     {
         try {
-            return view('backoffice.domain.view', with(['data' => Domain::with('theme')->get()]));
+            return view('backoffice.domain.view', with(['data' => Theme::where('created_by', auth()->user()->id)
+                ->with('domain')->get()]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

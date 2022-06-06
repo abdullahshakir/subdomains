@@ -12,7 +12,7 @@ class Domain extends Model
     
     public function theme()
     {
-        return $this->hasMany(Theme::class);
+        return $this->belongsTo(Theme::class);
     }
 
     public function domainSection()

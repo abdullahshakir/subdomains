@@ -24,25 +24,28 @@
                     <tbody>
                     @forelse($data as $item)
                         <tr>
-                            <td> {{ $item->theme->name }} </td>
-                            <td> {{ $item->title }} </td>
-                            <td> {{ $item->url }} </td>
-                            <td> {{ $item->created_at }} </td>
-                            <td class="text-center">
-                                <form id="delete-form-{{$item->id}}"
+                            <td> {{ $item->name }} </td>
+                            <td> {{ $item->domain[0]['title'] }} </td>
+                            <td> {{ $item->domain[0]['url'] }} </td>
+                            <td> {{ $item->domain[0]['created_at'] }} </td>
+                            <td class="text-center d-flex">
+                                {{-- <form id="delete-form-{{$item->id}}"
                                       action="{{URL::to('delete-domain', $item->id)}}"
                                       method="post">
                                 <a href="{{ URL::to('delete-domain') }}"
                                        onclick="event.preventDefault();
                                            document.getElementById(
                                            'delete-form-{{$item->id}}').submit();">
-                                    <i class="icon-line-trash"></i>
-                                </a>
-                                <a href="{{URL::to('edit-domain/'.$item->id)}}">
+                                <i class="icon-line-trash"></i>
+                                </a> --}}
+                                {{-- <a href="{{URL::to('edit-domain/'.$item->id)}}" class="adjust-left-margin">
                                     <i class="icon-line-edit"></i>
-                                </a>
+                                </a> --}}
                                     @csrf @method('DELETE')
                                 </form>
+                                <a href="{{URL::to('sub-domain')}}" class="adjust-left-margin">
+                                    <i class="icon-line2-settings"></i>
+                                </a>
                             </td>
 
                             </td>

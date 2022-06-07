@@ -25,15 +25,15 @@
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">
                                 <form id="delete-form-{{$item->id}}"
-                                      action="{{URL::to('sub-domain/destroy', $item->id)}}"
+                                      action="{{URL::to('sub-domain/'.$item->id)}}"
                                       method="post">
-                                    <a href="{{ URL::to('sub-domain/destroy') }}"
+                                    <a href="{{ URL::to('sub-domain.destroy') }}"
                                        onclick="event.preventDefault();
                                            document.getElementById(
                                            'delete-form-{{$item->id}}').submit();">
                                         <i class="icon-line-trash"></i>
                                     </a>
-                                    <a href="{{URL::to('sub-domain/'.$item->id. '/edit')}}">
+                                    <a href="{{URL::to('sub-domain/'.$item->id.'/edit')}}">
                                         <i class="icon-line-edit"></i>
                                     </a>
                                     @csrf @method('DELETE')

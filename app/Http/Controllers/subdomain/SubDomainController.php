@@ -122,7 +122,7 @@ class SubDomainController extends Controller
         try {
             $theme = Theme::findOrFail($id);
             $theme->delete();
-            return redirect()->route('sub-domain')
+            return redirect()->route('sub-domain.index')
                 ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();

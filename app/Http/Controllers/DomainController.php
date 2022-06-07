@@ -96,8 +96,8 @@ class DomainController extends Controller
     public function delete($id)
     {
         try {
-            $about = Domain::findOrFail($id);
-            $about->delete();
+            $domain = Domain::findOrFail($id);
+            $domain->delete();
             return redirect()->route('view.domain')
                 ->with('success','Deleted successfully');
         } catch (\Exception $exception) {

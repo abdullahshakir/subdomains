@@ -38,9 +38,9 @@
                                            'delete-form-{{$item->id}}').submit();">
                                 <i class="icon-line-trash"></i>
                                 </a>
-                                <a href="{{URL::to('edit-domain/'.$item->id)}}" class="adjust-left-margin">
+                                {{-- <a href="{{URL::to('edit-domain/'.$item->id)}}" class="adjust-left-margin">
                                     <i class="icon-line-edit"></i>
-                                </a>
+                                </a> --}}
                                     @csrf @method('DELETE')
                                 </form>
                                 <a href="{{URL::to('sub-domain')}}" class="adjust-left-margin">

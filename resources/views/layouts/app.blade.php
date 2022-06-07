@@ -49,7 +49,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
+                        @auth
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('view.domain') }}">
                                 Domain
                             </a>
@@ -58,7 +59,8 @@
                             <a class="nav-link" href="{{ url('sub-domain') }}">
                                 Theme
                             </a>
-                        </li>
+                        </li> --}}
+                        @endauth
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

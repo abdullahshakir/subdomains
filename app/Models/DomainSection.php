@@ -9,6 +9,9 @@ class DomainSection extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $cast = [
+        'attributes_data' => 'array'
+    ];
 
     public function domain()
     {

@@ -35,6 +35,26 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+// $domains = Domain::with('domainSection')->get();
+//     foreach($domains as $key => $domain) {
+//         Route::resource("'".$domain->domainSection[$key]['route']."'", $domain->domainSection[$key]['controller']::class);
+//     }
+
+
+// $domains = Domain::with('domainSection')->get();
+
+//     foreach($data as $key => $domain) {
+//        Route::domain($domain['name'])->group(function () use ($domain) {
+//            foreach($domain['views'] as $view)
+//            {
+//                Route::get($view['url'], function($view) {
+//                    return view($view['name']);
+//                });
+//            }
+//        });
+//    }
+
+
 // $name = [];
 //    $data = Domain::with('views')->get();
 //    foreach($data as $key => $domain)

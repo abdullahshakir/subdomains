@@ -17,7 +17,7 @@ class Domain extends Model
 
     public function domainSection()
     {
-        return $this->belongsTo(DomainSection::class);
+        return $this->hasMany(DomainSection::class);
     }
 
 }

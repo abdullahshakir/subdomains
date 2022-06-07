@@ -52,7 +52,7 @@ class SubDomainController extends Controller
                 'name' => $request->name,
                 'created_by' => auth()->user()->id,
             ]);
-            return redirect()->route('sub-domain', ['data' => Theme::all()]);
+            return redirect()->route('sub-domain.index', ['data' => Theme::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

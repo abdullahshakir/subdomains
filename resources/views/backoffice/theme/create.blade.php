@@ -20,7 +20,7 @@
                                     <div class="css3-spinner-scaler"></div>
                                 </div>
                             </div>
-                            <div class="col-6 form-group">
+                            <div class="col-12 form-group">
                                 <label>Name:</label>
                                 <input type="text" name="name" id="name" class="form-control required" value="" placeholder="Enter name">
                             </div>

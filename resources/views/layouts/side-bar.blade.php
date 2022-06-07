@@ -77,10 +77,19 @@
                         </a>
                     </div>
                 </div>
-                {{-- <nav class="primary-menu on-click">
-
+                <nav class="primary-menu on-click">
                     <ul class="menu-container">
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.domain') }}">
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ url('sub-domain') }}">
+                                Theme
+                            </a>
+                        </li>                       
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('view.domain') }}">
+                                Domain
+                            </a>
+                        </li>   
+                         {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.domain') }}">
                                 <div>Domain</div>
                             </a>
                         </li>
@@ -143,9 +152,9 @@
                             <a class="menu-link" href="{{ route('view.footer') }}">
                                 <div>Footer</div>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
-                </nav> --}}
+                </nav>
             </div>
         </div>
     </div>

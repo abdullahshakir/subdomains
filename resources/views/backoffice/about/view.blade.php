@@ -7,7 +7,7 @@
                 <h3>About us</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('index.about')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{route('abouts.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            <div class="table-responsive">
                 <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">

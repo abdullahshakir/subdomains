@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Domain;
 use App\Models\Theme;
+use App\Models\DomainSection;
 use Illuminate\Http\Request;
 
 class DomainController extends Controller
@@ -46,12 +47,20 @@ class DomainController extends Controller
                 'url' => 'required',
                 'theme_id' => 'required',
             ]);
-            Domain::create([
-                'title' => $request->title,
-                'url' => $request->url,
-                'theme_id' => $request->theme_id,
-                'created_by' => auth()->user()->id,
-            ]);
+            $domain = new Domain;
+            $domain->title = $request->title;
+            $domain->url = $request->url;
+            $domain->theme_id = $request->theme_id;
+            $domain->created_by = auth()->user()->id;
+            $domain->save();
+            foreach ($domain->theme->themeSections as $section) {
+                DomainSection::create([
+                    'domain_id' => $domain->id,
+                    'name' => $section->name,
+                    'route' => $section->route,
+                    'controller' => $section->controller
+                ]);
+            };
             return redirect()->route('view.domain', ['data' => Domain::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();

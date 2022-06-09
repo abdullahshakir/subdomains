@@ -19,10 +19,11 @@ class Theme extends Model
     {
         return $this->hasMany(Domain::class, 'theme_id');
     }
-    
-    public function themeSection()
+
+    public function themeSections()
     {
-        return $this->belongsTo(ThemeSection::class);
+        return $this->hasMany(ThemeSection::class);
     }
+    
 }
        

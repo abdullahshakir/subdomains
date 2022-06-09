@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UsersTableSeeder::class
+            UsersTableSeeder::class,
+            ThemeSeeder::class,
+            // DomainSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
     }

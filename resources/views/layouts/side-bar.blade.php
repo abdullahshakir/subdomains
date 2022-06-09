@@ -79,45 +79,52 @@
                 </div>
                 <nav class="primary-menu on-click">
                     <ul class="menu-container">
-                        <li class="menu-item">
-                            <a class="menu-link" href="{{ url('sub-domain') }}">
-                                Theme
-                            </a>
-                        </li>                       
-                        <li class="menu-item">
-                            <a class="menu-link" href="{{ route('view.domain') }}">
-                                Domain
-                            </a>
-                        </li>   
-                         {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.domain') }}">
+                       @if(auth())
+                            <li class="menu-item">
+                                <a class="menu-link" href="{{ url('sub-domain') }}">
+                                    Theme
+                                </a>
+                            </li>                       
+                            <li class="menu-item">
+                                <a class="menu-link" href="{{ route('view.domain') }}">
+                                    Domain
+                                </a>
+                            </li>   
+                       @endif
+                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.domain') }}">
                                 <div>Domain</div>
                             </a>
+                        </li> --}}
+                        
+                        <li class="menu-item"><a class="menu-link" href="{{ route('ratings.index') }}">
+                                <div>Rating</div>
+                            </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.service') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ route('services.index') }}">
                                 <div>Services</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.gallery') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ route('galleries.index') }}">
                                 <div>Gallery</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.portfolio') }}">
+                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.portfolio') }}">
                                 <div>Portfolio</div>
                             </a>
-                        </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.about') }}">
+                        </li> --}}
+                        <li class="menu-item"><a class="menu-link" href="{{ route('abouts.index') }}">
                                 <div>About us</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.contact') }}">
+                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.contact') }}">
                                 <div>Contact us</div>
                             </a>
-                        </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('view.team') }}">
+                        </li> --}}
+                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.team') }}">
                                 <div>Team & Team Members</div>
                             </a>
-                        </li>
-                        <li class="menu-item"><a class="menu-link" href="#">
+                        </li> --}}
+                        {{-- <li class="menu-item"><a class="menu-link" href="#">
                                 <div>Appearance</div>
                             </a>
                             <ul class="sub-menu-container">
@@ -127,32 +134,32 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="menu-item">
+                        </li> --}}
+                        {{-- <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.feature') }}">
                                 <div>Features</div>
                             </a>
-                        </li>
-                        <li class="menu-item">
+                        </li> --}}
+                        {{-- <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.connectivity') }}">
                                 <div>Connectivity</div>
                             </a>
-                        </li>
-                        <li class="menu-item">
+                        </li> --}}
+                        {{-- <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.slider') }}">
                                 <div>Slider</div>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ route('view.header') }}">
+                            <a class="menu-link" href="{{ route('headers.index') }}">
                                 <div>Header</div>
                             </a>
                         </li>
-                        <li class="menu-item">
+                        {{-- <li class="menu-item">
                             <a class="menu-link" href="{{ route('view.footer') }}">
                                 <div>Footer</div>
                             </a>
-                        </li> --}}
+                        </li>  --}}
                     </ul>
                 </nav>
             </div>

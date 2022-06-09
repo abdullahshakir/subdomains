@@ -6,7 +6,9 @@
                 <h3>Theme</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('sub-domain.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                @if(auth()->user()->is_admin)
+                    <a href="{{route('sub-domain.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                @endif
             </div>
         </div>
         <div class="table-responsive">

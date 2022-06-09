@@ -6,14 +6,14 @@
                 <h3>Header</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('view.header')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{route('headers')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
                 <div class="form-result"></div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form class="row" action="{{route('create.header')}}" method="post" enctype="multipart/form-data">
+                        <form class="row" action="{{route('headers.create')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-process">
                                 <div class="css3-spinner">

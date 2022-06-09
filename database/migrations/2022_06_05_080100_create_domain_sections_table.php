@@ -20,7 +20,7 @@ class CreateDomainSectionsTable extends Migration
             $table->string('route');
             $table->string('controller');
             $table->json('attributes_data')->nullable();
-            $table->boolean('visibility');
+            $table->boolean('visibility')->default(0);
             $table->foreign('domain_id')->references('id')->on('domains')->onDelete('cascade');
             $table->timestamps();
         });

@@ -16,8 +16,8 @@
                     @php
                         $id = request()->route()->originalParameters();
                     @endphp
-                    <form class="row" action="{{URL::to('sub-domain.update/'.$id['sub_domain'])}}"
-                          method="post" enctype="multipart/form-data">
+                    <form class="row" action="{{URL::to('sub-domain'.$id['sub_domain'])}}"
+                          method="PUT" enctype="multipart/form-data">
                         @csrf
                         <div class="form-process">
                             <div class="css3-spinner">

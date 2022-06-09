@@ -98,6 +98,7 @@ class SubDomainController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            return 'das';
             $request->validate([
                 'name' => 'required',
             ]);

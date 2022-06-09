@@ -15,7 +15,7 @@ class Domain extends Model
         return $this->belongsTo(Theme::class);
     }
 
-    public function domainSection()
+    public function sections()
     {
         return $this->hasMany(DomainSection::class);
     }

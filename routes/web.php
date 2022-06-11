@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactUs\ContactUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DomainController;
 use App\Models\Domain;
+use App\Models\Theme;
 use App\Http\Controllers\subdomain\SubDomainController;
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +36,22 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-$domains = Domain::with('sections')->get();
+$domains = Domain::with('theme')->get();
 foreach ($domains as $key => $domain) {
     foreach ($domain->sections as $section) {
         $className = "\\App\\Http\\Controllers\\{$domain->theme->name}\\{$section->controller}";
         Route::resource($section->route, app($className)::class);
     }
 }
+
+
+// $domains = Theme::with('themeSections')->get();
+// foreach ($domains as $key => $domain) {
+//     foreach ($domain->themeSections as $section) {
+//         $className = "\\App\\Http\\Controllers\\{$domain->name}\\{$section->controller}";
+//         Route::resource($section->route, app($className)::class);
+//     }
+// }
 
 // Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
 //     Route::get('/', function () {

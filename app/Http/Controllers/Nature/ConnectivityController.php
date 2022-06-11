@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 
-class RatingController extends Controller
+class ConnectivityController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -16,7 +16,7 @@ class RatingController extends Controller
     public function index()
     {
         try {
-            return view('backoffice.rating.view', with(['data' => []]));
+            return view('backoffice.connectivity.view', with(['data' => []]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

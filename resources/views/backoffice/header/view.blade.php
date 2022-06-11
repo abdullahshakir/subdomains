@@ -13,17 +13,7 @@
                 <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>Address Title</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Fax</th>
-                        <th>Email</th>
-                        <th>Total Downloads</th>
-                        <th>Total Clients</th>
-                        <th>Client Text</th>
-                        <th>Subscribe Description</th>
-                        <th>Facebook Link</th>
-                        <th>Subscriber Link</th>
+                        <th>Header Link</th>
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
@@ -31,16 +21,6 @@
                     <tbody>
                     @forelse($data as $item)
                         <tr>
-                            <td> {{ $item->address_title }} </td>
-                            <td> {{ $item->address }} </td>
-                            <td> {{ $item->phone }} </td>
-                            <td> {{ $item->fax }} </td>
-                            <td> {{ $item->email }} </td>
-                            <td> {{ $item->total_download }} </td>
-                            <td> {{ $item->total_client }} </td>
-                            <td> {{ $item->client_text }} </td>
-                            <td> {{ $item->subscribe_description }} </td>
-                            <td> {{ $item->facebook_link }} </td>
                             <td> {{ $item->subscriber_link }} </td>
                             <td> {{ $item->created_at }} </td>
                             <td class="text-center">

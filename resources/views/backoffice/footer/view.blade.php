@@ -6,7 +6,7 @@
                 <h3>Footer</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('index.footer')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{route('footers.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>
         <div class="table-responsive">

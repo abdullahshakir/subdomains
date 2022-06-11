@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 
-class RatingController extends Controller
+class FooterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class RatingController extends Controller
     public function index()
     {
         try {
-            return view('backoffice.rating.view', with(['data' => []]));
+            return view('backoffice.footer.view', with(['data' => []]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

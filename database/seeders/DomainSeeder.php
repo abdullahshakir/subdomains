@@ -39,7 +39,7 @@ class DomainSeeder extends Seeder
     private function getSectionName($name)
     {
         $sections = [
-            'gallery', 'service', 'about', 'rating', 'header'
+            'slider', 'gallery', 'service', 'team', 'portfolio', 'about', 'contact', 'connectivity', 'feature', 'footer', 'rating', 'header'
         ];
         return $sections[$name];
     }
@@ -47,7 +47,7 @@ class DomainSeeder extends Seeder
     private function getRoutes($route)
     {
         $sections = [
-            'galleries', 'services', 'abouts', 'ratings', 'headers'
+            'sliders', 'galleries', 'services', 'teams', 'portfolios', 'abouts', 'contacts', 'connectivities', 'features', 'footers', 'ratings', 'headers'
         ];
         return $sections[$route];
     }
@@ -55,8 +55,9 @@ class DomainSeeder extends Seeder
     private function getControllers($controller)
     {
         $sections = [
-            'GalleryController', 'ServiceController', 'AboutController', 'RatingController', 'HeaderController'
+            'SliderController', 'GalleryController', 'ServiceController', 'TeamController','PortfolioController', 'AboutController', 'ContactController', 'ConnectivityController', 'FeatureController', 'FooterController', 'RatingController', 'HeaderController'
         ];
         return $sections[$controller];
     }
+    
 }

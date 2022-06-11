@@ -22,7 +22,7 @@ class ThemeSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        for ($section = 0; $section < 5; $section++) {
+        for ($section = 0; $section < 12; $section++) {
             ThemeSection::insert([
                 'theme_id' => $themeId,
                 'name' => $this->getSectionName($section),
@@ -39,7 +39,7 @@ class ThemeSeeder extends Seeder
     private function getSectionName($name)
     {
         $sections = [
-            'gallery', 'service', 'about', 'rating', 'header'
+            'slider', 'gallery', 'service', 'team', 'portfolio', 'about', 'contact', 'connectivity', 'feature', 'footer', 'rating', 'header'
         ];
         return $sections[$name];
     }
@@ -47,7 +47,7 @@ class ThemeSeeder extends Seeder
     private function getRoutes($route)
     {
         $sections = [
-            'galleries', 'services', 'abouts', 'ratings', 'headers'
+            'sliders', 'galleries', 'services', 'teams', 'portfolios', 'abouts', 'contacts', 'connectivities', 'features', 'footers', 'ratings', 'headers'
         ];
         return $sections[$route];
     }
@@ -55,7 +55,7 @@ class ThemeSeeder extends Seeder
     private function getControllers($controller)
     {
         $sections = [
-            'GalleryController', 'ServiceController', 'AboutController', 'RatingController', 'HeaderController'
+            'SliderController', 'GalleryController', 'ServiceController', 'TeamController','PortfolioController', 'AboutController', 'ContactController', 'ConnectivityController', 'FeatureController', 'FooterController', 'RatingController', 'HeaderController'
         ];
         return $sections[$controller];
     }
@@ -63,11 +63,18 @@ class ThemeSeeder extends Seeder
     private function getAttributes($attribute)
     {
         $sections = [
-            ['file', 'name', 'type', 'address', 'date'],
-            ['file', 'name', 'type', 'address', 'date'],
-            ['file', 'name', 'type', 'address', 'date'],
-            ['file', 'name', 'type', 'address', 'date'],
-            ['file', 'name', 'type', 'address', 'date']
+            ['Title', 'Sub Title', 'File'],
+            ['File', 'Is Center'],
+            ['Title', 'Sub Title', 'File'],
+            ['Title', 'Sub Title'],
+            ['Title', 'Type', 'file', 'category'],
+            ['Title', 'Description', 'Color', 'Sub Title'],
+            ['Name', 'email', 'phone', 'subject', 'service', 'location', 'message'],
+            ['Title', 'File', 'Description'],
+            ['Title', 'File', 'Description'],
+            ['Address Title', 'address', 'Description', 'Phone', 'Fax', 'Email', 'Total Downloads', 'Doanload Text', 'Total Clients', 'Clients Text', 'Subscribe Description', 'Facebook Link', 'Subscriber Link', 'Privacy Link', 'Pinterest Link', 'Yahoo Link'],
+            ['File', 'strength', 'Description'],
+            ['Navbar', 'File'],
         ];
         return $sections[$attribute];
     }

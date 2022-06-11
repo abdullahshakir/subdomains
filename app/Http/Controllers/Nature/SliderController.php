@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 
-class RatingController extends Controller
+class SliderController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -16,7 +16,7 @@ class RatingController extends Controller
     public function index()
     {
         try {
-            return view('backoffice.rating.view', with(['data' => []]));
+            return view('backoffice.slider.view', with(['data' => []]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -29,7 +29,11 @@ class RatingController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            return view('backoffice.slider.create', with(['data' => []]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 
     /**
@@ -40,7 +44,11 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
+        $domainId = Domain::where('name', $request->domain_name)->first()->pluck('id');
+        DomainSection::where('domain_id', $domainId)->update([
+            'attributes_data' => json_decode($data),
+        ]);
     }
 
     /**

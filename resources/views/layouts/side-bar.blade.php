@@ -108,22 +108,22 @@
                                 <div>Gallery</div>
                             </a>
                         </li>
-                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.portfolio') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ route('portfolios.index') }}">
                                 <div>Portfolio</div>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="menu-item"><a class="menu-link" href="{{ route('abouts.index') }}">
                                 <div>About us</div>
                             </a>
                         </li>
-                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.contact') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ route('contacts.index') }}">
                                 <div>Contact us</div>
                             </a>
-                        </li> --}}
-                        {{-- <li class="menu-item"><a class="menu-link" href="{{ route('view.team') }}">
+                        </li>
+                        <li class="menu-item"><a class="menu-link" href="{{ route('teams.index') }}">
                                 <div>Team & Team Members</div>
                             </a>
-                        </li> --}}
+                        </li>
                         {{-- <li class="menu-item"><a class="menu-link" href="#">
                                 <div>Appearance</div>
                             </a>
@@ -135,31 +135,31 @@
                                 </li>
                             </ul>
                         </li> --}}
-                        {{-- <li class="menu-item">
-                            <a class="menu-link" href="{{ route('view.feature') }}">
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('features.index') }}">
                                 <div>Features</div>
                             </a>
-                        </li> --}}
-                        {{-- <li class="menu-item">
-                            <a class="menu-link" href="{{ route('view.connectivity') }}">
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('connectivities.index') }}">
                                 <div>Connectivity</div>
                             </a>
-                        </li> --}}
-                        {{-- <li class="menu-item">
-                            <a class="menu-link" href="{{ route('view.slider') }}">
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('sliders.index') }}">
                                 <div>Slider</div>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="menu-item">
                             <a class="menu-link" href="{{ route('headers.index') }}">
                                 <div>Header</div>
                             </a>
                         </li>
-                        {{-- <li class="menu-item">
-                            <a class="menu-link" href="{{ route('view.footer') }}">
+                        <li class="menu-item">
+                            <a class="menu-link" href="{{ route('footers.index') }}">
                                 <div>Footer</div>
                             </a>
-                        </li>  --}}
+                        </li> 
                     </ul>
                 </nav>
             </div>

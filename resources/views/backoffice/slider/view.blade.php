@@ -17,37 +17,36 @@
                     <th>Title</th>
                     <th>Subtitle</th>
                     <th>Image</th>
-                    <th>Created Date</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($data as $item)
+                @forelse($data[0] as $key => $item)
                     <tr>
-                        <td> {{ $item->title }} </td>
-                        <td> {{ $item->sub_title }} </td>
+                        <td> {{ $item['title'] }} </td>
+                        <td> {{ $item['sub_title'] }} </td>
                         <td>
-                            <img src="{{ $item->file }}"
-                                    alt="{{ $item->file }}"
+                            <img src="{{ $item['file'] }}"
+                                    alt="{{ $item['file'] }}"
                                     width="100"
                             >
                         </td>
-                        <td> {{ $item->created_at }} </td>
+                        {{-- <td> {{ $attributes['updated_at'] }} </td> --}}
                         <td class="text-center">
-                            <form id="delete-form-{{$item->id}}"
-                                    action="{{URL::to('delete-slider', $item->id)}}"
+                            {{-- <form id="delete-form-{{$attributes['id']}}"
+                                    action="{{URL::to('delete-slider', $attributes['id'])}}"
                                     method="post">
                             <a href="{{ URL::to('delete-slider') }}"
                                     onclick="event.preventDefault();
                                         document.getElementById(
-                                        'delete-form-{{$item->id}}').submit();">
+                                        'delete-form-{{$attributes['id']}}').submit();">
                                 <i class="icon-line-trash"></i>
-                            </a>
-                            <a href="{{URL::to('edit-slider/'.$item->id)}}">
+                            </a> --}}
+                            <a href="{{URL::to('sliders/'.$key.'/edit')}}">
                                 <i class="icon-line-edit"></i>
                             </a>
-                                @csrf @method('DELETE')
-                            </form>
+                                {{-- @csrf @method('DELETE')
+                            </form> --}}
                         </td>
                     </tr>
                 @empty

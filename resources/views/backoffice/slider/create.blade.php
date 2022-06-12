@@ -23,8 +23,8 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label>Tile:</label>
-                            <input type="text" name="title" id="title" class="form-control required" value=""
-                                   placeholder="Enter title">
+                            <input type="text" name="title" id="title" class="form-control required" 
+                                    value="{{ old('title') }}" placeholder="Enter title">
                         </div>
                         <div class="col-6 form-group">
                             <label>Sub title:</label>

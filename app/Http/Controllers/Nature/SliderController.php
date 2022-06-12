@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\DomainSection;
+use Illuminate\Support\Str;
 use Exception;
 
 class SliderController extends Controller
@@ -18,11 +19,9 @@ class SliderController extends Controller
     public function index()
     {
         try {
-            // $attributes = DomainSection::where('name', 'slider')->select('attributes_data')->first();
-            // $decodedFrom = json_decode($attributes['attributes_data'], true);
-            // $data = ['tilte' => $decodedFrom[0], 'sub_title' => $decodedFrom[1], 'file' => $decodedFrom[2]];
-            // return collect($data);
-            return view('backoffice.slider.view', with(['data' => []]));
+            $attributes = DomainSection::where('name', 'slider')->first();
+            $decodedFrom = json_decode($attributes['attributes_data'], true);
+            return view('backoffice.slider.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -61,8 +60,8 @@ class SliderController extends Controller
             $previousAttributes = DomainSection::where('name', 'slider')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $data = [
-                (object)$jsonData, 
-                (object)$decodedFrom
+                'first' => $jsonData, 
+                'second' => $decodedFrom
             ];
             $removeArray = $data;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'slider']])->update([
@@ -95,7 +94,17 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $previousAttributes = DomainSection::where('name', 'slider')->first('attributes_data');
+            $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
+            // foreach($decodedFrom[0] as $key => $item) {
+                //  $decodedFrom[0][$id];
+            //   $result = Str::of($item['title'])->match('/'.$key.'/');
+            // }
+            return view('backoffice.slider.update', with(['data' => $decodedFrom[0][$id]]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 
     /**

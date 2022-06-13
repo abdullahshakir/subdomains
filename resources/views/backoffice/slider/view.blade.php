@@ -42,6 +42,7 @@
                                         'delete-form-{{$attributes['id']}}').submit();">
                                 <i class="icon-line-trash"></i>
                             </a> --}}
+                            
                             <a href="{{URL::to('sliders/'.$key.'/edit')}}">
                                 <i class="icon-line-edit"></i>
                             </a>

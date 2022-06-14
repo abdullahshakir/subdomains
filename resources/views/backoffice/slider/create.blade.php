@@ -15,6 +15,7 @@
             <div class="row">
                 <form action="{{route('sliders.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
                     <div class="form-process">
                         <div class="css3-spinner">
                             <div class="css3-spinner-scaler"></div>
@@ -33,7 +34,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="form-group">
-                                <label>Upload CV:</label>
+                                <label>Upload:</label>
                                 <input type="file" id="jobs-application-resume" name="file"
                                        class="file-loading form-select required" data-show-preview="false"/>
                             </div>

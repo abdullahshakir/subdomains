@@ -21,7 +21,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($data[0] as $key => $item)
+                @forelse($data as $key => $item)
                     <tr>
                         <td> {{ $item['title'] }} </td>
                         <td> {{ $item['sub_title'] }} </td>

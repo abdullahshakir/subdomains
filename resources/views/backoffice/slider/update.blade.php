@@ -13,10 +13,14 @@
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="row" action="{{URL::to('update-slider/'.'1')}}"
-                        {{-- <form class="row" action="{{URL::to('update-slider/'.request()->route()->parameters['id'])}}" --}}
+                    @php
+                        $id = request()->route()->parameters()   
+                    @endphp
+                    <form class="row" action="{{url('sliders/'. $id['slider'])}}"
                           method="post" enctype="multipart/form-data">
-                        @csrf
+                          @method('PUT')
+                          @csrf
+                        <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
                         <div class="form-process">
                             <div class="css3-spinner">
                                 <div class="css3-spinner-scaler"></div>

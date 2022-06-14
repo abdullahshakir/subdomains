@@ -21,6 +21,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if ($data != null)
                 @forelse($data as $key => $item)
                     <tr>
                         <td> {{ $item['title'] }} </td>
@@ -55,6 +56,8 @@
                         <td colspan="12" class="text-center"> No record found </td>
                     </tr>
                 @endforelse
+                    
+                @endif
                 </tbody>
             </table>
         </div>

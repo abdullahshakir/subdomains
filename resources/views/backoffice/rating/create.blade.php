@@ -3,57 +3,47 @@
     <section id="content">
         <div class="row">
             <div class="col-6">
-                <h3>Feature</h3>
+                <h3>Raitng</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('view.feature')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{route('ratings.index')}}"
+                   class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
-                <div class="col-lg-12">
-                    <form class="row" action="{{route('create.feature')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-process">
-                            <div class="css3-spinner">
-                                <div class="css3-spinner-scaler"></div>
+                <form action="{{route('ratings.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
+                    <div class="form-process">
+                        <div class="css3-spinner">
+                            <div class="css3-spinner-scaler"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label>Strength:</label>
+                            <input type="text" name="strength" class="form-control required" 
+                                placeholder="Enter strength">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="form-group">
+                                <label>Upload:</label>
+                                <input type="file" id="jobs-application-resume" name="file"
+                                       class="file-loading form-select required" data-show-preview="false"/>
                             </div>
                         </div>
                         <div class="col-12 form-group">
-                            <label>Title:</label>
-                            <input type="text" name="title" id="title" class="form-control required" value=""
-                                   placeholder="Enter title">
-                        </div>
-                        <div class="col-12 form-group">
-                            <label>Theme:</label>
-                            <select class="form-select required" name="theme_id" id="themeId">
-                                <option value="">-- Select One --</option>
-                                @forelse($data as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @empty
-                                    <option>No theme registered yet</option>
-                                @endforelse
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Upload CV:</label>
-                            <input type="file" id="jobs-application-resume" name="file"
-                                   class="file-loading form-select required" data-show-preview="false"/>
-                        </div>
-                        <div class="form-group">
                             <label>Description:</label>
-                            <textarea name="description"
-                                      placeholder="Enter description" class="form-control
-                                              required" rows="4">
-                            </textarea>
+                            <textarea class="form-control" name="description" placeholder="Enter description" rows="3"></textarea>
                         </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-secondary">create</button>
-                </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-secondary">create</button>
+                    </div>
                 </form>
             </div>
-        </div>
         </div>
     </section>
 @endsection

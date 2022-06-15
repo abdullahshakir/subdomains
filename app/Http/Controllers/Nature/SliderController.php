@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\DomainSection;
-use Illuminate\Support\Str;
 use Exception;
 
 class SliderController extends Controller

@@ -7,7 +7,7 @@
                 <h3>Slider</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('sliders.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{url('domains/{domain}/sliders/create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            
         <div class="table-responsive">

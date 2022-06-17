@@ -6,6 +6,8 @@ use App\Models\Domain;
 use App\Models\Theme;
 use App\Models\DomainSection;
 use Illuminate\Http\Request;
+use App\Http\Requests\Domain\CreateDomainRequest;
+use App\Http\Requests\Domain\UpdateDomainRequest;
 
 class DomainController extends Controller
 {
@@ -39,29 +41,46 @@ class DomainController extends Controller
         }
     }
 
-    public static function createDomain(Request $request)
+    public static function createDomain(CreateDomainRequest $request)
     {
         try {
-            $request->validate([
-                'title' => 'required',
-                'url' => 'required',
-                'theme_id' => 'required',
+            $data =  $request->validated();
+            $theme = Theme::find($data['theme_id']);
+            $domain = $theme->domains()->create([
+                'title' => $data['title'],
+                'url' => $data['url'],
+                'created_by' => auth()->user()->id
             ]);
-            $domain = new Domain;
-            $domain->title = $request->title;
-            $domain->url = $request->url;
-            $domain->theme_id = $request->theme_id;
-            $domain->created_by = auth()->user()->id;
-            $domain->save();
-            foreach ($domain->theme->themeSections as $section) {
-                DomainSection::create([
-                    'domain_id' => $domain->id,
+            foreach ($theme->themeSections as $section) {
+                $domain->sections()->create([
                     'name' => $section->name,
                     'route' => $section->route,
-                    'controller' => $section->controller
+                    'controller' => $section->controller,
+                    'attributes_data' => []
                 ]);
-            };
+            }
             return redirect()->route('view.domain', ['data' => Domain::all()]);
+            // $request->validate([
+            //     'title' => 'required',
+            //     'url' => 'required',
+            //     'theme_id' => 'required',
+            // ]);
+            // $domain = new Domain;
+            // $domain->title = $request->title;
+            // $domain->url = $request->url;
+            // $domain->theme_id = $request->theme_id;
+            // $domain->created_by = auth()->user()->id;
+            // $domain->save();
+            // foreach ($domain->theme->themeSections as $section) {
+            //     DomainSection::create([
+            //         'domain_id' => $domain->id,
+            //         'name' => $section->name,
+            //         'route' => $section->route,
+            //         'controller' => $section->controller,
+            //         'attributes_data' => []
+            //     ]);
+            // };
+            // return redirect()->route('view.domain', ['data' => Domain::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -86,17 +105,23 @@ class DomainController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateDomainRequest $request, $id)
     {
         try {
-            $request->validate([
-                'name' => 'required',
-            ]);
+            $data = $request->validated();
             Domain::where('id', $id)->update([
-                'name' => $request->name,
+                'name' => $data['name'],
                 'user_id' => auth()->user()->id,
             ]);
             return redirect()->route('view.domain', ['data' => Domain::all()]);
+            // $request->validate([
+            //     'name' => 'required',
+            // ]);
+            // Domain::where('id', $id)->update([
+            //     'name' => $request->name,
+            //     'user_id' => auth()->user()->id,
+            // ]);
+            // return redirect()->route('view.domain', ['data' => Domain::all()]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

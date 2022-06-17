@@ -7,7 +7,7 @@
                 <h3>Connectivity</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('connectivities.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{url('domains/{domain}/connectivities/create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            
         <div class="table-responsive">

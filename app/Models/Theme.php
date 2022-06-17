@@ -15,7 +15,7 @@ class Theme extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function domain()
+    public function domains()
     {
         return $this->hasMany(Domain::class, 'theme_id');
     }

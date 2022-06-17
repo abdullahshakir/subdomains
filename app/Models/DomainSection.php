@@ -18,4 +18,9 @@ class DomainSection extends Model
         return $this->hasMany(Domain::class, 'domain_id');
     }
 
+    public function setAttributesDataAttribute($value)
+    {
+        $this->attributes['attributes_data'] = json_encode($value);
+    }
+
 }

@@ -26,6 +26,7 @@ Auth::routes();
 Route::resource('sub-domain', SubDomainController::class);
 
 Route::middleware(['auth'])->group(function () {
+    // Route::resource('domains', DomainController::class);
     Route::controller(DomainController::class)->group(function () {
         Route::get('/index-domain', 'createForm')->name('index.domain');
         Route::get('/edit-domain/{id}', 'edit')->name('edit.domain')->middleware(['admin']);
@@ -38,11 +39,21 @@ Route::middleware(['auth'])->group(function () {
 
 $domains = Domain::with('theme')->get();
 foreach ($domains as $key => $domain) {
-    foreach ($domain->sections as $section) {
-        $className = "\\App\\Http\\Controllers\\{$domain->theme->name}\\{$section->controller}";
-        Route::resource($section->route, app($className)::class);
-    }
+    Route::prefix('domains/{domain}')->group(function () use ($domain) {
+        foreach ($domain->sections as $section) {
+            $className = "\\App\\Http\\Controllers\\{$domain->theme->name}\\{$section->controller}";
+            Route::resource($section->route, app($className)::class);
+        }
+    });
 }
+
+// $domains = Domain::with('theme')->get();
+// foreach ($domains as $key => $domain) {
+//     foreach ($domain->sections as $section) {
+//         $className = "\\App\\Http\\Controllers\\{$domain->theme->name}\\{$section->controller}";
+//         Route::resource($section->route, app($className)::class);
+//     }
+// }
 
 
 // $domains = Theme::with('themeSections')->get();

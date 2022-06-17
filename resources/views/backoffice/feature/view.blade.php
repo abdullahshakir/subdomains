@@ -7,7 +7,7 @@
                 <h3>Feature</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('features.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{url('domains/{domain}/features/create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            
         <div class="table-responsive">

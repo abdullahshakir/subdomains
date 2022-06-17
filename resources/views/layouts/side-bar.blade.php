@@ -96,31 +96,31 @@
                             </a>
                         </li> --}}
                         
-                        <li class="menu-item"><a class="menu-link" href="{{ route('ratings.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/ratings') }}">
                                 <div>Rating</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('services.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/services') }}">
                                 <div>Services</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('galleries.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/galleries') }}">
                                 <div>Gallery</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('portfolios.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/portfolios') }}">
                                 <div>Portfolio</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('abouts.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/about') }}">
                                 <div>About us</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('contacts.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/contacts') }}">
                                 <div>Contact us</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ route('teams.index') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/teams') }}">
                                 <div>Team & Team Members</div>
                             </a>
                         </li>
@@ -136,27 +136,27 @@
                             </ul>
                         </li> --}}
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ route('features.index') }}">
+                            <a class="menu-link" href="{{ url('domains/{domain}/features') }}">
                                 <div>Features</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ route('connectivities.index') }}">
+                            <a class="menu-link" href="{{ url('domains/{domain}/connectivities') }}">
                                 <div>Connectivity</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ route('sliders.index') }}">
+                            <a class="menu-link" href="{{ url('domains/{domain}/sliders') }}">
                                 <div>Slider</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ route('headers.index') }}">
+                            <a class="menu-link" href="{{ url('domains/{domain}/headers') }}">
                                 <div>Header</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ route('footers.index') }}">
+                            <a class="menu-link" href="{{ url('domains/{domain}/footers') }}">
                                 <div>Footer</div>
                             </a>
                         </li> 

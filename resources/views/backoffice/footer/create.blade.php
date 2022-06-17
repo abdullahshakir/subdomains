@@ -6,14 +6,14 @@
                 <h3>Footer</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('view.footer')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{url('domains/{domain}/footers')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
     <div class="form-widget">
         <div class="form-result"></div>
         <div class="row">
             <div class="col-lg-12">
-                <form class="row" action="{{route('create.footer')}}" method="post" enctype="multipart/form-data">
+                <form class="row" action="{{url('domains/{domain}/footers/create')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-process">
                         <div class="css3-spinner">

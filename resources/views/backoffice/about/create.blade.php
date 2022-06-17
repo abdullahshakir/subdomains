@@ -6,7 +6,7 @@
                 <h3>About</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('view.about')}}"
+                <a href="{{url('domains/{domain}/about')}}"
                    class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
@@ -14,7 +14,7 @@
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="row" action="{{route('create.about')}}" method="post" enctype="multipart/form-data">
+                    <form class="row" action="{{url('domains/{domain}/about')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-process">
                             <div class="css3-spinner">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Nature;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Domain;
+use App\Models\DomainSection;
 use Exception;
 
 class ContactController extends Controller

@@ -7,7 +7,7 @@
                 <h3>Portfolio</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('portfolios.create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{url('domains/{domain}/portfolios')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            
         <div class="table-responsive">

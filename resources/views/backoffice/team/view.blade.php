@@ -13,7 +13,7 @@
                         <h3>Team</h3>
                     </div>
                     <div class="col-6 text-end">
-                        <a href="{{route('teams.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                        <a href="{{url('domains/{domain}/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -65,7 +65,7 @@
                         <h3>Team Members</h3>
                     </div>
                     <div class="col-6 text-end">
-                        <a href="{{route('teams.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                        <a href="{{url('domains/{domain}/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
                     </div>
                 </div>
                 <div class="table-responsive">

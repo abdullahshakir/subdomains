@@ -1,0 +1,35 @@
+/* ----------------------------------------------------------------
+	Custom CSS
+
+	Add all your Custom Styled CSS here for New Styles or
+	Overwriting Default Theme Styles for Better Handling Updates
+-----------------------------------------------------------------*/
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+.pr-0 {
+    padding-right: 0px !important;
+}
+.pb-0 {
+    padding-bottom: 0px !important;
+}
+.pt-0 {
+    padding-top: 0px !important;
+}
+.full-header .primary-menu .menu-container {
+    border-right: 0px solid #EEE !important;
+}
+.full-header #logo {
+    border-right: 0px solid #EEE !important;
+}
+.tox-statusbar{
+    display: none !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background: #000000;
+}
+.adjust-left-margin
+{
+    margin-left: 10px !important;
+}

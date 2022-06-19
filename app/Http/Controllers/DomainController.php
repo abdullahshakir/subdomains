@@ -32,7 +32,7 @@ class DomainController extends Controller
         return view('home3');
     }
 
-    public function createForm()
+    public function create()
     {
         try {
             return view('backoffice.domain.create', with(['data' => Theme::select('id', 'name')->get()]));
@@ -41,7 +41,7 @@ class DomainController extends Controller
         }
     }
 
-    public static function createDomain(CreateDomainRequest $request)
+    public static function store(CreateDomainRequest $request)
     {
         try {
             $data =  $request->validated();
@@ -59,7 +59,7 @@ class DomainController extends Controller
                     'attributes_data' => []
                 ]);
             }
-            return redirect()->route('view.domain', ['data' => Domain::all()]);
+            return redirect()->route('domains.index', ['data' => Domain::all()]);
             // $request->validate([
             //     'title' => 'required',
             //     'url' => 'required',
@@ -86,7 +86,7 @@ class DomainController extends Controller
         }
     }
 
-    public function view(Request $request)
+    public function index(Request $request)
     {
         try {
             return view('backoffice.domain.view', with(['data' => Domain::where('created_by', auth()->user()->id)
@@ -105,6 +105,15 @@ class DomainController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            return view('backoffice.domain.show', with(['data' => Domain::where('id', $id)->first()]));
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
     public function update(UpdateDomainRequest $request, $id)
     {
         try {
@@ -113,7 +122,7 @@ class DomainController extends Controller
                 'name' => $data['name'],
                 'user_id' => auth()->user()->id,
             ]);
-            return redirect()->route('view.domain', ['data' => Domain::all()]);
+            return redirect()->route('domains.index', ['data' => Domain::all()]);
             // $request->validate([
             //     'name' => 'required',
             // ]);
@@ -127,12 +136,12 @@ class DomainController extends Controller
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
-            $domain = Domain::findOrFail($id);
+     return       $domain = Domain::findOrFail($id);
             $domain->delete();
-            return redirect()->route('view.domain')
+            return redirect()->route('domains.index')
                 ->with('success','Deleted successfully');
         } catch (\Exception $exception) {
             return $exception->getMessage();

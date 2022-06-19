@@ -7,7 +7,7 @@
                 <h3>Domain</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('index.domain')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{route('domains.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>
         <div class="table-responsive">
@@ -30,9 +30,9 @@
                             <td> {{ $item->created_at }} </td> 
                             <td class="text-center d-flex">
                                 <form id="delete-form-{{$item->id}}"
-                                      action="{{URL::to('delete-domain', $item->id)}}"
+                                      action="{{URL::to('domains', $item->id)}}"
                                       method="post">
-                                <a href="{{ URL::to('delete-domain') }}"
+                                <a href="{{ URL::to('domains') }}"
                                        onclick="event.preventDefault();
                                            document.getElementById(
                                            'delete-form-{{$item->id}}').submit();">
@@ -43,7 +43,7 @@
                                 </a> --}}
                                     @csrf @method('DELETE')
                                 </form>
-                                <a href="{{URL::to('sub-domain')}}" class="adjust-left-margin">
+                                <a href="{{URL::to('domains/'. $item->id)}}" class="adjust-left-margin">
                                     <i class="icon-line2-settings"></i>
                                 </a>
                             </td>

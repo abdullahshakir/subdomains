@@ -49,12 +49,7 @@ class FooterController extends Controller
     public function store(Request $request)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('footer', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
-            $jsonData = ['address_title' => $request->address_title, 'description' => $request->description, 'file' => $address,
+            $jsonData = ['address_title' => $request->address_title, 'description' => $request->description, 'address' => $request->address,
             'phone' => $request->phone,'fax' => $request->fax, 'email' => $request->email, 'total_download' => $request->total_download,
             'download_text' => $request->download_text,'total_client' => $request->total_client, 'client_text' => $request->client_text,
             'subscribe_description' => $request->subscribe_description, 'facebook_link' => $request->facebook_link, 'subscriber_link' => $request->subscriber_link,
@@ -117,11 +112,6 @@ class FooterController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('footer', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'footer')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);

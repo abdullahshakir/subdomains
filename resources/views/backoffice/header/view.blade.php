@@ -1,12 +1,18 @@
 @extends('layouts.app')
 @section('content')
+@php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
+@endphp
     <section id="content">
         <div class="row">
             <div class="col-6">
                 <h3>Header</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/{domain}/headers')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{url('domains/'.$domainId.'/headers')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>
         <div class="table-responsive">

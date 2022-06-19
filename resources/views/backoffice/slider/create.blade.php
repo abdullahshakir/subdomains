@@ -1,19 +1,25 @@
 @extends('layouts.app')
 @section('content')
+@php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
+@endphp
     <section id="content">
         <div class="row">
             <div class="col-6">
                 <h3>Slider</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/{domain}/sliders')}}"
+                <a href="{{url('domains/'.$domainId.'/sliders')}}"
                    class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
-                <form action="{{url('domains/{domain}/sliders')}}" method="post" enctype="multipart/form-data">
+                <form action="{{url('domains/2/sliders')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
                     <div class="form-process">

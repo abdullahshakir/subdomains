@@ -49,12 +49,7 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('about', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
-            $jsonData = ['title' => $request->title, 'description' => $request->description, 'file' => $file];
+            $jsonData = ['title' => $request->title, 'description' => $request->description, 'color' => $request->color];
             $prevJsonData = ['first' => $jsonData]; 
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'about')->select('attributes_data')->first();

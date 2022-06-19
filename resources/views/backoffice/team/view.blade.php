@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
+@endphp
     <section id="content">
         <ul id="myTab2" class="nav nav-pills boot-tabs">
             <li class="nav-item"><a class="nav-link active" href="#home2" data-bs-toggle="tab">Team</a></li>
@@ -13,7 +19,7 @@
                         <h3>Team</h3>
                     </div>
                     <div class="col-6 text-end">
-                        <a href="{{url('domains/{domain}/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                        <a href="{{url('domains/'.$domainId.'/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -65,7 +71,7 @@
                         <h3>Team Members</h3>
                     </div>
                     <div class="col-6 text-end">
-                        <a href="{{url('domains/{domain}/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                        <a href="{{url('domains/'.$domainId.'/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
                     </div>
                 </div>
                 <div class="table-responsive">

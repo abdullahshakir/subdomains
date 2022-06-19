@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
+@endphp
     <section id="content">
         <h3>Contact us</h3>
             <div class="table-responsive">

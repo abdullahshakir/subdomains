@@ -1,19 +1,25 @@
 @extends('layouts.app')
 @section('content')
+@php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
+@endphp
     <section id="content">
         <div class="row">
             <div class="col-6">
                 <h3>Service</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('view.service')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{url('domains/'.$domainId.'/service')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="row" action="{{route('create.service')}}" method="post" enctype="multipart/form-data">
+                    <form class="row" action="{{url('domains/'.$domainId.'/service')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-process">
                             <div class="css3-spinner">

@@ -1,12 +1,18 @@
 @extends('layouts.app')
 @section('content')
+@php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
+@endphp
     <section id="content">
         <div class="row">
             <div class="col-6">
                 <h3>About</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/{domain}/about')}}"
+                <a href="{{url('domains/'.$domainId.'/about')}}"
                    class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
@@ -14,8 +20,9 @@
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="row" action="{{url('domains/{domain}/about')}}" method="post" enctype="multipart/form-data">
+                    <form class="row" action="{{url('domains/'.$domainId.'/about')}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
                         <div class="form-process">
                             <div class="css3-spinner">
                                 <div class="css3-spinner-scaler"></div>
@@ -34,17 +41,6 @@
                         <div class="col-12 form-group">
                             <div class="row">
                                 <div class="w-100"></div>
-                                <div class="col-md-6 form-group">
-                                    <label>Theme:</label>
-                                    <select class="form-select required" name="theme_id">
-                                        <option value="">-- Select One --</option>
-                                        @forelse($data as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @empty
-                                            <option>No theme registered yet</option>
-                                        @endforelse
-                                    </select>
-                                </div>
                                 <div class="form-group">
                                     <label>Description:</label>
                                     <textarea id="" name="description"

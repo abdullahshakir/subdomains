@@ -86,7 +86,7 @@
                                 </a>
                             </li>                       
                             <li class="menu-item">
-                                <a class="menu-link" href="{{ route('view.domain') }}">
+                                <a class="menu-link" href="{{ route('domains.index') }}">
                                     Domain
                                 </a>
                             </li>   
@@ -95,32 +95,37 @@
                                 <div>Domain</div>
                             </a>
                         </li> --}}
-                        
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/ratings') }}">
+                        @php
+                            $id = request()->route()->parameters();
+                            $default = '/';
+                            $domainId = $id != null ? $id['domain'] : $default;
+                            // dd($domainId);
+                        @endphp
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/ratings') }}">
                                 <div>Rating</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/services') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/services') }}">
                                 <div>Services</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/galleries') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/galleries') }}">
                                 <div>Gallery</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/portfolios') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/portfolios') }}">
                                 <div>Portfolio</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/about') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/about') }}">
                                 <div>About us</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/contacts') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/contacts') }}">
                                 <div>Contact us</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/{domain}/teams') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/teams') }}">
                                 <div>Team & Team Members</div>
                             </a>
                         </li>
@@ -136,27 +141,27 @@
                             </ul>
                         </li> --}}
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ url('domains/{domain}/features') }}">
+                            <a class="menu-link" href="{{ url('domains/'.$domainId.'/features') }}">
                                 <div>Features</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ url('domains/{domain}/connectivities') }}">
+                            <a class="menu-link" href="{{ url('domains/'.$domainId.'/connectivities') }}">
                                 <div>Connectivity</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ url('domains/{domain}/sliders') }}">
+                            <a class="menu-link" href="{{ url('domains/'.$domainId.'/sliders') }}">
                                 <div>Slider</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ url('domains/{domain}/headers') }}">
+                            <a class="menu-link" href="{{ url('domains/'.$domainId.'/headers') }}">
                                 <div>Header</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="{{ url('domains/{domain}/footers') }}">
+                            <a class="menu-link" href="{{ url('domains/'.$domainId.'/footers') }}">
                                 <div>Footer</div>
                             </a>
                         </li> 

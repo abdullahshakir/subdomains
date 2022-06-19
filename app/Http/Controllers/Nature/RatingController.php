@@ -110,7 +110,7 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -121,9 +121,9 @@ class RatingController extends Controller
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'rating')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['strength'] = $request->strength;
-            $decodedFrom[$id]['description'] = $request->description;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['strength'] = $request->strength;
+            $decodedFrom[$updateId]['description'] = $request->description;
+            $decodedFrom[$updateId]['file'] = $file;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'rating']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

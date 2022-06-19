@@ -92,12 +92,12 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $portfolioId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'portfolio')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.portfolio.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.portfolio.update', with(['data' => $decodedFrom[$portfolioId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -110,7 +110,7 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -121,10 +121,10 @@ class PortfolioController extends Controller
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'portfolio')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['title'] = $request->title;
-            $decodedFrom[$id]['type'] = $request->type;
-            $decodedFrom[$id]['category'] = $request->category;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['title'] = $request->title;
+            $decodedFrom[$updateId]['type'] = $request->type;
+            $decodedFrom[$updateId]['category'] = $request->category;
+            $decodedFrom[$updateId]['file'] = $file;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'portfolio']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

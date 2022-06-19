@@ -57,7 +57,7 @@ class FeatureController extends Controller
             $jsonData = ['title' => $request->title, 'description' => $request->description, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
             $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'feature')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
@@ -92,12 +92,12 @@ class FeatureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $featureId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'feature')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.feature.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.feature.update', with(['data' => $decodedFrom[$featureId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -110,7 +110,7 @@ class FeatureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -119,11 +119,11 @@ class FeatureController extends Controller
                 $file = '/storage/' . $filePath;
             }
             $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'feature')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['title'] = $request->title;
-            $decodedFrom[$id]['description'] = $request->description;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['title'] = $request->title;
+            $decodedFrom[$updateId]['description'] = $request->description;
+            $decodedFrom[$updateId]['file'] = $file;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

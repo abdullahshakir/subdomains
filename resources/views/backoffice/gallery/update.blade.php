@@ -12,7 +12,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                 <h3>Edit</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('galleries.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{url('domains/'.$domainId.'/galleries')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
@@ -22,7 +22,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                     @php
                         $id = request()->route()->parameters()   
                     @endphp
-                    <form class="row" action="{{url('galleries/'. $id['gallery'])}}"
+                    <form class="row" action="{{url('domains/'.$domainId.'/galleries/'.$id['gallery'])}}"
                           method="post" enctype="multipart/form-data">
                           @method('PUT')
                           @csrf

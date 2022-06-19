@@ -91,12 +91,12 @@ class FooterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $footerId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'footer')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.footer.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.footer.update', with(['data' => $decodedFrom[$footerId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -109,29 +109,29 @@ class FooterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'footer')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['address_title'] = $request->address_title;
-            $decodedFrom[$id]['description'] = $request->description;
-            $decodedFrom[$id]['address'] = $address;
-            $decodedFrom[$id]['phone'] = $phone;
-            $decodedFrom[$id]['email'] = $email;
-            $decodedFrom[$id]['fax'] = $fax;
-            $decodedFrom[$id]['total_download'] = $total_download;
-            $decodedFrom[$id]['download_text'] = $download_text;
-            $decodedFrom[$id]['total_client'] = $total_client;
-            $decodedFrom[$id]['client_text'] = $client_text;
-            $decodedFrom[$id]['subscribe_description'] = $subscribe_description;
-            $decodedFrom[$id]['facebook_link'] = $facebook_link;
-            $decodedFrom[$id]['subscriber_link'] = $subscriber_link;
-            $decodedFrom[$id]['privacy_link'] = $privacy_link;
-            $decodedFrom[$id]['term_link'] = $term_link;
-            $decodedFrom[$id]['pinterest_link'] = $pinterest_link;
-            $decodedFrom[$id]['yahoo_link'] = $yahoo_link;
+            $decodedFrom[$updateId]['address_title'] = $request->address_title;
+            $decodedFrom[$updateId]['description'] = $request->description;
+            $decodedFrom[$updateId]['address'] = $request->address;
+            $decodedFrom[$updateId]['phone'] = $request->phone;
+            $decodedFrom[$updateId]['email'] = $request->email;
+            $decodedFrom[$updateId]['fax'] = $request->fax;
+            $decodedFrom[$updateId]['total_download'] = $request->total_download;
+            $decodedFrom[$updateId]['download_text'] = $request->download_text;
+            $decodedFrom[$updateId]['total_client'] = $request->total_client;
+            $decodedFrom[$updateId]['client_text'] = $request->client_text;
+            $decodedFrom[$updateId]['subscribe_description'] = $request->subscribe_description;
+            $decodedFrom[$updateId]['facebook_link'] = $request->facebook_link;
+            $decodedFrom[$updateId]['subscriber_link'] = $request->subscriber_link;
+            $decodedFrom[$updateId]['privacy_link'] = $request->privacy_link;
+            $decodedFrom[$updateId]['term_link'] = $request->term_link;
+            $decodedFrom[$updateId]['pinterest_link'] = $request->pinterest_link;
+            $decodedFrom[$updateId]['yahoo_link'] = $request->yahoo_link;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'footer']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

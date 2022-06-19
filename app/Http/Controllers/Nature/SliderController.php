@@ -116,7 +116,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -127,9 +127,9 @@ class SliderController extends Controller
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'slider']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['title'] = $request->title;
-            $decodedFrom[$id]['sub_title'] = $request->sub_title;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['title'] = $request->title;
+            $decodedFrom[$updateId]['sub_title'] = $request->sub_title;
+            $decodedFrom[$updateId]['file'] = $file;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'slider']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

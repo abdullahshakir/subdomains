@@ -87,12 +87,12 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $aboutId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'about')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.about.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.about.update', with(['data' => $decodedFrom[$aboutId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -105,20 +105,15 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('about', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'about')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['title'] = $request->title;
-            $decodedFrom[$id]['description'] = $request->description;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['title'] = $request->title;
+            $decodedFrom[$updateId]['description'] = $request->description;
+            $decodedFrom[$updateId]['color'] = $request->color;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'about']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

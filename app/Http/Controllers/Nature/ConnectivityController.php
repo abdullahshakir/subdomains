@@ -92,12 +92,12 @@ class ConnectivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $connectivityId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'connectivity')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.connectivity.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.connectivity.update', with(['data' => $decodedFrom[$connectivityId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -110,7 +110,7 @@ class ConnectivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -121,9 +121,9 @@ class ConnectivityController extends Controller
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'connectivity')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['title'] = $request->title;
-            $decodedFrom[$id]['description'] = $request->description;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['title'] = $request->title;
+            $decodedFrom[$updateId]['description'] = $request->description;
+            $decodedFrom[$updateId]['file'] = $file;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'connectivity']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

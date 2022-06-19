@@ -4,6 +4,7 @@
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
+// dd($domainId);
 ?>
     <section id="content">
         <div class="row">
@@ -11,7 +12,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                 <h3>Edit</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="<?php echo e(url('domains/'.$domainId.'/sliders')); ?>" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="<?php echo e(url('domains/'.$domainId.'/connectivities')); ?>" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
@@ -21,7 +22,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                     <?php
                         $id = request()->route()->parameters()   
                     ?>
-                    <form class="row" action="<?php echo e(url('domains/'.$domainId.'/sliders/'. $id['slider'])); ?>"
+                    <form class="row" action="<?php echo e(URL::to('domains/'.$domainId.'/connectivities/'.$id['connectivity'])); ?>"
                           method="post" enctype="multipart/form-data">
                           <?php echo method_field('PUT'); ?>
                           <?php echo csrf_field(); ?>
@@ -37,9 +38,8 @@ $domainId = $id != null ? $id['domain'] : $default;
                                    value="<?php echo e($data['title']); ?>" placeholder="Enter title">
                         </div>
                         <div class="col-12 form-group">
-                            <label>SubTitle:</label>
-                            <input type="text" name="sub_title" id="sub_title" class="form-control required"
-                                   value="<?php echo e($data['sub_title']); ?>" placeholder="Enter subtitle">
+                            <label>Description:</label>
+                            <textarea class="form-control" name="description" placeholder="Enter description" rows="3"><?php echo e($data['description']); ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Upload:</label>
@@ -57,4 +57,4 @@ $domainId = $id != null ? $id['domain'] : $default;
     </section>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\OPS-Project\subdomains\resources\views/backoffice/slider/update.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\OPS-Project\subdomains\resources\views/backoffice/connectivity/update.blade.php ENDPATH**/ ?>

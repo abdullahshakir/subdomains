@@ -27,16 +27,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $__empty_1 = true; $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr>
-                                <td class="text-center">
-                                </td>
-                            </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <tr>
-                                <td colspan="12" class="text-center"> No record found </td>
-                            </tr>
-                        <?php endif; ?>
+                     
                         </tbody>
                     </table>
                 </div>
@@ -84,7 +75,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                 <td class="text-center">
                                     
                                     
-                                    <a href="<?php echo e(URL::to('ratings/'.$key.'/edit')); ?>">
+                                    <a href="<?php echo e(URL::to('domains/'.$domainId.'/teams/'.$key.'/edit')); ?>">
                                         <i class="icon-line-edit"></i>
                                     </a>
                                         

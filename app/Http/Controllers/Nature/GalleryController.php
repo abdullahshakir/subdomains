@@ -93,12 +93,12 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $galleryId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'gallery')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.gallery.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.gallery.update', with(['data' => $decodedFrom[$galleryId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -111,7 +111,7 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -122,8 +122,8 @@ class GalleryController extends Controller
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'gallery')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['is_center'] = $request->is_center;
-            $decodedFrom[$id]['file'] = $file;
+            $decodedFrom[$updateId]['is_center'] = $request->is_center;
+            $decodedFrom[$updateId]['file'] = $file;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'gallery']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

@@ -30,16 +30,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($data as $item)
-                            <tr>
-                                <td class="text-center">
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="12" class="text-center"> No record found </td>
-                            </tr>
-                        @endforelse
+                     
                         </tbody>
                     </table>
                 </div>
@@ -95,7 +86,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                         <i class="icon-line-trash"></i>
                                     </a> --}}
                                     
-                                    <a href="{{URL::to('ratings/'.$key.'/edit')}}">
+                                    <a href="{{URL::to('domains/'.$domainId.'/teams/'.$key.'/edit')}}">
                                         <i class="icon-line-edit"></i>
                                     </a>
                                         {{-- @csrf @method('DELETE')

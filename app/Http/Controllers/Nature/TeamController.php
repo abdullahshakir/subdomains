@@ -19,7 +19,7 @@ class TeamController extends Controller
     {
         try {
             $attributes = DomainSection::where('name', 'team')->first();
-            $decodedFrom = json_decode($attributes['attributes_data'], true);
+            $decodedFrom = json_decode($attributes['attributes_data'] ?? null, true);
             return view('backoffice.team.view', with(['teamMembers' => [], 'data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -59,7 +59,7 @@ class TeamController extends Controller
             'google_link' => $request->google_link];
             $prevJsonData = ['first' => $jsonData]; 
             $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'team')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
@@ -94,12 +94,12 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $teamId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'team')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.team.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.team.update', with(['data' => $decodedFrom[$teamId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -112,7 +112,7 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $updateId)
     {
         try {
             if($request->file()) {
@@ -121,15 +121,15 @@ class TeamController extends Controller
                 $file = '/storage/' . $filePath;
             }
             $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'team')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            $decodedFrom[$id]['name'] = $request->name;
-            $decodedFrom[$id]['description'] = $request->description;
-            $decodedFrom[$id]['file'] = $file;
-            $decodedFrom[$id]['designation'] = $designation;
-            $decodedFrom[$id]['facebook_link'] = $facebook_link;
-            $decodedFrom[$id]['google_link'] = $google_link;
-            $decodedFrom[$id]['twitter_link'] = $twitter_link;
+            $decodedFrom[$updateId]['name'] = $request->name;
+            $decodedFrom[$updateId]['description'] = $request->description;
+            $decodedFrom[$updateId]['file'] = $file;
+            $decodedFrom[$updateId]['designation'] = $request->designation;
+            $decodedFrom[$updateId]['facebook_link'] = $request->facebook_link;
+            $decodedFrom[$updateId]['google_link'] = $request->google_link;
+            $decodedFrom[$updateId]['twitter_link'] = $request->twitter_link;
             DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);

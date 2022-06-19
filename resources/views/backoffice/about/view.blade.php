@@ -43,8 +43,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                             'delete-form-{{$attributes['id']}}').submit();">
                                     <i class="icon-line-trash"></i>
                                 </a> --}}
-                                
-                                <a href="{{URL::to('galleries/'.$key.'/edit')}}">
+                                <a href="{{URL::to('domains/'.$domainId.'/about/'.$key.'/edit')}}">
                                     <i class="icon-line-edit"></i>
                                 </a>
                                     {{-- @csrf @method('DELETE')

@@ -46,7 +46,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                 <i class="icon-line-trash"></i>
                             </a> --}}
                             
-                            <a href="{{URL::to('galleries/'.$key.'/edit')}}">
+                            <a href="{{URL::to('domains/'.$domainId.'/galleries/'.$key.'/edit')}}">
                                 <i class="icon-line-edit"></i>
                             </a>
                                 {{-- @csrf @method('DELETE')
@@ -58,7 +58,6 @@ $domainId = $id != null ? $id['domain'] : $default;
                         <td colspan="12" class="text-center"> No record found </td>
                     </tr>
                 @endforelse
-                    
                 @endif
                 </tbody>
             </table>

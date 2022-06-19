@@ -50,7 +50,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                 <i class="icon-line-trash"></i>
                             </a> --}}
                             
-                            <a href="{{URL::to('ratings/'.$key.'/edit')}}">
+                            <a href="{{URL::to('domains/'.$domainId.'/ratings/'.$key.'/edit')}}">
                                 <i class="icon-line-edit"></i>
                             </a>
                                 {{-- @csrf @method('DELETE')

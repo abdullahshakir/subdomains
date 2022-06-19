@@ -35,15 +35,6 @@ $domainId = $id != null ? $id['domain'] : $default;
                         <tbody>
                         @forelse($data as $item)
                             <tr>
-                                <td> {{ $item['title'] }} </td>
-                                <td>
-                                    <img src="{{ $item['file'] }}"
-                                         alt="{{ $item['file'] }}"
-                                         width="100"
-                                    >
-                                </td>
-                                <td> {{ $item['description'] }} </td>
-                              <td></td>
                             </tr>
                         @empty
                             <tr>
@@ -78,13 +69,13 @@ $domainId = $id != null ? $id['domain'] : $default;
                         @forelse($data as $key => $item)
                             <tr>
                                 <td> {{ $item['title'] }} </td>
+                                <td> {{ $item['description'] }} </td>
                                 <td>
                                     <img src="{{ $item['file'] }}"
                                          alt="{{ $item['file'] }}"
                                          width="100"
                                     >
                                 </td>
-                                <td> {{ $item['description'] }} </td>
                                 <td class="text-center">
                                     {{-- <form id="delete-form-{{$attributes['id']}}"
                                             action="{{URL::to('delete-slider', $attributes['id'])}}"
@@ -96,7 +87,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                         <i class="icon-line-trash"></i>
                                     </a> --}}
                                     
-                                    <a href="{{URL::to('ratings/'.$key.'/edit')}}">
+                                    <a href="{{URL::to('domains/'.$domainId.'/services/'.$key.'/edit')}}">
                                         <i class="icon-line-edit"></i>
                                     </a>
                                         {{-- @csrf @method('DELETE')

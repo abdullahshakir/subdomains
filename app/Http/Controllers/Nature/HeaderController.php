@@ -15,10 +15,10 @@ class HeaderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'header')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'header']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return view('backoffice.header.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

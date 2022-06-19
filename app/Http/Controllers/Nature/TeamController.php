@@ -15,10 +15,10 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'team')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'team']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'] ?? null, true);
             return view('backoffice.team.view', with(['teamMembers' => [], 'data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

@@ -15,10 +15,10 @@ class PortfolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'portfolio')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'portfolio']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'] ?? null, true);
             return view('backoffice.portfolio.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

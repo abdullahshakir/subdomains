@@ -1,41 +1,47 @@
-@extends('layouts.app')
-@section('content')
-@php
+
+<?php $__env->startSection('content'); ?>
+<?php
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
-@endphp
+// dd($domainId);
+?>
     <section id="content">
         <div class="row">
             <div class="col-6">
-                <h3>Slider</h3>
+                <h3>Portfolio</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/'.$domainId.'/sliders')}}"
+                <a href="<?php echo e(url('domains/'.$domainId.'/portfolios')); ?>"
                    class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
-                <form action="{{url('domains/'.$domainId.'/sliders')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" value="{{$domainId}}" name="domain_id"/>
+                <form action="<?php echo e(url('domains/'.$domainId.'/portfolios')); ?>" method="post" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" value="<?php echo e(request()->getHost()); ?>" name="domain_name"/>
                     <div class="form-process">
                         <div class="css3-spinner">
                             <div class="css3-spinner-scaler"></div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-12 form-group">
                             <label>Tile:</label>
                             <input type="text" name="title" id="title" class="form-control required" 
-                                    value="{{ old('title') }}" placeholder="Enter title">
+                                    placeholder="Enter title">
                         </div>
-                        <div class="col-6 form-group">
-                            <label>Sub title:</label>
-                            <input type="text" name="sub_title" id="" class="form-control required" value=""
-                                   placeholder="Enter sub title">
+                        <div class="col-12 form-group">
+                            <label>Type:</label>
+                            <input type="text" name="type" id="type" class="form-control required" 
+                                    placeholder="Enter type">
+                        </div>
+                        <div class="col-12 form-group">
+                            <label>Category:</label>
+                            <input type="text" name="category" id="category" class="form-control required" 
+                                    placeholder="Enter category">
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="form-group">
@@ -52,4 +58,6 @@ $domainId = $id != null ? $id['domain'] : $default;
             </div>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\OPS-Project\subdomains\resources\views/backoffice/portfolio/create.blade.php ENDPATH**/ ?>

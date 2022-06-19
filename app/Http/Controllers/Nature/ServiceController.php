@@ -15,10 +15,10 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'service')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'service']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return view('backoffice.service.view', with(['subService' => [], 'data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

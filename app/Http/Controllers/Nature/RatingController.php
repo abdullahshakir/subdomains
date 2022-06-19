@@ -15,10 +15,10 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'rating')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'rating']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return view('backoffice.rating.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

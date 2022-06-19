@@ -15,10 +15,10 @@ class ConnectivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'connectivity')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'connectivity']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'] ?? null, true);
             return view('backoffice.connectivity.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

@@ -16,10 +16,10 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'gallery')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'gallery']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return view('backoffice.gallery.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

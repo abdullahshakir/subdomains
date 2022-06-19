@@ -1,26 +1,26 @@
-@extends('layouts.app')
-@section('content')
-@php
+
+<?php $__env->startSection('content'); ?>
+<?php
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
-@endphp
+?>
     <section id="content">
         <div class="row">
             <div class="col-6">
                 <h3>Slider</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/'.$domainId.'/sliders')}}"
+                <a href="<?php echo e(url('domains/'.$domainId.'/sliders')); ?>"
                    class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
-                <form action="{{url('domains/'.$domainId.'/sliders')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" value="{{$domainId}}" name="domain_id"/>
+                <form action="<?php echo e(url('domains/'.$domainId.'/sliders')); ?>" method="post" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" value="<?php echo e($domainId); ?>" name="domain_id"/>
                     <div class="form-process">
                         <div class="css3-spinner">
                             <div class="css3-spinner-scaler"></div>
@@ -30,7 +30,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                         <div class="col-6 form-group">
                             <label>Tile:</label>
                             <input type="text" name="title" id="title" class="form-control required" 
-                                    value="{{ old('title') }}" placeholder="Enter title">
+                                    value="<?php echo e(old('title')); ?>" placeholder="Enter title">
                         </div>
                         <div class="col-6 form-group">
                             <label>Sub title:</label>
@@ -52,4 +52,6 @@ $domainId = $id != null ? $id['domain'] : $default;
             </div>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\OPS-Project\subdomains\resources\views/backoffice/slider/create.blade.php ENDPATH**/ ?>

@@ -15,10 +15,10 @@ class FooterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($domainId)
     {
         try {
-            $attributes = DomainSection::where('name', 'footer')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId], ['name', 'footer']])->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return view('backoffice.footer.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {

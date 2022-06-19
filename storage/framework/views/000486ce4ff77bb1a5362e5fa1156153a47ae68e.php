@@ -53,7 +53,6 @@ $domainId = $id != null ? $id['domain'] : $default;
                         <td colspan="12" class="text-center"> No record found </td>
                     </tr>
                 <?php endif; ?>
-                    
                 <?php endif; ?>
                 </tbody>
             </table>

@@ -40,9 +40,8 @@ $domainId = $id != null ? $id['domain'] : $default;
                                 alt="{{$data->file}}" width="100">
                         </div>
                         <div class="col-12 form-group">
-                            <label>SubTitle:</label>
-                            <input type="text" name="sub_title" id="sub_title" class="form-control required"
-                                   value="{{$data->sub_title}}" placeholder="Enter subtitle">
+                            <label>Description:</label>
+                            <textarea class="form-control" name="description" placeholder="Enter description" rows="3"></textarea>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-secondary">update</button>

@@ -5,7 +5,6 @@
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
-// dd($domainId);
 @endphp
     <section id="content">
         <div class="row">
@@ -49,8 +48,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                                         'delete-form-{{$attributes['id']}}').submit();">
                                 <i class="icon-line-trash"></i>
                             </a> --}}
-                            
-                            <a href="{{URL::to('sliders/'.$key.'/edit')}}">
+                            <a href="{{URL::to('domains/'.$domainId.'/sliders/'.$key.'/edit')}}">
                                 <i class="icon-line-edit"></i>
                             </a>
                                 {{-- @csrf @method('DELETE')

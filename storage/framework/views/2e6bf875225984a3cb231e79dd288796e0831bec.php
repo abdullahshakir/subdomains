@@ -1,27 +1,27 @@
-@extends('layouts.app')
-@section('content')
-@php
+
+<?php $__env->startSection('content'); ?>
+<?php
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
 // dd($domainId);
-@endphp
+?>
     <section id="content">
         <div class="row">
             <div class="col-6">
                 <h3>Team</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/'.$domainId.'/teams')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="<?php echo e(url('domains/'.$domainId.'/teams')); ?>" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
                 <div class="form-result"></div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form class="row" action="{{url('domains/'.$domainId.'/teams')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
+                        <form class="row" action="<?php echo e(url('domains/'.$domainId.'/teams')); ?>" method="post" enctype="multipart/form-data">
+                            <?php echo csrf_field(); ?>
+                            <input type="hidden" value="<?php echo e(request()->getHost()); ?>" name="domain_name"/>
                             <div class="form-process">
                                 <div class="css3-spinner">
                                     <div class="css3-spinner-scaler"></div>
@@ -69,4 +69,6 @@ $domainId = $id != null ? $id['domain'] : $default;
                 </div>
             </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\OPS-Project\subdomains\resources\views/backoffice/team/create.blade.php ENDPATH**/ ?>

@@ -55,8 +55,8 @@ class TeamController extends Controller
                 $file = '/storage/' . $filePath;
             }
             $jsonData = ['name' => $request->name, 'description' => $request->description, 'file' => $file,
-            'designation' => $designation, 'facebook_link' => $facebook_link, 'twitter_link' => $twitter_link,
-            'google_link' => $google_link];
+            'designation' => $request->designation, 'facebook_link' => $request->facebook_link, 'twitter_link' => $request->twitter_link,
+            'google_link' => $request->google_link];
             $prevJsonData = ['first' => $jsonData]; 
             $domainId = Domain::where('url', $request->domain_name)->first();
             $previousAttributes = DomainSection::where('name', 'team')->select('attributes_data')->first();

@@ -8,12 +8,12 @@ $domainId = $id != null ? $id['domain'] : $default;
 // dd($domainId);
 @endphp
     <section id="content">
-        <ul id="myTab2" class="nav nav-pills boot-tabs">
+        {{-- <ul id="myTab2" class="nav nav-pills boot-tabs">
             <li class="nav-item"><a class="nav-link active" href="#home2" data-bs-toggle="tab">Services</a></li>
             <li class="nav-item"><a class="nav-link" href="#profile2" data-bs-toggle="tab">Sub Services</a></li>
-        </ul>
+        </ul> --}}
         <div id="myTabContent2" class="tab-content">
-            <div class="tab-pane fade show active" id="home2">
+            <div class="tab-pane fade " id="home2">
                 <div class="row">
                     <div class="col-6">
                         <h3>Services</h3>
@@ -29,39 +29,21 @@ $domainId = $id != null ? $id['domain'] : $default;
                             <th>Title</th>
                             <th>File</th>
                             <th>Subtitle</th>
-                            <th>Created Date</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @forelse($data as $item)
                             <tr>
-                                <td> {{ $item->title }} </td>
+                                <td> {{ $item['title'] }} </td>
                                 <td>
-                                    <img src="{{ $item->file }}"
-                                         alt="{{ $item->file }}"
+                                    <img src="{{ $item['file'] }}"
+                                         alt="{{ $item['file'] }}"
                                          width="100"
                                     >
                                 </td>
-                                <td> {{ $item->sub_title }} </td>
-                                <td> {{ $item->created_at }} </td>
-                                <td class="text-center">
-                                    <form id="delete-form-{{$item->id}}"
-                                          action="{{URL::to('delete-service', $item->id)}}"
-                                          method="post">
-                                        <a href="{{ URL::to('delete-service') }}"
-                                           onclick="event.preventDefault();
-                                               document.getElementById(
-                                               'delete-form-{{$item->id}}').submit();">
-                                            <i class="icon-line-trash"></i>
-                                        </a>
-                                        <a href="{{URL::to('edit-service/'.$item->id)}}">
-                                            <i class="icon-line-edit"></i>
-                                        </a>
-                                        @csrf @method('DELETE')
-                                    </form>
-                                </td>
-                                </td>
+                                <td> {{ $item['description'] }} </td>
+                              <td></td>
                             </tr>
                         @empty
                             <tr>
@@ -72,10 +54,11 @@ $domainId = $id != null ? $id['domain'] : $default;
                     </table>
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile2">
+            <div class="tab-pane fade show active" id="profile2">
                 <div class="row">
                     <div class="col-6">
-                        <h3>Sub Services</h3>
+                        {{-- sub --}}
+                        <h3>Services</h3>
                     </div>
                     <div class="col-6 text-end">
                         <a href="{{url('domains/'.$domainId.'/services/create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
@@ -88,38 +71,36 @@ $domainId = $id != null ? $id['domain'] : $default;
                             <th>Title</th>
                             <th>File</th>
                             <th>Description</th>
-                            <th>Created Date</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($subService as $item)
+                        @forelse($data as $key => $item)
                             <tr>
-                                <td> {{ $item->title }} </td>
+                                <td> {{ $item['title'] }} </td>
                                 <td>
-                                    <img src="{{ $item->icon }}"
-                                         alt="{{ $item->icon }}"
+                                    <img src="{{ $item['file'] }}"
+                                         alt="{{ $item['file'] }}"
                                          width="100"
                                     >
                                 </td>
-                                <td> {{ $item->description }} </td>
-                                <td> {{ $item->created_at }} </td>
+                                <td> {{ $item['description'] }} </td>
                                 <td class="text-center">
-                                    <form id="delete-form-{{$item->id}}"
-                                          action="{{URL::to('delete-service', $item->id)}}"
-                                          method="post">
-                                        <a href="{{ URL::to('delete-service') }}"
-                                           onclick="event.preventDefault();
-                                               document.getElementById(
-                                               'delete-form-{{$item->id}}').submit();">
-                                            <i class="icon-line-trash"></i>
-                                        </a>
-                                        <a href="{{URL::to('edit-sub-services/'.$item->id)}}">
-                                            <i class="icon-line-edit"></i>
-                                        </a>
-                                        @csrf @method('DELETE')
-                                    </form>
-                                </td>
+                                    {{-- <form id="delete-form-{{$attributes['id']}}"
+                                            action="{{URL::to('delete-slider', $attributes['id'])}}"
+                                            method="post">
+                                    <a href="{{ URL::to('delete-slider') }}"
+                                            onclick="event.preventDefault();
+                                                document.getElementById(
+                                                'delete-form-{{$attributes['id']}}').submit();">
+                                        <i class="icon-line-trash"></i>
+                                    </a> --}}
+                                    
+                                    <a href="{{URL::to('ratings/'.$key.'/edit')}}">
+                                        <i class="icon-line-edit"></i>
+                                    </a>
+                                        {{-- @csrf @method('DELETE')
+                                    </form> --}}
                                 </td>
                             </tr>
                         @empty

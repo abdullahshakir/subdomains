@@ -98,12 +98,12 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($domainId, $sliderId)
     {
         try {
             $previousAttributes = DomainSection::where('name', 'slider')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.slider.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.slider.update', with(['data' => $decodedFrom[$sliderId]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

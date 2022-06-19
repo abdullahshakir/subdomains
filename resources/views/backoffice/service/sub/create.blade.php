@@ -40,14 +40,9 @@
                                 <input type="file" id="jobs-application-resume" name="icon"
                                        class="file-loading form-select required" data-show-preview="false"/>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>Description:</label>
-                                    <textarea name="description"
-                                              placeholder="Enter description" class="form-control
-                                              required" cols="5" rows="5">
-                                    </textarea>
-                                </div>
+                            <div class="col-12 form-group">
+                                <label>Description:</label>
+                                <textarea class="form-control" name="description" placeholder="Enter description" rows="3"></textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-secondary">create</button>

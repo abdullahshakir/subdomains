@@ -18,9 +18,9 @@ class HeaderController extends Controller
     public function index()
     {
         try {
-            $attributes = DomainSection::where('name', 'rating')->first();
+            $attributes = DomainSection::where('name', 'header')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return view('backoffice.rating.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
+            return view('backoffice.header.view', with(['data' => $decodedFrom, 'attributes' => $attributes]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -34,7 +34,7 @@ class HeaderController extends Controller
     public function create()
     {
         try {
-            return view('backoffice.rating.create', with(['data' => []]));
+            return view('backoffice.header.create', with(['data' => []]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -51,25 +51,25 @@ class HeaderController extends Controller
         try {
             if($request->file()) {
                 $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('rating', $name, 'public');
+                $filePath = $request->file('file')->storeAs('header', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
             $jsonData = ['strength' => $request->strength, 'description' => $request->description, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
             $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'rating')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where('name', 'header')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'rating']])->update([
+            DomainSection::where([['domain_id', $domainId->id], ['name', 'header']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'rating')->select('attributes_data')->first();
+            $attributes = DomainSection::where('name', 'header')->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('ratings.index', ['data' => [$decodedFrom]]);
+            return redirect()->route('headers.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -95,9 +95,9 @@ class HeaderController extends Controller
     public function edit($id)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'rating')->first('attributes_data');
+            $previousAttributes = DomainSection::where('name', 'header')->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
-            return view('backoffice.rating.update', with(['data' => $decodedFrom[$id]]));
+            return view('backoffice.header.update', with(['data' => $decodedFrom[$id]]));
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -115,21 +115,21 @@ class HeaderController extends Controller
         try {
             if($request->file()) {
                 $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('rating', $name, 'public');
+                $filePath = $request->file('file')->storeAs('header', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
             $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'rating')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where('name', 'header')->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$id]['strength'] = $request->strength;
             $decodedFrom[$id]['description'] = $request->description;
             $decodedFrom[$id]['file'] = $file;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'rating']])->update([
+            DomainSection::where([['domain_id', $domainId->id], ['name', 'header']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'rating')->select('attributes_data')->first();
+            $attributes = DomainSection::where('name', 'header')->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('ratings.index', ['data' => [$decodedFrom]]);
+            return redirect()->route('headers.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

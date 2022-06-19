@@ -5,7 +5,6 @@
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
-// dd($domainId);
 ?>
     <section id="content">
         <div class="row">
@@ -13,7 +12,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                 <h3>Slider</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="<?php echo e(url('domains/2/sliders/create')); ?>" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="<?php echo e(url('domains/'.$domainId.'/sliders/create')); ?>" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>            
         <div class="table-responsive">
@@ -41,8 +40,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                         
                         <td class="text-center">
                             
-                            
-                            <a href="<?php echo e(URL::to('sliders/'.$key.'/edit')); ?>">
+                            <a href="<?php echo e(URL::to('domains/'.$domainId.'/sliders/'.$key.'/edit')); ?>">
                                 <i class="icon-line-edit"></i>
                             </a>
                                 

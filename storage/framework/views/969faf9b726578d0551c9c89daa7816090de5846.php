@@ -75,7 +75,6 @@ $domainId = $id != null ? $id['domain'] : $default;
                                 </td>
                                 <td class="text-center">
                                     
-                                    
                                     <a href="<?php echo e(URL::to('domains/'.$domainId.'/services/'.$key.'/edit')); ?>">
                                         <i class="icon-line-edit"></i>
                                     </a>

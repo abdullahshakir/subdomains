@@ -55,18 +55,17 @@ class FooterController extends Controller
             'subscribe_description' => $request->subscribe_description, 'facebook_link' => $request->facebook_link, 'subscriber_link' => $request->subscriber_link,
             'privacy_link' => $request->privacy_link, 'term_link' => $request->term_link, 'pinterest_link' => $request->pinterest_link, 'yahoo_link' => $request->yahoo_link];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'footer')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'footer']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'footer']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'footer']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'footer')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'footer']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('footers.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -94,7 +93,7 @@ class FooterController extends Controller
     public function edit($id, $footerId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'footer')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'footer']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             return view('backoffice.footer.update', with(['data' => $decodedFrom[$footerId]]));
         } catch (\Exception $exception) {
@@ -112,8 +111,7 @@ class FooterController extends Controller
     public function update(Request $request, $id, $updateId)
     {
         try {
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'footer')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'footer']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['address_title'] = $request->address_title;
             $decodedFrom[$updateId]['description'] = $request->description;
@@ -132,10 +130,10 @@ class FooterController extends Controller
             $decodedFrom[$updateId]['term_link'] = $request->term_link;
             $decodedFrom[$updateId]['pinterest_link'] = $request->pinterest_link;
             $decodedFrom[$updateId]['yahoo_link'] = $request->yahoo_link;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'footer']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'footer']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'footer')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'footer']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('footers.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

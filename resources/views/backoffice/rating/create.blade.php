@@ -21,7 +21,7 @@ $domainId = $id != null ? $id['domain'] : $default;
             <div class="row">
                 <form action="{{url('domains/'.$domainId.'/ratings')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
+                    <input type="hidden" value="{{$domainId}}" name="domain_id"/>
                     <div class="form-process">
                         <div class="css3-spinner">
                             <div class="css3-spinner-scaler"></div>

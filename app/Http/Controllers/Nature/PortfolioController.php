@@ -56,18 +56,17 @@ class PortfolioController extends Controller
             }
             $jsonData = ['title' => $request->title, 'type' => $request->type, 'file' => $file, 'category' => $request->category];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'portfolio')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'portfolio']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'portfolio')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('portfolios.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -95,7 +94,7 @@ class PortfolioController extends Controller
     public function edit($domainId, $portfolioId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'portfolio')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'portfolio']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             return view('backoffice.portfolio.update', with(['data' => $decodedFrom[$portfolioId]]));
         } catch (\Exception $exception) {
@@ -118,17 +117,16 @@ class PortfolioController extends Controller
                 $filePath = $request->file('file')->storeAs('portfolio', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'portfolio')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['title'] = $request->title;
             $decodedFrom[$updateId]['type'] = $request->type;
             $decodedFrom[$updateId]['category'] = $request->category;
             $decodedFrom[$updateId]['file'] = $file;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'portfolio']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'portfolio')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('portfolios.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

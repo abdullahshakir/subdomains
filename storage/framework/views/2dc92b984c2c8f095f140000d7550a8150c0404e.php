@@ -22,7 +22,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                           method="post" enctype="multipart/form-data">
                           <?php echo method_field('PUT'); ?>
                           <?php echo csrf_field(); ?>
-                        <input type="hidden" value="<?php echo e(request()->getHost()); ?>" name="domain_name"/>
+                        <input type="hidden" value="<?php echo e($domainId); ?>" name="domain_id"/>
                         <div class="form-process">
                             <div class="css3-spinner">
                                 <div class="css3-spinner-scaler"></div>

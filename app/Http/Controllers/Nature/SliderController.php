@@ -123,16 +123,15 @@ class SliderController extends Controller
                 $filePath = $request->file('file')->storeAs('slider', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'slider']])->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'slider']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['title'] = $request->title;
             $decodedFrom[$updateId]['sub_title'] = $request->sub_title;
             $decodedFrom[$updateId]['file'] = $file;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'slider']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'slider']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'slider')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'slider']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('sliders.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

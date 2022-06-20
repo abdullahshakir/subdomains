@@ -19,15 +19,12 @@ $domainId = $id != null ? $id['domain'] : $default;
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    @php
-                        $id = request()->route()->parameters()   
-                    @endphp
                     <form class="row" action="{{url('domains/'.$domainId.'/portfolios/'.$id['portfolio'])}}"
                           method="post" enctype="multipart/form-data">
                           @method('PUT')
                           @csrf
-                        <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
-                        <div class="form-process">
+                          <input type="hidden" value="{{$domainId}}" name="domain_id"/>
+                          <div class="form-process">
                             <div class="css3-spinner">
                                 <div class="css3-spinner-scaler"></div>
                             </div>

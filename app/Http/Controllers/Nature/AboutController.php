@@ -51,18 +51,17 @@ class AboutController extends Controller
         try {
             $jsonData = ['title' => $request->title, 'description' => $request->description, 'color' => $request->color];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'about')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'about']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'about')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->url('domains/{domain}/connectivities', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -90,7 +89,7 @@ class AboutController extends Controller
     public function edit($domainId, $aboutId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'about')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'about']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             return view('backoffice.about.update', with(['data' => $decodedFrom[$aboutId]]));
         } catch (\Exception $exception) {
@@ -108,16 +107,15 @@ class AboutController extends Controller
     public function update(Request $request, $id, $updateId)
     {
         try {
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'about')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['title'] = $request->title;
             $decodedFrom[$updateId]['description'] = $request->description;
             $decodedFrom[$updateId]['color'] = $request->color;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'about']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'about')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('connectivities.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

@@ -57,18 +57,17 @@ class GalleryController extends Controller
             }
             $jsonData = ['is_center' => $request->is_center, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'gallery')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'gallery']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'gallery')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('galleries.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -96,7 +95,7 @@ class GalleryController extends Controller
     public function edit($domainId, $galleryId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'gallery')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'gallery']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             return view('backoffice.gallery.update', with(['data' => $decodedFrom[$galleryId]]));
         } catch (\Exception $exception) {
@@ -119,15 +118,14 @@ class GalleryController extends Controller
                 $filePath = $request->file('file')->storeAs('gallery', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'gallery')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['is_center'] = $request->is_center;
             $decodedFrom[$updateId]['file'] = $file;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'gallery']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'gallery')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('galleries.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

@@ -56,18 +56,17 @@ class FeatureController extends Controller
             }
             $jsonData = ['title' => $request->title, 'description' => $request->description, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'feature')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('features.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -95,7 +94,7 @@ class FeatureController extends Controller
     public function edit($domainId, $featureId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'feature')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'feature']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             return view('backoffice.feature.update', with(['data' => $decodedFrom[$featureId]]));
         } catch (\Exception $exception) {
@@ -118,16 +117,15 @@ class FeatureController extends Controller
                 $filePath = $request->file('file')->storeAs('feature', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['title'] = $request->title;
             $decodedFrom[$updateId]['description'] = $request->description;
             $decodedFrom[$updateId]['file'] = $file;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'feature']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'feature')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('features.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

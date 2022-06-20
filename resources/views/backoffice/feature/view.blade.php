@@ -5,7 +5,6 @@
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
-// dd($domainId);
 @endphp
     <section id="content">
         <div class="row">

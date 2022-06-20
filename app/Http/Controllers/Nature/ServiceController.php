@@ -56,18 +56,17 @@ class ServiceController extends Controller
             }
             $jsonData = ['title' => $request->title, 'description' => $request->description, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'service')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
                     array_push($prevJsonData , $item) ;
                 }
-            }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'service']])->update([
+            }            
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'service')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('services.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -95,7 +94,7 @@ class ServiceController extends Controller
     public function edit($domainId, $serviceId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'service')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'service']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'] ?? null, true);
             return view('backoffice.service.update', with(['data' => $decodedFrom[$serviceId]]));
         } catch (\Exception $exception) {
@@ -118,16 +117,15 @@ class ServiceController extends Controller
                 $filePath = $request->file('file')->storeAs('service', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where('name', 'service')->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['title'] = $request->title;
             $decodedFrom[$updateId]['description'] = $request->description;
             $decodedFrom[$updateId]['file'] = $file;
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'service']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'service')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('services.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

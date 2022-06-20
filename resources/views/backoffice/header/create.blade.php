@@ -18,6 +18,7 @@ $domainId = $id != null ? $id['domain'] : $default;
         <div class="form-widget">
                 <div class="form-result"></div>
                 <div class="row">
+                    <input type="hidden" value="{{$domainId}}" name="domain_id"/>
                     <div class="col-lg-12">
                         <form class="row" action="{{route('headers.create')}}" method="post" enctype="multipart/form-data">
                             @csrf

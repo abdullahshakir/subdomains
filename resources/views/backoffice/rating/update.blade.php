@@ -4,7 +4,6 @@
 $id = request()->route()->parameters();
 $default = '/';
 $domainId = $id != null ? $id['domain'] : $default;
-// dd($domainId);
 @endphp
     <section id="content">
         <div class="row">
@@ -12,22 +11,19 @@ $domainId = $id != null ? $id['domain'] : $default;
                 <h3>Edit</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{route('ratings.index')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
+                <a href="{{url('domains/'.$domainId.'/ratings')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Back</a>
             </div>
         </div>
         <div class="form-widget">
             <div class="form-result"></div>
             <div class="row">
                 <div class="col-lg-12">
-                    @php
-                        $id = request()->route()->parameters()   
-                    @endphp
-                    <form class="row" action="{{url('ratings/'. $id['rating'])}}"
+                    <form class="row" action="{{url('domains/'.$domainId.'/ratings/'.$id['rating'])}}"
                           method="post" enctype="multipart/form-data">
                           @method('PUT')
                           @csrf
-                        <input type="hidden" value="{{request()->getHost()}}" name="domain_name"/>
-                        <div class="form-process">
+                          <input type="hidden" value="{{$domainId}}" name="domain_id"/>
+                          <div class="form-process">
                             <div class="css3-spinner">
                                 <div class="css3-spinner-scaler"></div>
                             </div>

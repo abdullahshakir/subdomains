@@ -58,18 +58,17 @@ class TeamController extends Controller
             'designation' => $request->designation, 'facebook_link' => $request->facebook_link, 'twitter_link' => $request->twitter_link,
             'google_link' => $request->google_link];
             $prevJsonData = ['first' => $jsonData]; 
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'team']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             if($decodedFrom){
                 foreach($decodedFrom as $key => $item) {
-                    array_push($prevJsonData , $item) ;
+                    array_push($prevJsonData, $item);
                 }
             }
-            DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->update([
+            DomainSection::where([['domain_id', $request->domain_id], ['name', 'team']])->update([
                 'attributes_data' => json_encode($prevJsonData),
             ]);
-            $attributes = DomainSection::where('name', 'team')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'team']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('teams.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {
@@ -97,7 +96,7 @@ class TeamController extends Controller
     public function edit($domainId, $teamId)
     {
         try {
-            $previousAttributes = DomainSection::where('name', 'team')->first('attributes_data');
+            $previousAttributes = DomainSection::where([['domain_id', $domainId], ['name', 'team']])->first('attributes_data');
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             return view('backoffice.team.update', with(['data' => $decodedFrom[$teamId]]));
         } catch (\Exception $exception) {
@@ -120,8 +119,7 @@ class TeamController extends Controller
                 $filePath = $request->file('file')->storeAs('team', $name, 'public');
                 $file = '/storage/' . $filePath;
             }
-            $domainId = Domain::where('url', $request->domain_name)->first();
-            $previousAttributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->select('attributes_data')->first();
+            $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'team']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['name'] = $request->name;
             $decodedFrom[$updateId]['description'] = $request->description;
@@ -133,7 +131,7 @@ class TeamController extends Controller
             DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->update([
                 'attributes_data' => json_encode($decodedFrom),
             ]);
-            $attributes = DomainSection::where('name', 'team')->select('attributes_data')->first();
+            $attributes = DomainSection::where([['domain_id', $domainId->id], ['name', 'team']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
             return redirect()->route('teams.index', ['data' => [$decodedFrom]]);
         } catch (\Exception $exception) {

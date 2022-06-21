@@ -1,4 +1,9 @@
 <section id="content">
+{{-- @php
+$id = request()->route()->parameters();
+$default = '/';
+$domainId = $id != null ? $id['domain'] : $default;
+@endphp --}}
         <div class="container clearfix mb-6">
             <h3 id="contactus">Contact Us</h3>
             <div class="divider"><i class="icon-circle"></i></div>
@@ -6,7 +11,7 @@
                 <div class="col-lg-6">
                     <div class="form-widget">
                         <div class="form-result"></div>
-                        <form class="mb-0" action="{{route('create.contact')}}" method="post"
+                        <form class="mb-0" action="{{url('domains/'.'1'.'/contact')}}" method="post"
                               enctype="multipart/form-data" id="template-contactform"
                               name="template-contactform">
                             @csrf
@@ -70,13 +75,13 @@
                 </div>
             </div>
             <div class="row col-mb-50">
-                @forelse($connectivity['connectivity'] as $item)
+                @forelse($connectivities as $item)
                 <div class="col-sm-6 col-lg-3">
                     <div class="feature-box fbox-center fbox-bg fbox-plain">
                         <div class="fbox-icon">
                             <a href="#">
-                                <img src="{{ $item->file }}"
-                                     alt="{{ $item->file }}"
+                                <img src="{{ $item['file'] }}"
+                                     alt="{{ $item['file'] }}"
                                     style="border-radius: 50%"
                                 >
                             </a>
@@ -86,7 +91,7 @@
 {{--                            <i class="icon-phone3"></i>--}}
                         </div>
                         <div class="fbox-content">
-                            <h3>{{$item->title}}<span class="subtitle">{{$item->description}}</span></h3>
+                            <h3>{{$item['title']}}<span class="subtitle">{{$item['description']}}</span></h3>
                         </div>
                     </div>
                 </div>

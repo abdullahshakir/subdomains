@@ -5,12 +5,12 @@
             <div class="divider"><i class="icon-circle"></i></div>
         </div>
         <div class="row p-0 bottommargin-lg align-items-stretch">
-            @forelse($aboutUs as $about)
-                <div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: {{$about->color}}">
+            @forelse($abouts as $about)
+                <div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: {{$about['color']}}">
                     <div>
-                        <h3 class="text-uppercase" style="font-weight: 600;">{{$about->title}}</h3>
+                        <h3 class="text-uppercase" style="font-weight: 600;">{{$about['title']}}</h3>
                         <p style="line-height: 1.8;">
-                            {{$about->description}}
+                            {{$about['description']}}
                         </p>
                         <a href="#" class="button button-border button-light button-rounded--}}
                             button-reveal text-end text-uppercase m-0">

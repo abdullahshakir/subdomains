@@ -4,8 +4,8 @@
             <h3 class="m-0">Our Services</h3>
             <div class="divider"><i class="icon-circle"></i></div>
             <div class="heading-block center">
-                <h2>{{$withSubService->title ?? null}}</h2>
-                <span>{{$withSubService->sub_title ?? null}}</span>
+                <h2>{{$withSubService->title ?? 'This is an title'}}</h2>
+                <span>{{$withSubService->sub_title ?? 'This is an sub title'}}</span>
             </div>
             <div class="row col-mb-50">
                 <div class="col-lg-4 text-center text-lg-start">
@@ -15,25 +15,25 @@
                          width="100"
                     >
                 </div>
-                @if(isset($withSubService['subServices']))
+                @if(isset($services))
                 <div class="col-8">
                     <div class="row">
-                        @forelse($withSubService['subServices'] as $subService)
+                        @forelse($services as $subService)
                         <div class="col-lg-6 col-md-6 topmargin">
                             <div class="w-100 mb-5">
                                 <div class="feature-box fbox-plain fbox-sm fbox-dark">
                                     <div class="fbox-icon">
                                         <a href="#">
-                                            <img src="{{ $subService->icon }}"
-                                                 alt="{{ $subService->icon }}"
+                                            <img src="{{ $subService['file'] }}"
+                                                 alt="{{ $subService['file'] }}"
                                                  width="100"
                                             >
                                         </a>
                                     </div>
                                     <div class="fbox-content">
-                                        <h3>{{$subService->title}}</h3>
+                                        <h3>{{$subService['title']}}</h3>
                                         <p>
-                                            {{$subService->description}}
+                                            {{$subService['description']}}
                                         </p>
                                     </div>
                                 </div>
@@ -60,16 +60,16 @@
                         <a href="#">
 {{--                            <i class="icon-crop i-alt"></i>--}}
                             <img data-animate="fadeInLeftBig"
-                                 src="{{ $feature->file ?? null }}"
-                                 alt="{{ $feature->file ?? null }}"
+                                 src="{{ $feature['file'] ?? null }}"
+                                 alt="{{ $feature['file'] ?? null }}"
                                  width="50" height="50"
                                  style="border-radius: 50%;"
                             >
                         </a>
                     </div>
                     <div class="fbox-content">
-                        <h3>{{ $feature->title }}<span
-                                class="subtitle">{{ $feature->description }}</span></h3>
+                        <h3>{{ $feature['title'] }}<span
+                                class="subtitle">{{ $feature['description'] }}</span></h3>
                     </div>
                 </div>
             </div>

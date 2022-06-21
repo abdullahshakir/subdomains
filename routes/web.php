@@ -27,14 +27,6 @@ Route::resource('sub-domain', SubDomainController::class);
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('domains', DomainController::class);
-    // Route::controller(DomainController::class)->group(function () {
-    //     Route::get('/index-domain', 'createForm')->name('index.domain');
-    //     Route::get('/edit-domain/{id}', 'edit')->name('edit.domain')->middleware(['admin']);
-    //     Route::get('/view-domain', 'view')->name('view.domain');
-    //     Route::post('/create-domain', 'createDomain')->name('create.domain');
-    //     Route::delete('/delete-domain/{id}', 'delete')->middleware(['admin']);
-    //     Route::post('/update-domain/{id}', 'update')->name('update.domain')->middleware(['admin']);
-    // });
 });
 
 $domains = Domain::with('theme')->get();
@@ -46,23 +38,6 @@ foreach ($domains as $key => $domain) {
         }
     });
 }
-
-// $domains = Domain::with('theme')->get();
-// foreach ($domains as $key => $domain) {
-//     foreach ($domain->sections as $section) {
-//         $className = "\\App\\Http\\Controllers\\{$domain->theme->name}\\{$section->controller}";
-//         Route::resource($section->route, app($className)::class);
-//     }
-// }
-
-
-// $domains = Theme::with('themeSections')->get();
-// foreach ($domains as $key => $domain) {
-//     foreach ($domain->themeSections as $section) {
-//         $className = "\\App\\Http\\Controllers\\{$domain->name}\\{$section->controller}";
-//         Route::resource($section->route, app($className)::class);
-//     }
-// }
 
 // Route::domain('admin.'.env('DOMAIN_ONE'))->group(function () {
 //     Route::get('/', function () {
@@ -90,5 +65,6 @@ foreach ($domains as $key => $domain) {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/{id}', [App\Http\Controllers\HomeController::class, 'homeData'])->name('/');
 
 

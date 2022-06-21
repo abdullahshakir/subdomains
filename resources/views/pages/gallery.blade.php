@@ -4,9 +4,9 @@
         <div class="divider"><i class="icon-circle"></i></div>
         <div class="masonry-thumbs grid-container grid-6" data-big="3" data-lightbox="gallery">
             @forelse($gallery as $images)
-            <a class="grid-item" href="{{ $images->file }}" data-lightbox="gallery-item">
-                <img src="{{ $images->file }}"
-                     alt="{{ $images->file }}"
+            <a class="grid-item" href="{{ $images['file'] }}" data-lightbox="gallery-item">
+                <img src="{{ $images['file'] }}"
+                     alt="{{ $images['file'] }}"
                      width="100"
                 >
             </a>

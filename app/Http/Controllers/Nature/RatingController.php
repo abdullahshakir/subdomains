@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Nature;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Domain;
+use Illuminate\Support\Facades\Storage;
 use App\Models\DomainSection;
 use Exception;
 
@@ -49,11 +50,8 @@ class RatingController extends Controller
     public function store(Request $request)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('rating', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
+            $file = Storage::disk('s3')->put('images', $request->file);
+            $file = Storage::disk('s3')->url($file);   
             $jsonData = ['strength' => $request->strength, 'description' => $request->description, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
             $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'rating']])->select('attributes_data')->first();
@@ -112,11 +110,8 @@ class RatingController extends Controller
     public function update(Request $request, $id, $updateId)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('rating', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
+            $file = Storage::disk('s3')->put('images', $request->file);
+            $file = Storage::disk('s3')->url($file);   
             $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'rating']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['strength'] = $request->strength;

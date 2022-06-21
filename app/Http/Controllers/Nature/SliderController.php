@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Nature;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Domain;
+use Illuminate\Support\Facades\Storage;
 use App\Models\DomainSection;
 use Exception;
 
@@ -49,11 +50,8 @@ class SliderController extends Controller
     public function store(Request $request, Domain $domain)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('slider', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
+            $file = Storage::disk('s3')->put('images', $request->file);
+            $file = Storage::disk('s3')->url($file);    
             $jsonData = ['title' => $request->title, 'sub_title' => $request->sub_title, 'file' => $file];
             $prevJsonData = ['first' => $jsonData]; 
         //     $sliderSection = $domain->sections()->where('name', 'slider')->first();
@@ -118,11 +116,8 @@ class SliderController extends Controller
     public function update(Request $request, $id, $updateId)
     {
         try {
-            if($request->file()) {
-                $name =  time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('slider', $name, 'public');
-                $file = '/storage/' . $filePath;
-            }
+            $file = Storage::disk('s3')->put('images', $request->file);
+            $file = Storage::disk('s3')->url($file);    
             $previousAttributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'slider']])->select('attributes_data')->first();
             $decodedFrom = json_decode($previousAttributes['attributes_data'], true);
             $decodedFrom[$updateId]['title'] = $request->title;

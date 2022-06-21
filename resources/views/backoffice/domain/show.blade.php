@@ -11,6 +11,9 @@
             </div>
         </div>
         <div class="table-responsive">
+           <h4>Domain Title: <span style="margin-left:20px">{{$data->title}}</span></h4>
+           <h4>Domain URL: <span style="margin-left:24px">{{$data->url}}</span></h4>
+           <h4>Ceation Date: <span style="margin-left:20px">{{$data->created_at}}</span></h4>
         </div>
     </section>
 @endsection

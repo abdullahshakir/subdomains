@@ -114,7 +114,7 @@
                                 <div>Portfolio</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="<?php echo e(url('domains/'.$domainId.'/about')); ?>">
+                        <li class="menu-item"><a class="menu-link" href="<?php echo e(url('domains/'.$domainId.'/abouts')); ?>">
                                 <div>About us</div>
                             </a>
                         </li>

@@ -11,6 +11,9 @@
             </div>
         </div>
         <div class="table-responsive">
+           <h4>Domain Title: <span style="margin-left:20px"><?php echo e($data->title); ?></span></h4>
+           <h4>Domain URL: <span style="margin-left:24px"><?php echo e($data->url); ?></span></h4>
+           <h4>Ceation Date: <span style="margin-left:20px"><?php echo e($data->created_at); ?></span></h4>
         </div>
     </section>
 <?php $__env->stopSection(); ?>

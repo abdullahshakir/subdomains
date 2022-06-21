@@ -53,8 +53,8 @@
         <div class="row col-mb-50">
             <h3 class="m-0">Features</h3>
             <div class="divider"><i class="icon-circle"></i></div>
-            <?php if(isset($feature)): ?>
-            <?php $__empty_1 = true; $__currentLoopData = $feature; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php if(isset($features)): ?>
+            <?php $__empty_1 = true; $__currentLoopData = $features; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="col-sm-6 col-lg-4">
                 <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
                     <div class="fbox-icon">

@@ -60,7 +60,7 @@ class HomeController extends Controller
             ->with('headers', $header)
             ->with('portfolios', $portfolio)
             ->with('connectivities', $connectivity)
-            ->with('footers', $footer)
+            ->with('footer', $footer['first'])
             ->with('teams', $team)
             ->with('ratings', $rating);
     }

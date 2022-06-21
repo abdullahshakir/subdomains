@@ -13,11 +13,11 @@
                                     style="background: url('assets/images/world-map.png') no-repeat center center; background-size: 100%;">
                                     <address>
                                         <strong>Headquarters:</strong>
-                                        {{$footer->address ?? null}}
+                                        {{$footer['address'] ?? null}}
                                     </address>
-                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr>{{$footer->phone ?? null}}<br>
-                                    <abbr title="Fax"><strong>Fax:</strong></abbr>{{$footer->fax ?? null}}<br>
-                                    <abbr title="Email Address"><strong>Email:</strong></abbr> {{$footer->email ?? null}}
+                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr>{{$footer['phone'] ?? null}}<br>
+                                    <abbr title="Fax"><strong>Fax:</strong></abbr>{{$footer['fax'] ?? null}}<br>
+                                    <abbr title="Email Address"><strong>Email:</strong></abbr> {{$footer['email'] ?? null}}
                                 </div>
                             </div>
                         </div>
@@ -33,14 +33,14 @@
                             <div class="widget clearfix" style="margin-bottom: -20px;">
                                 <div class="row">
                                     <div class="col-lg-6 bottommargin-sm">
-                                        <div class="counter counter-small"><span data-from="50" data-to="{{$footer->total_download ?? null}}"
+                                        <div class="counter counter-small"><span data-from="50" data-to="{{$footer['total_download'] ?? null}}"
                                                                                  data-refresh-interval="80"
                                                                                  data-speed="3000"
                                                                                  data-comma="true"></span></div>
                                         <h5 class="mb-0">Total Downloads</h5>
                                     </div>
                                     <div class="col-lg-6 bottommargin-sm">
-                                        <div class="counter counter-small"><span data-from="100" data-to="{{$footer->total_client ?? null}}"
+                                        <div class="counter counter-small"><span data-from="100" data-to="{{$footer['total_client'] ?? null}}"
                                                                                  data-refresh-interval="50"
                                                                                  data-speed="2000"
                                                                                  data-comma="true"></span></div>
@@ -75,11 +75,11 @@
                                             <i class="icon-facebook"></i>
                                             <i class="icon-facebook"></i>
                                         </a>
-                                        <a href="{{$footer->facebook_link ?? null}}"><small style="display: block; margin-top: 3px;"><strong>Like
+                                        <a href="{{$footer['facebook_link'] ?? null}}"><small style="display: block; margin-top: 3px;"><strong>Like
                                                     us</strong><br>on Facebook</small></a>
                                     </div>
                                     <div class="col-6 col-md-12 col-lg-6 clearfix">
-                                        <a href="{{$footer->subscriber_link ?? null}}" class="social-icon si-dark si-colored si-rss mb-0"
+                                        <a href="{{$footer['subscriber_link'] ?? null}}" class="social-icon si-dark si-colored si-rss mb-0"
                                            style="margin-right: 10px;">
                                             <i class="icon-rss"></i>
                                             <i class="icon-rss"></i>

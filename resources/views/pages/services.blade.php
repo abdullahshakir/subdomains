@@ -52,8 +52,8 @@
         <div class="row col-mb-50">
             <h3 class="m-0">Features</h3>
             <div class="divider"><i class="icon-circle"></i></div>
-            @if(isset($feature))
-            @forelse($feature as $feature)
+            @if(isset($features))
+            @forelse($features as $feature)
             <div class="col-sm-6 col-lg-4">
                 <div class="feature-box fbox-center fbox-outline fbox-lg fbox-effect">
                     <div class="fbox-icon">

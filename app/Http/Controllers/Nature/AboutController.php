@@ -8,6 +8,7 @@ use App\Models\Domain;
 use App\Models\DomainSection;
 use Illuminate\Support\Facades\Storage;
 use Exception;
+use Redirect;
 
 class AboutController extends Controller
 {
@@ -64,7 +65,7 @@ class AboutController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->url('domains/{domain}/connectivities', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/about')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -118,7 +119,7 @@ class AboutController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('connectivities.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/about')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

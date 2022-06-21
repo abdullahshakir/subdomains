@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Domain;
 use App\Models\DomainSection;
+use Redirect;
 use Exception;
 
 class ServiceController extends Controller
@@ -66,7 +67,7 @@ class ServiceController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('services.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/services')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -122,7 +123,7 @@ class ServiceController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'service']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('services.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/services')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

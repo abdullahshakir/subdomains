@@ -9,6 +9,7 @@ use App\Models\DomainSection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Exception;
+use Redirect;
 
 class GalleryController extends Controller
 {
@@ -67,7 +68,7 @@ class GalleryController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('galleries.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/galleries')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -122,7 +123,7 @@ class GalleryController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'gallery']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('galleries.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/galleries')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Domain;
 use App\Models\DomainSection;
 use Exception;
+use Redirect;
 
 class FeatureController extends Controller
 {
@@ -66,7 +67,7 @@ class FeatureController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('features.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/features')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -122,7 +123,7 @@ class FeatureController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'feature']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('features.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/features')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\DomainSection;
+use Redirect;
 use Exception;
 
 class HeaderController extends Controller
@@ -67,7 +68,7 @@ class HeaderController extends Controller
             ]);
             $attributes = DomainSection::where('name', 'header')->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('headers.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/about')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -125,7 +126,7 @@ class HeaderController extends Controller
             ]);
             $attributes = DomainSection::where('name', 'header')->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('headers.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/about')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

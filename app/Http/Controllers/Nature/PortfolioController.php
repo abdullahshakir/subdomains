@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Domain;
 use Illuminate\Support\Facades\Storage;
 use App\Models\DomainSection;
+use Redirect;
 use Exception;
 
 class PortfolioController extends Controller
@@ -66,7 +67,7 @@ class PortfolioController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('portfolios.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/portfolios')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -123,7 +124,7 @@ class PortfolioController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'portfolio']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return redirect()->route('portfolios.index', ['data' => [$decodedFrom]]);
+            return  Redirect::to('domains/'.$request->domain_id.'/portfolios')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

@@ -65,7 +65,7 @@ class AboutController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return  Redirect::to('domains/'.$request->domain_id.'/about')->with('data', $decodedFrom);
+            return  Redirect::to('domains/'.$request->domain_id.'/abouts')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -119,7 +119,7 @@ class AboutController extends Controller
             ]);
             $attributes = DomainSection::where([['domain_id', $request->domain_id], ['name', 'about']])->select('attributes_data')->first();
             $decodedFrom = json_decode($attributes['attributes_data'], true);
-            return  Redirect::to('domains/'.$request->domain_id.'/about')->with('data', $decodedFrom);
+            return  Redirect::to('domains/'.$request->domain_id.'/abouts')->with('data', $decodedFrom);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

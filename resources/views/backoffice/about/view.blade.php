@@ -13,7 +13,7 @@ $domainId = $id != null ? $id['domain'] : $default;
                 <h3>About us</h3>
             </div>
             <div class="col-6 text-end">
-                <a href="{{url('domains/'.$domainId.'/about/create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
+                <a href="{{url('domains/'.$domainId.'/abouts/create')}}" class="text-decoration-none text-white btn-sm btn btn-secondary">Create</a>
             </div>
         </div>           
         <div class="table-responsive">

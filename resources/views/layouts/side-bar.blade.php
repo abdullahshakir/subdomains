@@ -117,7 +117,7 @@
                                 <div>Portfolio</div>
                             </a>
                         </li>
-                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/about') }}">
+                        <li class="menu-item"><a class="menu-link" href="{{ url('domains/'.$domainId.'/abouts') }}">
                                 <div>About us</div>
                             </a>
                         </li>
